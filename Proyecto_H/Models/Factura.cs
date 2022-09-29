@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_H.Models
 {
-    public class factura
+    public class Factura
     {
     }
 }

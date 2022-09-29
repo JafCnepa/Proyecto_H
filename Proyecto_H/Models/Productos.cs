@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_H.Models
 {
-    public class producto
+    public class Productos
     {
     }
 }
