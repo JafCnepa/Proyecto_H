@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Proyecto_H.Datos;
-using Proyecto_H.Models;
+using Microsoft.AspNetCore.Mvc;
+using Proyecto.Datos;
+using Proyecto.Models;
 
-namespace Proyecto_H.Controllers
+namespace Proyecto.Controllers
 {
     public class MedicoController : Controller
     {
@@ -10,22 +10,21 @@ namespace Proyecto_H.Controllers
         public MedicoController(ApplicationDbContext dbContext)
         {
             _context = dbContext;
-         }
+        }
         //Method to list the doctors in the panel
-        public IActionResult Especialistas()
+        public IActionResult Index()
         {
             List<Medico> listDoctors = _context.Medico.ToList();
             return View(listDoctors);
 
         }
-
         //Reading...
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
-        //Validating Doctors Data to be stored in azure
+        //Validating Doctors Data to be stored in mysql
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Medico medico)
@@ -34,11 +33,23 @@ namespace Proyecto_H.Controllers
             {
                 _context.Medico.Add(medico);
                 _context.SaveChanges();
-                return RedirectToAction("Especialistas");
+                return RedirectToAction("Index");
             }
             return View();
         }
-        //the edit method is created so that the doctors can modify its fields and Azure
+        //the edit method is created so that the doctors can modify its fields and mysql
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+            //lambda
+            var medico = _context.Medico.FirstOrDefault
+                (c => c.id_medico == id);
+            return View(medico);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Medico medico)
@@ -47,25 +58,20 @@ namespace Proyecto_H.Controllers
             {
                 _context.Medico.Update(medico);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Especialistas));
+                //redireccionar al index
+                return RedirectToAction(nameof(Index));
             }
             return View(medico);
-
         }
-
-
-
         //the delete method by id
-        [HttpDelete]
+        [HttpGet]
         public IActionResult Delete(int? id)
         {
-
             var medico = _context.Medico.FirstOrDefault(
-                    d => d.id_medico == id);
+                c => c.id_medico == id);
             _context.Medico.Remove(medico);
             _context.SaveChanges();
-            return RedirectToAction("Especialistas");
-
+            return RedirectToAction("Index");
         }
 
     }
