@@ -26,7 +26,7 @@ namespace Proyecto.Controllers
         {
             return View();
         }
-        //Validating User Data to be stored in azure
+        //Validating User Data to be stored in mysql
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Usuarios usuarios)
@@ -40,7 +40,7 @@ namespace Proyecto.Controllers
             return View();
         }
 
-        //the edit method is created so that the user can modify its fields and Azure
+        //the edit method is created so that the user can modify its fields and mysql
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Usuarios usuarios)

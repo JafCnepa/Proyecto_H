@@ -25,7 +25,7 @@ namespace Proyecto.Controllers
         {
             return View();
         }
-        //Validating Doctors Data to be stored in azure
+        //Validating Doctors Data to be stored in mysql
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Medico medico)
@@ -38,7 +38,7 @@ namespace Proyecto.Controllers
             }
             return View();
         }
-        //the edit method is created so that the doctors can modify its fields and Azure
+        //the edit method is created so that the doctors can modify its fields and mysql
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Medico medico)
