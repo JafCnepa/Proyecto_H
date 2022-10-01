@@ -1,0 +1,33 @@
+﻿@model Medico
+@{
+    ViewData["Title"] = "Crear Medico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="post" asp-action="Create">
+    <div class="border-bottom p-3">
+        <div class="form-group row">
+            <h2 class="text-info p-lg-3">Nuevo Medico</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <label asp-for="nombre" class="form-label">Nombre Medico</label>
+                <input asp-for="nombre" class="form-control" />
+                <label asp-for="apellido" class="form-label">Apellido Medico</label>
+                <input asp-for="apellido" class="form-control" />
+                <label asp-for="especialidad" class="form-label">Especialidad</label>
+                <input asp-for="especialidad" class="form-control" />
+                <label asp-for="cedula" class="form-label">Cedula</label>
+                <input asp-for="cedula" class="form-control" />
+                <label asp-for="salon" class="form-label">Salon</label>
+                <input asp-for="salon" class="form-control" />
+            </div>
+        </div>
+          <br />
+          <div class="d-grid gap-2 d-md-block">
+              <button type="submit" class="btn btn-primary">Crear Nuevo</button>
+              <a asp-controller="Medico" asp-action="Index" 
+              class="btn btn-success">Regresar</a>
+          </div>
+    </div>
+</form>
