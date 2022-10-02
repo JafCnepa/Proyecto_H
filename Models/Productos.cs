@@ -14,7 +14,8 @@ namespace Proyecto.Models
         public string? categoria { get; set; }
         public DateTime fecha { get; set; }
         [Required]
-        public int id_usuarios { get; set; }
+        public virtual ICollection<Usuarios> Usuarios { get; set; }
+
 
     }
 }

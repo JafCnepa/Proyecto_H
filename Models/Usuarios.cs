@@ -4,7 +4,7 @@ namespace Proyecto.Models
 {
     public class Usuarios
     {
-        
+
         [Key]
         public int id_usuario { get; set; }
         [Required]
@@ -29,8 +29,8 @@ namespace Proyecto.Models
         public string? descripcion { get; set; }
         public string? clave { get; set; }
 
+        public virtual ICollection<Medico> Medico { get; set; }
 
 
     }
 }
-

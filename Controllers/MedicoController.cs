@@ -12,13 +12,12 @@ namespace Proyecto.Controllers
             _context = dbContext;
         }
         //Method to list the doctors in the panel
-        public IActionResult Especialistas()
+        public IActionResult Index()
         {
             List<Medico> listDoctors = _context.Medico.ToList();
             return View(listDoctors);
 
         }
-
         //Reading...
         [HttpGet]
         public IActionResult Create()
@@ -34,11 +33,23 @@ namespace Proyecto.Controllers
             {
                 _context.Medico.Add(medico);
                 _context.SaveChanges();
-                return RedirectToAction("Especialistas");
+                return RedirectToAction("Index");
             }
             return View();
         }
         //the edit method is created so that the doctors can modify its fields and mysql
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+            //lambda
+            var medico = _context.Medico.FirstOrDefault
+                (c => c.id_medico == id);
+            return View(medico);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Medico medico)
@@ -47,25 +58,20 @@ namespace Proyecto.Controllers
             {
                 _context.Medico.Update(medico);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Especialistas));
+                //redireccionar al index
+                return RedirectToAction(nameof(Index));
             }
             return View(medico);
-
         }
-
-
-
         //the delete method by id
-        [HttpDelete]
+        [HttpGet]
         public IActionResult Delete(int? id)
         {
-
             var medico = _context.Medico.FirstOrDefault(
-                    d => d.id_medico == id);
+                c => c.id_medico == id);
             _context.Medico.Remove(medico);
             _context.SaveChanges();
-            return RedirectToAction("Especialistas");
-
+            return RedirectToAction("Index");
         }
 
     }

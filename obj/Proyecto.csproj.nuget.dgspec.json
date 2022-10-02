@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Hospital\\Proyecto\\Proyecto.csproj": {}
+    "D:\\Proyecto_H-master\\Proyecto_H-master\\Proyecto.csproj": {}
   },
   "projects": {
-    "D:\\Hospital\\Proyecto\\Proyecto.csproj": {
+    "D:\\Proyecto_H-master\\Proyecto_H-master\\Proyecto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Hospital\\Proyecto\\Proyecto.csproj",
+        "projectUniqueName": "D:\\Proyecto_H-master\\Proyecto_H-master\\Proyecto.csproj",
         "projectName": "Proyecto",
-        "projectPath": "D:\\Hospital\\Proyecto\\Proyecto.csproj",
+        "projectPath": "D:\\Proyecto_H-master\\Proyecto_H-master\\Proyecto.csproj",
         "packagesPath": "C:\\Users\\jafet\\.nuget\\packages\\",
-        "outputPath": "D:\\Hospital\\Proyecto\\obj\\",
+        "outputPath": "D:\\Proyecto_H-master\\Proyecto_H-master\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jafet\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -49,6 +49,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.9, )"
             }

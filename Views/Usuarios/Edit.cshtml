@@ -1,0 +1,94 @@
+﻿@model Usuarios
+@{
+    ViewData["Title"] = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /> <br/>
+<h3 class="text-center">Editar Usuario</h3>
+<form method="post" asp-action="Edit">
+    <input type="hidden" asp-for="id_usuario"/>
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+         <div class="row">
+                    <div class="col">
+                    <label asp-for="nombre"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="nombre" class="form-control" />
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="apellido"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="apellido" class="form-control" />
+                    <span asp-validation-for="apellido" class="text-danger"></span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="dni"></label> 
+                    </div>
+                    <div class="col">
+                    <input asp-for="dni" class="form-control" />
+                    <span asp-validation-for="dni" class="text-danger"></span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="ruc"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="ruc" class="form-control" />
+                    <span asp-validation-for="ruc" class="text-danger"></span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="celular"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="celular" class="form-control" />
+                    <span asp-validation-for="celular" class="text-danger"></span>
+                    </div>
+                     <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="correo"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="correo" class="form-control" />
+                    <span asp-validation-for="correo" class="text-danger"></span>
+                    </div>
+                     <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="fecha_nacimiento"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="fecha_nacimiento" class="form-control" />
+                    <span asp-validation-for="fecha_nacimiento" class="text-danger"></span>
+                    </div>
+                     <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="descripcion"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="descripcion" class="form-control" />
+                    <span asp-validation-for="descripcion" class="text-danger"></span>
+                    </div>
+                     <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="clave"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="clave" class="form-control" />
+                    <span asp-validation-for="clave" class="text-danger"></span>
+                    </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3"> 
+            <a asp-action="Index">Volver a lista</a>
+        </div>
+        <div class="col-5 offset-4">
+        <button type="submit" class="btn btn-primary form-control">Editar</button>
+        </div>
+    </div>
+</form>

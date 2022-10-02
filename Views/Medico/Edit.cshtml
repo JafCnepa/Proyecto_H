@@ -1,0 +1,62 @@
+﻿@model Medico
+@{
+    ViewData["Title"] = "Editar Medico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br /> <br/>
+<h3 class="text-center">Editar medico</h3>
+<form method="post" asp-action="Edit">
+    <input type="hidden" asp-for="id_medico"/>
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+         <div class="row">
+                    <div class="col">
+                    <label asp-for="nombre"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="nombre" class="form-control" />
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="apellido"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="apellido" class="form-control" />
+                    <span asp-validation-for="apellido" class="text-danger"></span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="especialidad"></label> 
+                    </div>
+                    <div class="col">
+                    <input asp-for="especialidad" class="form-control" />
+                    <span asp-validation-for="especialidad" class="text-danger"></span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="cedula"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="cedula" class="form-control" />
+                    <span asp-validation-for="cedula" class="text-danger"></span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                    <label asp-for="salon"></label>
+                    </div>
+                    <div class="col">
+                    <input asp-for="salon" class="form-control" />
+                    <span asp-validation-for="salon" class="text-danger"></span>
+                    </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-3"> 
+            <a asp-action="Index">Volver a lista</a>
+        </div>
+        <div class="col-5 offset-4">
+        <button type="submit" class="btn btn-primary form-control">Editar</button>
+        </div>
+    </div>
+</form>

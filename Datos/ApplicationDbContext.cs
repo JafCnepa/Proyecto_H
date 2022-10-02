@@ -7,11 +7,10 @@ namespace Proyecto.Datos
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
          : base(options)
         {
-
         }
         //Importando Los Modelos
         public DbSet<Medico> Medico { get; set; }
-        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Usuarios> Usuario { get; set; }
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Factura> Facturas { get; set; }
         public DbSet<Reservas> Reservas { get; set; }
