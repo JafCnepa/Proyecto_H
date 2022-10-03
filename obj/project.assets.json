@@ -9855,11 +9855,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Proyecto_H-master\\Proyecto_H-master\\Proyecto.csproj",
+      "projectUniqueName": "D:\\Proyecto_H-master\\Proyecto.csproj",
       "projectName": "Proyecto",
-      "projectPath": "D:\\Proyecto_H-master\\Proyecto_H-master\\Proyecto.csproj",
+      "projectPath": "D:\\Proyecto_H-master\\Proyecto.csproj",
       "packagesPath": "C:\\Users\\jafet\\.nuget\\packages\\",
-      "outputPath": "D:\\Proyecto_H-master\\Proyecto_H-master\\obj\\",
+      "outputPath": "D:\\Proyecto_H-master\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jafet\\AppData\\Roaming\\NuGet\\NuGet.Config"

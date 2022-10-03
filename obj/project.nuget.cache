@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C54jnjnX9GX0G1zB4puAG6W8jdJejWKdkIRFXnYnjsNcZ+RK8dDVY4NHApgKnR4oWrjck2RJht2+BJ0ALjT21w==",
+  "dgSpecHash": "AA78IzX0b0o3G1FCKCRXJctHGgbtHy+UGOCptBDYGIvG3+4o+tiEhOf/F8hMP6F6Qx35fzEovV4x2GjV2yAYUA==",
   "success": true,
-  "projectFilePath": "D:\\Proyecto_H-master\\Proyecto_H-master\\Proyecto.csproj",
+  "projectFilePath": "D:\\Proyecto_H-master\\Proyecto.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jafet\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jafet\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
