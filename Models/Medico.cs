@@ -11,16 +11,24 @@ namespace Proyecto.Models
 
         public string? nombre { get; set; }
         [Required]
+        [StringLength(20, MinimumLength = 8)]
 
         public string? apellido { get; set; }
         [Required]
+        [StringLength(20, MinimumLength = 8)]
 
         public string? especialidad { get; set; }
         [Required]
+        [StringLength(20, MinimumLength = 8)]
 
-        public char? cedula { get; set; }
+        public string? cedula { get; set; }
+        [Required]
+        [StringLength(8)]
 
 
-        public char? salon { get; set; }
+   
+        public string? salon { get; set; }
+
+
     }
 }

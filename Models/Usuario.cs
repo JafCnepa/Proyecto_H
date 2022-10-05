@@ -15,16 +15,16 @@ namespace Proyecto.Models
         public string? nombre { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(20, MinimumLength = 8)]
         public string? apellido { get; set; }
         [Required]
-        [StringLength(8)]
+        [StringLength(8, MinimumLength = 8)]
         public string? dni { get; set; }
         [Required]
-       
+        [StringLength(15, MinimumLength = 8)]
         public string? ruc { get; set; }
         [Required]
-    
+        [StringLength(20, MinimumLength = 9)]
         public string? celular { get; set; }
 
         [Required]
