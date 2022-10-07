@@ -10,7 +10,7 @@ namespace Proyecto.Datos
         {
         }
         //Improtando  los model
-        public DbSet<Medico> Medico { get; set; }
+        public DbSet<Medico> Medicos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
  

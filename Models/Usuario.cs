@@ -37,9 +37,6 @@ namespace Proyecto.Models
         public string? descripcion { get; set; }
         [PasswordPropertyText]
         public string? clave { get; set; }
-        [ForeignKey("id_medico")]
-        public int id_medico { get; set; }
-
-        public virtual ICollection<Medico> Medico { get; set; }
+       
     }
 }

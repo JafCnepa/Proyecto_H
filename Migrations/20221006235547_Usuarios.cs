@@ -4,7 +4,7 @@
 
 namespace Proyecto.Migrations
 {
-    public partial class Medico : Migration
+    public partial class Usuarios : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

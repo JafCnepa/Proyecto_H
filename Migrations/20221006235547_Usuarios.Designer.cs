@@ -12,8 +12,8 @@ using Proyecto.Datos;
 namespace Proyecto.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221005030940_Medico")]
-    partial class Medico
+    [Migration("20221006235547_Usuarios")]
+    partial class Usuarios
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,33 +32,41 @@ namespace Proyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_medico"), 1L, 1);
 
-                    b.Property<int?>("Usuarioid_usuario")
-                        .HasColumnType("int");
-
                     b.Property<string>("apellido")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("cedula")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("certificado")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("especialidad")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("id_usuario")
+                        .HasColumnType("int");
 
                     b.Property<string>("nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("salon")
-                        .HasColumnType("nvarchar(1)");
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.HasKey("id_medico");
 
-                    b.HasIndex("Usuarioid_usuario");
-
-                    b.ToTable("Medico");
+                    b.ToTable("Medicos");
                 });
 
             modelBuilder.Entity("Proyecto.Models.Usuario", b =>
@@ -99,9 +107,6 @@ namespace Proyecto.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("id_medico")
-                        .HasColumnType("int");
-
                     b.Property<string>("nombre")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -115,18 +120,6 @@ namespace Proyecto.Migrations
                     b.HasKey("id_usuario");
 
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("Proyecto.Models.Medico", b =>
-                {
-                    b.HasOne("Proyecto.Models.Usuario", null)
-                        .WithMany("Medico")
-                        .HasForeignKey("Usuarioid_usuario");
-                });
-
-            modelBuilder.Entity("Proyecto.Models.Usuario", b =>
-                {
-                    b.Navigation("Medico");
                 });
 #pragma warning restore 612, 618
         }

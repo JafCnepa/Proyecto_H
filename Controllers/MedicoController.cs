@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Proyecto.Datos;
 using Proyecto.Models;
 
@@ -13,7 +14,7 @@ namespace Proyecto.Controllers
         }
         public IActionResult Index()
         {
-            List<Medico> listaMedicos = _context.Medico.ToList();
+            List<Medico> listaMedicos = _context.Medicos.Include("Usuarios").ToList();
             return View(listaMedicos);
         }
         [HttpGet]
@@ -27,7 +28,7 @@ namespace Proyecto.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Medico.Add(medico);
+                _context.Medicos.Add(medico);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -40,7 +41,7 @@ namespace Proyecto.Controllers
             {
                 return View();
             }
-            var medico = _context.Medico.FirstOrDefault
+            var medico = _context.Medicos.FirstOrDefault
                 (m => m.id_medico == id);
             return View(medico);
         }
@@ -50,7 +51,7 @@ namespace Proyecto.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Medico.Update(medico);
+                _context.Medicos.Update(medico);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
@@ -59,9 +60,9 @@ namespace Proyecto.Controllers
         [HttpGet]
         public IActionResult Delete(int? id)
         {
-            var medico = _context.Medico.FirstOrDefault(
+            var medico = _context.Medicos.FirstOrDefault(
                 m => m.id_medico == id);
-            _context.Medico.Remove(medico);
+            _context.Medicos.Remove(medico);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

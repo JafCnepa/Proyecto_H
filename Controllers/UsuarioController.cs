@@ -15,7 +15,8 @@ namespace Proyecto.Controllers
 
         public IActionResult Index()
         {
-            List<Usuario> listaUsuarios = _context.Usuarios.Include("Medico").ToList(); 
+            //Validando la collecion medico al listar
+            List<Usuario> listaUsuarios = _context.Usuarios.ToList(); 
             return View(listaUsuarios);
         }
         [HttpGet]
