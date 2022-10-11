@@ -12,8 +12,8 @@ using Proyecto.Datos;
 namespace Proyecto.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221011140002_Farmacias")]
-    partial class Farmacias
+    [Migration("20221011203754_Medicos")]
+    partial class Medicos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,21 @@ namespace Proyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_farmacia"), 1L, 1);
 
+                    b.Property<string>("Departamento")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Distrito")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Pais")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<int?>("Productoid_producto")
                         .HasColumnType("int");
 
@@ -39,11 +54,6 @@ namespace Proyecto.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("ubicacion")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("id_farmacia");
 
@@ -65,15 +75,14 @@ namespace Proyecto.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("cedula")
-                        .IsRequired()
+                    b.Property<string>("certificado")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("certificado")
+                    b.Property<string>("dni")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("especialidad")
                         .IsRequired()
@@ -86,11 +95,6 @@ namespace Proyecto.Migrations
                     b.Property<string>("nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("salon")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
 
                     b.HasKey("id_medico");
 
@@ -111,8 +115,6 @@ namespace Proyecto.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("fecha")
-                        .IsRequired()
-                        .HasMaxLength(1000)
                         .HasColumnType("datetime2");
 
                     b.Property<int>("id_farmacias")
@@ -126,10 +128,10 @@ namespace Proyecto.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<decimal?>("precio")
+                    b.Property<string>("precio")
                         .IsRequired()
                         .HasMaxLength(1000)
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("stock")
                         .IsRequired()
@@ -171,10 +173,6 @@ namespace Proyecto.Migrations
                     b.Property<string>("correo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("descripcion")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("dni")
                         .IsRequired()

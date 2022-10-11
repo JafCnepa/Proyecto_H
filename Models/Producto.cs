@@ -18,7 +18,6 @@ namespace Proyecto.Models
         public string? precio { get; set; }
        
         [DataType(DataType.Date)]
-        [Required, StringLength(1000, MinimumLength = 1)]
         public DateTime? fecha { get; set; }
         [ForeignKey("id_usuario")]
         public int id_usuario { get; set; }

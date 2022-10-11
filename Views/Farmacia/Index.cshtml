@@ -18,15 +18,21 @@
     {
      <table class="d-lg-table table-striped border">
          <tr>
+                <th>Id </th>
              <th>Nombre </th>
-             <th>Ubicacion</th>
+             <th>Pais</th>
+                <th>Departamento </th>
+                <th>Distrito </th>
                
          </tr>
          @foreach (var f in Model)
          {
              <tr>
+                    <td>@f.id_farmacia</td>
                  <td>@f.nombre</td>
-                     <td>@f.ubicacion</td>
+                     <td>@f.Pais</td>
+                    <td>@f.Departamento</td>
+                    <td>@f.Distrito</td>
                    
                  <td>
 <a class="btn btn-primary text-white" asp-action="Edit" 

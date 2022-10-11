@@ -31,8 +31,6 @@ namespace Proyecto.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime? fecha_nacimiento { get; set; }
-        [StringLength(1000, MinimumLength = 1)]
-        public string? descripcion { get; set; }
         [PasswordPropertyText]
         public string? clave { get; set; }
     }

@@ -12,8 +12,8 @@ using Proyecto.Datos;
 namespace Proyecto.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221011015945_Usuarios")]
-    partial class Usuarios
+    [Migration("20221011203904_Farmacias")]
+    partial class Farmacias
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,44 @@ namespace Proyecto.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Proyecto.Models.Farmacia", b =>
+                {
+                    b.Property<int>("id_farmacia")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_farmacia"), 1L, 1);
+
+                    b.Property<string>("Departamento")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Distrito")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Pais")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int?>("Productoid_producto")
+                        .HasColumnType("int");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("id_farmacia");
+
+                    b.HasIndex("Productoid_producto");
+
+                    b.ToTable("Farmacias");
+                });
 
             modelBuilder.Entity("Proyecto.Models.Medico", b =>
                 {
@@ -37,15 +75,14 @@ namespace Proyecto.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("cedula")
-                        .IsRequired()
+                    b.Property<string>("certificado")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("certificado")
+                    b.Property<string>("dni")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("especialidad")
                         .IsRequired()
@@ -59,14 +96,51 @@ namespace Proyecto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("salon")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
-
                     b.HasKey("id_medico");
 
                     b.ToTable("Medicos");
+                });
+
+            modelBuilder.Entity("Proyecto.Models.Producto", b =>
+                {
+                    b.Property<int>("id_producto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_producto"), 1L, 1);
+
+                    b.Property<string>("categoria")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("id_farmacias")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_usuario")
+                        .HasColumnType("int");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("precio")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("stock")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("id_producto");
+
+                    b.ToTable("Productos");
                 });
 
             modelBuilder.Entity("Proyecto.Models.Usuario", b =>
@@ -78,6 +152,9 @@ namespace Proyecto.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_usuario"), 1L, 1);
 
                     b.Property<int?>("Medicoid_medico")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Productoid_producto")
                         .HasColumnType("int");
 
                     b.Property<string>("apellido")
@@ -96,10 +173,6 @@ namespace Proyecto.Migrations
                     b.Property<string>("correo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("descripcion")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("dni")
                         .IsRequired()
@@ -124,7 +197,16 @@ namespace Proyecto.Migrations
 
                     b.HasIndex("Medicoid_medico");
 
+                    b.HasIndex("Productoid_producto");
+
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("Proyecto.Models.Farmacia", b =>
+                {
+                    b.HasOne("Proyecto.Models.Producto", null)
+                        .WithMany("Farmacias")
+                        .HasForeignKey("Productoid_producto");
                 });
 
             modelBuilder.Entity("Proyecto.Models.Usuario", b =>
@@ -132,10 +214,21 @@ namespace Proyecto.Migrations
                     b.HasOne("Proyecto.Models.Medico", null)
                         .WithMany("Usuarios")
                         .HasForeignKey("Medicoid_medico");
+
+                    b.HasOne("Proyecto.Models.Producto", null)
+                        .WithMany("Usuarios")
+                        .HasForeignKey("Productoid_producto");
                 });
 
             modelBuilder.Entity("Proyecto.Models.Medico", b =>
                 {
+                    b.Navigation("Usuarios");
+                });
+
+            modelBuilder.Entity("Proyecto.Models.Producto", b =>
+                {
+                    b.Navigation("Farmacias");
+
                     b.Navigation("Usuarios");
                 });
 #pragma warning restore 612, 618

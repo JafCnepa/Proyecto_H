@@ -20,16 +20,10 @@ namespace Proyecto.Models
 
         public string? especialidad { get; set; }
         [Required]
-        [StringLength(20, MinimumLength = 8)]
+        [StringLength(8, MinimumLength = 8)]
 
-        public string? cedula { get; set; }
-        [Required]
-        [StringLength(8)]
-
-
-   
-        public string? salon { get; set; }
-        [Required]
+        public string? dni { get; set; }
+    
         [StringLength(20, MinimumLength =1)]
         public string? certificado { get; set; }
 
