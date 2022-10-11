@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Farmacia>
+
+@{
+    ViewData["Title"] = "Lista de Usuarios";
+    //reutilizar layout.cshtml
+    Layout="~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-4">
+        <h3>Lista de farmacias</h3>
+    </div>
+    <div class="col-3">
+        <a asp-action="Create" class="btn btn-primary  form-control">Crear Una Nueva Farmacia</a>
+    </div>
+  </div>
+<div>
+    @if (Model.Count() > 0)
+    {
+     <table class="d-lg-table table-striped border">
+         <tr>
+             <th>Nombre </th>
+             <th>Ubicacion</th>
+               
+         </tr>
+         @foreach (var f in Model)
+         {
+             <tr>
+                 <td>@f.nombre</td>
+                     <td>@f.ubicacion</td>
+                   
+                 <td>
+<a class="btn btn-primary text-white" asp-action="Edit" 
+asp-route-id="@f.id_farmacia">Editar</a>
+<a class="btn btn-danger text-white" asp-action="Delete"
+asp-route-id="@f.id_farmacia">Borrar</a>
+                 </td>
+             </tr>
+         }
+        </table>
+    }
+    else
+    {
+        <p> No hay Farmacias registradas por el momento</p>
+    }
+</div>

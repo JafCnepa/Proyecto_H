@@ -4,32 +4,32 @@ using Proyecto.Models;
 
 namespace Proyecto.Controllers
 {
-    public class UsuarioController : Controller
+    public class FarmaciaController: Controller
     {
         public readonly ApplicationDbContext _context;
-        public UsuarioController(ApplicationDbContext dbContext)
+        public FarmaciaController(ApplicationDbContext dbContext)
         {
             _context = dbContext;
         }
 
         public IActionResult Index()
         {
-            List<Usuario> listaUsuarios = _context.Usuarios.ToList();
-            return View(listaUsuarios);
-          
+            List<Farmacia> listaFarmacias = _context.Farmacias.ToList();
+            return View(listaFarmacias);
+
         }
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(Usuario usuario)
+        public IActionResult Create(Farmacia farmacia)
         {
             if (ModelState.IsValid)
             {
-                _context.Usuarios.Add(usuario);
+                _context.Farmacias.Add(farmacia);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -42,28 +42,28 @@ namespace Proyecto.Controllers
             {
                 return View();
             }
-            var usuario = _context.Usuarios.FirstOrDefault
-                (u => u.id_usuario == id);
-            return View(usuario);
+            var farmacia = _context.Farmacias.FirstOrDefault
+                (f => f.id_farmacia == id);
+            return View(farmacia);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Usuario usuario)
+        public IActionResult Edit(Farmacia farmacia)
         {
             if (ModelState.IsValid)
             {
-                _context.Usuarios.Update(usuario);
+                _context.Farmacias.Update(farmacia);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuario);
+            return View(farmacia);
         }
         [HttpGet]
         public IActionResult Delete(int? id)
         {
-            var usuario = _context.Usuarios.FirstOrDefault(
-                u => u.id_usuario == id);
-            _context.Usuarios.Remove(usuario);
+            var farmacia = _context.Farmacias.FirstOrDefault(
+                f => f.id_farmacia == id);
+            _context.Farmacias.Remove(farmacia);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

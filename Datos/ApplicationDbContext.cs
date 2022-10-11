@@ -12,6 +12,8 @@ namespace Proyecto.Datos
         //Improtando  los model
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Producto> Productos { get; set; }
+        public DbSet<Farmacia> Farmacias { get; set; }
 
  
 

@@ -29,6 +29,7 @@ namespace Proyecto.Models
         [EmailAddress(ErrorMessage = "Los datos deben coincidir")]
         public string? correo { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime? fecha_nacimiento { get; set; }
         [StringLength(1000, MinimumLength = 1)]
         public string? descripcion { get; set; }

@@ -15,6 +15,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Proyecto_H-master
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Proyecto_H-master/Views/Farmacia/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWFjaWFcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proyecto_H-master/Views/Farmacia/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWFjaWFcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proyecto_H-master/Views/Farmacia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWFjaWFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Proyecto_H-master/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -33,6 +45,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Proyecto_H-master/Views/Medico/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proyecto_H-master/Views/Producto/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proyecto_H-master/Views/Producto/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proyecto_H-master/Views/Producto/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Proyecto_H-master/Views/Shared/Error.cshtml]

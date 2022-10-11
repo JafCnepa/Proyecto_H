@@ -4,32 +4,30 @@ using Proyecto.Models;
 
 namespace Proyecto.Controllers
 {
-    public class UsuarioController : Controller
+    public class ProductoController: Controller
     {
         public readonly ApplicationDbContext _context;
-        public UsuarioController(ApplicationDbContext dbContext)
+        public ProductoController(ApplicationDbContext dbContext)
         {
             _context = dbContext;
         }
-
         public IActionResult Index()
-        {
-            List<Usuario> listaUsuarios = _context.Usuarios.ToList();
-            return View(listaUsuarios);
-          
+        {        //Validando la collecion usuarios y farmacias al listar
+            List<Producto> listaProductos = _context.Productos.ToList();
+            return View(listaProductos);
         }
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(Usuario usuario)
+        public IActionResult Create(Producto producto)
         {
             if (ModelState.IsValid)
             {
-                _context.Usuarios.Add(usuario);
+                _context.Productos.Add(producto);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -42,28 +40,28 @@ namespace Proyecto.Controllers
             {
                 return View();
             }
-            var usuario = _context.Usuarios.FirstOrDefault
-                (u => u.id_usuario == id);
-            return View(usuario);
+            var producto = _context.Productos.FirstOrDefault
+                (p => p.id_producto == id);
+            return View(producto);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Usuario usuario)
+        public IActionResult Edit(Producto producto)
         {
             if (ModelState.IsValid)
             {
-                _context.Usuarios.Update(usuario);
+                _context.Productos.Update(producto);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuario);
+            return View(producto);
         }
         [HttpGet]
         public IActionResult Delete(int? id)
         {
-            var usuario = _context.Usuarios.FirstOrDefault(
-                u => u.id_usuario == id);
-            _context.Usuarios.Remove(usuario);
+            var producto = _context.Productos.FirstOrDefault(
+                p => p.id_producto == id);
+            _context.Productos.Remove(producto);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
