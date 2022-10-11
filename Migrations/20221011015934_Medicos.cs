@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Proyecto.Migrations
 {
-    public partial class Medcios : Migration
+    public partial class Medicos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,21 +42,32 @@ namespace Proyecto.Migrations
                     correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     fecha_nacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     descripcion = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    clave = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    clave = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Medicoid_medico = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.id_usuario);
+                    table.ForeignKey(
+                        name: "FK_Usuarios_Medicos_Medicoid_medico",
+                        column: x => x.Medicoid_medico,
+                        principalTable: "Medicos",
+                        principalColumn: "id_medico");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_Medicoid_medico",
+                table: "Usuarios",
+                column: "Medicoid_medico");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Medicos");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Medicos");
         }
     }
 }

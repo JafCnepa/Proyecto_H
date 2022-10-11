@@ -3,53 +3,54 @@
 @{
     ViewData["Title"] = "Lista de Usuarios";
     //reutilizar layout.cshtml
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout="~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
     <div class="col-4">
-        <h3>Lista de usuarios</h3>
+        <h3>Lista de usuariis</h3>
     </div>
     <div class="col-3">
-        <a asp-action="Register" class="btn btn-primary  form-control">Crear Usuario</a>
+        <a asp-action="Register" class="btn btn-primary  form-control">Crear Usuarios</a>
     </div>
-</div>
+  </div>
 <div>
     @if (Model.Count() > 0)
     {
-        <table class="d-lg-table table-striped border">
-            <tr>
-                <ht>Nombre de Usuario</ht>
-                <th></th>
-
-            </tr>
-            @foreach (var usu in Model)
-            {
-                <tr>
-                    <td>@usu.id_usuario</td>
-                    <td>@usu.nombre</td>
-                    <td>@usu.apellido</td>
+     <table class="d-lg-table table-striped border">
+         <tr>
+             <th>Nombre </th>
+             <th>Apellido</th>
+                <th>Dni</th>
+                <th>Ruc </th>
+                <th>Celular</th>
+                <th>Correo</th>
+                <th>Descripcion</th>
+                <th>Fecha</th>
+             
+         </tr>
+         @foreach (var usu in Model)
+         {
+             <tr>
+                 <td>@usu.nombre</td>
+                     <td>@usu.apellido</td>
                     <td>@usu.dni</td>
                     <td>@usu.ruc</td>
                     <td>@usu.celular</td>
-                    
-                   
                     <td>@usu.correo</td>
-                    <td>@usu.fecha_nacimiento</td>
                     <td>@usu.descripcion</td>
-     
-                   
-                    <td>
-                        <a class="btn btn-primary text-white" asp-action="Edit"
-                   asp-route-id="@usu.id_usuario">Editar</a>
-                        <a class="btn btn-danger text-white" asp-action="Delete"
-                   asp-route-id="@usu.id_usuario">Borrar</a>
-                    </td>
-                </tr>
-            }
+                    <td>@usu.fecha_nacimiento</td>
+                 <td>
+<a class="btn btn-primary text-white" asp-action="Edit" 
+asp-route-id="@usu.id_usuario">Editar</a>
+<a class="btn btn-danger text-white" asp-action="Delete"
+asp-route-id="@usu.id_usuario">Borrar</a>
+                 </td>
+             </tr>
+         }
         </table>
     }
     else
     {
-        <p> No hay usuarios registrados</p>
+        <p> No hay Usuario registrados</p>
     }
 </div>

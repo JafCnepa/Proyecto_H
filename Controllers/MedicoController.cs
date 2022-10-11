@@ -13,8 +13,8 @@ namespace Proyecto.Controllers
             _context = dbContext;
         }
         public IActionResult Index()
-        {
-            List<Medico> listaMedicos = _context.Medicos.Include("Usuarios").ToList();
+        {        //Validando la collecion usuarios al listar
+            List<Medico> listaMedicos = _context.Medicos.ToList();
             return View(listaMedicos);
         }
         [HttpGet]

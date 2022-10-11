@@ -75,6 +75,9 @@ namespace Proyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id_usuario"), 1L, 1);
 
+                    b.Property<int?>("Medicoid_medico")
+                        .HasColumnType("int");
+
                     b.Property<string>("apellido")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -117,7 +120,21 @@ namespace Proyecto.Migrations
 
                     b.HasKey("id_usuario");
 
+                    b.HasIndex("Medicoid_medico");
+
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("Proyecto.Models.Usuario", b =>
+                {
+                    b.HasOne("Proyecto.Models.Medico", null)
+                        .WithMany("Usuarios")
+                        .HasForeignKey("Medicoid_medico");
+                });
+
+            modelBuilder.Entity("Proyecto.Models.Medico", b =>
+                {
+                    b.Navigation("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

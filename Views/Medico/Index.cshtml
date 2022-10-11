@@ -18,8 +18,13 @@
     {
      <table class="d-lg-table table-striped border">
          <tr>
-             <ht>Nombre de Medico</ht>
-             <th></th>
+             <th>Nombre </th>
+             <th>Apellido</th>
+                <th>Especialidad</th>
+                <th>Cedula </th>
+                <th>Sala</th>
+                <th>Certificado</th>
+                <th>Id Usuario</th>
              
          </tr>
          @foreach (var med in Model)
@@ -30,6 +35,8 @@
                     <td>@med.especialidad</td>
                     <td>@med.cedula</td>
                     <td>@med.salon</td>
+                    <td>@med.certificado</td>
+                    <td>@med.id_usuario</td>
                  <td>
 <a class="btn btn-primary text-white" asp-action="Edit" 
 asp-route-id="@med.id_medico">Editar</a>

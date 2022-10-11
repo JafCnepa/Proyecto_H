@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Proyecto.Datos;
 using Proyecto.Models;
+
 namespace Proyecto.Controllers
 {
-    public class UsuarioController: Controller
-
+    public class UsuarioController : Controller
     {
         public readonly ApplicationDbContext _context;
         public UsuarioController(ApplicationDbContext dbContext)
@@ -15,9 +14,9 @@ namespace Proyecto.Controllers
 
         public IActionResult Index()
         {
-            //Validando la collecion medico al listar
-            List<Usuario> listaUsuarios = _context.Usuarios.ToList(); 
+            List<Usuario> listaUsuarios = _context.Usuarios.ToList();
             return View(listaUsuarios);
+          
         }
         [HttpGet]
         public IActionResult Register()
@@ -36,6 +35,5 @@ namespace Proyecto.Controllers
             }
             return View();
         }
-
     }
 }

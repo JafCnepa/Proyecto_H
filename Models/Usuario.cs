@@ -1,8 +1,5 @@
-﻿using MessagePack;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using KeyAttribute = System.ComponentModel.DataAnnotations.KeyAttribute;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecto.Models
 {
@@ -37,6 +34,5 @@ namespace Proyecto.Models
         public string? descripcion { get; set; }
         [PasswordPropertyText]
         public string? clave { get; set; }
-       
     }
 }
