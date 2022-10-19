@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Proyecyo.Models;
 
 namespace Proyecyo.Models
 {
@@ -16,13 +17,14 @@ namespace Proyecyo.Models
         {
         }
 
-        public virtual DbSet<Factura> Facturas { get; set; } = null!;
-        public virtual DbSet<Farmacia> Farmacias { get; set; } = null!;
-        public virtual DbSet<Medicamento> Medicamentos { get; set; } = null!;
-        public virtual DbSet<Medico> Medicos { get; set; } = null!;
-        public virtual DbSet<ReservaCitum> ReservaCita { get; set; } = null!;
-        public virtual DbSet<ReservaMedicamento> ReservaMedicamentos { get; set; } = null!;
-        public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
+        public virtual DbSet<Factura> Facturas { get; set; }
+        public virtual DbSet<Farmacia> Farmacias { get; set; } 
+        public virtual DbSet<Medicamento> Medicamentos { get; set; } 
+        public virtual DbSet<Medico> Medicos { get; set; } 
+        public virtual DbSet<ReservaCitum> ReservaCita { get; set; } 
+        public virtual DbSet<ReservaMedicamento> ReservaMedicamentos { get; set; } 
+        public virtual DbSet<Usuario> Usuarios { get; set; } 
+    
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -34,7 +36,9 @@ namespace Proyecyo.Models
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+
         {
+           
             modelBuilder.Entity<Factura>(entity =>
             {
                 entity.HasKey(e => e.IdFactura)
@@ -280,5 +284,8 @@ namespace Proyecyo.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+
+
     }
 }

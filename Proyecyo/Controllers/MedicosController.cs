@@ -51,9 +51,6 @@ namespace Proyecyo.Controllers
             return View();
         }
 
-        // POST: Medicos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdMedico,Nombre,Apellido,Especialidad,Dni,Certificado,IdUsuario")] Medico medico)
@@ -121,44 +118,14 @@ namespace Proyecyo.Controllers
             return View(medico);
         }
 
-        // GET: Medicos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
-            if (id == null || _context.Medicos == null)
-            {
-                return NotFound();
-            }
-
-            var medico = await _context.Medicos
-                .Include(m => m.IdUsuarioNavigation)
-                .FirstOrDefaultAsync(m => m.IdMedico == id);
-            if (medico == null)
-            {
-                return NotFound();
-            }
-
-            return View(medico);
+            var medico = _context.Medicos.FirstOrDefault(
+                m => m.IdMedico == id);
+            _context.Medicos.Remove(medico);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
-
-        // POST: Medicos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Medicos == null)
-            {
-                return Problem("Entity set 'HospitalContext.Medicos'  is null.");
-            }
-            var medico = await _context.Medicos.FindAsync(id);
-            if (medico != null)
-            {
-                _context.Medicos.Remove(medico);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool MedicoExists(int id)
         {
           return _context.Medicos.Any(e => e.IdMedico == id);

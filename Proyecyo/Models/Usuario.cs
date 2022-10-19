@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -25,14 +26,16 @@ namespace Proyecyo.Models
         public string? Ruc { get; set; }
         [Required, StringLength(20, MinimumLength = 9)]
         public string? Celular { get; set; }
+        [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Correo es requerido")]
         public string? Correo { get; set; }
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "fecha de nacimiento es requerido")]
         public DateTime? FechaNacimiento { get; set; }
-        [Required, PasswordPropertyText]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Enter the Password")]
         public string? Clave { get; set; }
-
+      
         public virtual ICollection<Factura> Facturas { get; set; }
         public virtual ICollection<Medicamento> Medicamentos { get; set; }
         public virtual ICollection<Medico> Medicos { get; set; }

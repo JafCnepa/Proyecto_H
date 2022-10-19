@@ -34,12 +34,14 @@ namespace Proyecyo.Controllers
         {
             if (ModelState.IsValid)
             {
+                usuario.Clave = EncrypPas.Encrypt(usuario.Clave);
                 _context.Usuarios.Add(usuario);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
         }
+      
         [HttpGet]
         public IActionResult Edit(int? id)
         {

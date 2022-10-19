@@ -51,9 +51,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Certificado)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Apellido)
-            </td>
+           
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdMedico">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.IdMedico">Details</a> |
