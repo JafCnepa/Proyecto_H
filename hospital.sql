@@ -2,11 +2,11 @@ create database Hospital;
 use Hospital;
 create table Usuarios(
 id_usuario int not null identity(1,1) ,
-nombre nvarchar(20) null,
-apellido nvarchar(20) null, 
-dni nvarchar(8) null,
-ruc nvarchar(15) null,
-celular nvarchar(20) null,
+nombre_usuario nvarchar(20) null,
+apellido_usuario nvarchar(20) null, 
+dni_usuario nvarchar(8) null,
+ruc_usuario nvarchar(15) null,
+telefono_usuario nvarchar(20) null,
 correo nvarchar(50) null,
 fecha_nacimiento datetime,
 clave nvarchar(50) null,
@@ -20,8 +20,8 @@ go
 
 create table Medicos(
 id_medico int not null identity(1,1),
-nombre nvarchar(20)  null,
-apellido nvarchar(20)  null,
+nombre_medicos nvarchar(20)  null,
+apellido_medicos nvarchar(20)  null,
 especialidad nvarchar(20) not null,
 dni nvarchar(8) null, 
 certificado varchar(20)  null,
@@ -45,21 +45,22 @@ drop table Farmacias
 
 create table Farmacias(
 id_farmacia int not null identity(1,1),
-nombre nvarchar(100) null,
+nombre_farmacia nvarchar(100) null,
 pais nvarchar(30) null,
 departamento nvarchar(30) null,
 distrito nvarchar(30) null,
 primary key(id_farmacia))
 go
 
+
 insert into Farmacias(nombre, pais,departamento,distrito)
-values(' San Cristobal', 'Perú', 'Callao', 'Chorrillos-Cedros')
+values(' San Cristobal', 'PerÃº', 'Callao', 'Chorrillos-Cedros')
 select * from Farmacias
 
 
 create table Medicamentos(
 id_medicamento int not null identity(1,1),
-nombre nvarchar(100) null,
+nombre_medicamento nvarchar(100) null,
 stock nvarchar(100) null,
 categoria nvarchar(100) null,
 precio nvarchar(1000) null,
@@ -74,15 +75,17 @@ go
 
 insert into Medicamentos(nombre, stock,categoria,precio,fecha,id_usuario,id_farmacia)
 values('aspirina', '5', 'Tabletas', 's/2.00','05/13/2018',1,1)
+
 select * from Medicamentos
-drop table Facturas
+
+
 create table Facturas(
 id_factura int not null identity(1,1),
-nombre nvarchar(100) null,
-dni nvarchar(8) null,
-ruc nvarchar(15) null,
+nombre_factura nvarchar(100) null,
+dni_usuario nvarchar(8) null,
+ruc_usuario nvarchar(15) null,
 direccion nvarchar(100) null,
-telefono nvarchar(20) null,
+telefono_usuario nvarchar(20) null,
 total nvarchar(1000) null,
 tipo_pago nvarchar(100) null,
 estado nvarchar(100) null,
@@ -117,9 +120,9 @@ insert into Reserva_Cita(  id_medico)
 
  
 create table Reserva_Medicamento(
-id_reservamedicamento int not null identity(1,1),
+id_reserva_medicamento int not null identity(1,1),
 id_medicamento int not null,
-primary key(id_reservamedicamento),
+primary key(id_reserva_medicamento),
 foreign key(id_medicamento) references Medicamentos(id_medicamento))
 go
 
