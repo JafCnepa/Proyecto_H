@@ -34,12 +34,17 @@ namespace Proyecyo.Controllers
         {
             if (ModelState.IsValid)
             {
+                usuario.DniUsuario = EncrypPas.GetSHA256("");
+                usuario.RucUsuario = EncrypPas.GetSHA256("");
+                usuario.CorreoUsuario = EncrypPas.GetSHA256("");
+                usuario.Clave = EncrypPas.GetSHA256("");
                 _context.Usuarios.Add(usuario);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
         }
+      
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -57,6 +62,11 @@ namespace Proyecyo.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                usuario.CorreoUsuario = EncrypPas.GetSHA256("");
+                usuario.RucUsuario = EncrypPas.GetSHA256("");
+                usuario.DniUsuario = EncrypPas.GetSHA256("");
+                usuario.Clave = EncrypPas.GetSHA256("");
                 _context.Usuarios.Update(usuario);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

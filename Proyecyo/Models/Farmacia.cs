@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecyo.Models
 {
@@ -12,15 +13,26 @@ namespace Proyecyo.Models
         }
         [Key]
         public int IdFarmacia { get; set; }
-        [Required, StringLength(20, MinimumLength = 4)]
-        public string? Nombre { get; set; }
-        [Required, StringLength(10, MinimumLength = 4)]
+        [Display(Name = "Nombre Farmacia ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
+        public string? NombreFarmacia { get; set; }
+        [Display(Name = "Pais Farmacia ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
         public string? Pais { get; set; }
-        [Required, StringLength(20, MinimumLength = 4)]
+        [Display(Name = "Depertamento Farmacia ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
         public string? Departamento { get; set; }
-        [Required, StringLength(50, MinimumLength = 4)]
+        [Display(Name = "Distrito Farmacia ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
         public string? Distrito { get; set; }
 
         public virtual ICollection<Medicamento> Medicamentos { get; set; }
+        [NotMapped]
+        public List<Medicamento> Medicamento { get; set; }
+        public List<Usuario> Usuarios { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace Proyecyo.Models
         [ForeignKey("IdMedicamento")]
         public int IdMedicamento { get; set; }
 
-        public virtual Medicamento IdMedicamentoNavigation { get; set; } = null!;
+        public virtual Medicamento IdMedicamentoNavigation { get; set; } 
     }
 }

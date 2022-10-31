@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecyo.Models
 {
@@ -9,33 +8,46 @@ namespace Proyecyo.Models
     {
         [Key]
         public int IdFactura { get; set; }
-        [Required, StringLength(20, MinimumLength = 5)]
-        public string? Nombre { get; set; }
-        [Required, StringLength(8, MinimumLength = 8)]
-        public string? Dni { get; set; }
-
-        [Required, StringLength(15, MinimumLength = 9)]
-        public string? Ruc { get; set; }
-        [Required, StringLength(20, MinimumLength = 5)]
-        public string? Direccion { get; set; }
-
-        [Required, StringLength(20, MinimumLength = 9)]
-        public string? Telefono { get; set; }
-        [Required, StringLength(1000, MinimumLength = 1)]
+        [Display(Name = "Nombre Factura ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
+        public string? NombreFactura { get; set; }
+        [Display(Name = "Dni")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
+        public string? DniUsuario { get; set; }
+        [Display(Name = "Ruc")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
+        public string? RucUsuario { get; set; }
+        [Display(Name = "Direccion")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
+        public string? DireccionUsuario { get; set; }
+        [Display(Name = "Celular")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(20, ErrorMessage = "Longitud máxima 20", MinimumLength = 9)]
+        public string? CelularUsuario { get; set; }
+        [Display(Name = "Total")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(100, ErrorMessage = "Longitud máxima 100", MinimumLength = 9)]
         public string? Total { get; set; }
-        [Required, StringLength(200, MinimumLength = 1)]
+        [Display(Name = "Tipo Pago")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(100, ErrorMessage = "Longitud máxima 50", MinimumLength = 20)]
         public string? TipoPago { get; set; }
-        [Required, StringLength(200, MinimumLength = 5)]
+        [Display(Name = "Estado")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 9)]
         public string? Estado { get; set; }
+        [Display(Name = "Fecha")]
+        [Required(ErrorMessage = "Este campo requiere la fecha de la factura")]
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "La fecha es obligatoria")]
         public DateTime? Fecha { get; set; }
-        [ForeignKey("IdUsuario")]
         public int IdUsuario { get; set; }
-        [ForeignKey("IdMedicamento")]
         public int IdMedicamento { get; set; }
 
-        public virtual Medicamento IdMedicamentoNavigation { get; set; } 
+        public virtual Medicamento IdMedicamentoNavigation { get; set; }
         public virtual Usuario IdUsuarioNavigation { get; set; }
     }
 }

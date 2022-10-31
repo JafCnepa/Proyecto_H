@@ -7,28 +7,26 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Register">Crear Nuevo Usuario</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayNameFor(model => model.NombrecompletoUsuario)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DniUsuario)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Apellido)
+                @Html.DisplayNameFor(model => model.RucUsuario)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Dni)
+                @Html.DisplayNameFor(model => model.CelularUsuario)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ruc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Celular)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
+                @Html.DisplayNameFor(model => model.CorreoUsuario)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaNacimiento)
@@ -41,22 +39,20 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
+                @Html.DisplayFor(modelItem => item.NombrecompletoUsuario)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.DniUsuario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
+                @Html.DisplayFor(modelItem => item.RucUsuario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Dni)
+                @Html.DisplayFor(modelItem => item.CelularUsuario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Ruc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Celular)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
+                @Html.DisplayFor(modelItem => item.CorreoUsuario)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaNacimiento)

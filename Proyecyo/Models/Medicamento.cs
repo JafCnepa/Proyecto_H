@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecyo.Models
 {
@@ -14,27 +13,33 @@ namespace Proyecyo.Models
         }
         [Key]
         public int IdMedicamento { get; set; }
-        [Required, StringLength(20, MinimumLength = 5)]
-
-        public string? Nombre { get; set; }
-        [Required, StringLength(1000, MinimumLength = 1)]
+        [Display(Name = "Nombre Medicamento ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(100, ErrorMessage = "Longitud máxima 100", MinimumLength = 8)]
+        public string? NombreMedicamento { get; set; }
+        [Display(Name = "Stock ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(100, ErrorMessage = "Longitud máxima 100", MinimumLength = 8)]
         public string? Stock { get; set; }
-        [Required, StringLength(100, MinimumLength = 1)]
+        [Display(Name = "Categoria ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(100, ErrorMessage = "Longitud máxima 100", MinimumLength = 8)]
         public string? Categoria { get; set; }
-        [Required, StringLength(100, MinimumLength = 1)]
+        [Display(Name = "Precio ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(100, ErrorMessage = "Longitud máxima 100", MinimumLength = 8)]
         public string? Precio { get; set; }
-
+        [Display(Name = "Fecha")]
+        [Required(ErrorMessage = "Este campo requiere fecha del medicamento")]
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Se requiere la fecha")]
         public DateTime? Fecha { get; set; }
-        [ForeignKey("IdUsuario")]
         public int IdUsuario { get; set; }
-        [ForeignKey("IdFarmacia")]
         public int IdFarmacia { get; set; }
 
-        public virtual Farmacia IdFarmaciaNavigation { get; set; } = null!;
-        public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+        public virtual Farmacia IdFarmaciaNavigation { get; set; }
+        public virtual Usuario IdUsuarioNavigation { get; set; }
         public virtual ICollection<Factura> Facturas { get; set; }
         public virtual ICollection<ReservaMedicamento> ReservaMedicamentos { get; set; }
+        public ICollection<MedicamentoFarmacia> MedicamentoFarmacias { get; set; }
     }
 }

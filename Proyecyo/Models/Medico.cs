@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Proyecyo.Models
 {
@@ -13,20 +13,25 @@ namespace Proyecyo.Models
         }
         [Key]
         public int IdMedico { get; set; }
-        [Required, StringLength(20, MinimumLength = 8)]
-        public string? Nombre { get; set; }
-        [Required, StringLength(20, MinimumLength = 8)]
-        public string? Apellido { get; set; }
-        [Required, StringLength(20, MinimumLength = 8)]
+        [Display(Name = "Nombre Completo ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
+        public string? NombrecompletoDoctor { get; set; }
+        [Display(Name = "Especialidad ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
         public string Especialidad { get; set; }
-        [Required, StringLength(8, MinimumLength = 8)]
-        public string? Dni { get; set; }
-        [Required, StringLength(20, MinimumLength = 1)]
+        [Display(Name = "Dni")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
+        public string? DniDoctor { get; set; }
+        [Display(Name = "Certificado ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
         public string? Certificado { get; set; }
-        [ForeignKey("IdUsuario")]
         public int IdUsuario { get; set; }
 
-        public virtual Usuario IdUsuarioNavigation { get; set; } 
+        public virtual Usuario IdUsuarioNavigation { get; set; }
         public virtual ICollection<ReservaCitum> ReservaCita { get; set; }
     }
 }

@@ -14,34 +14,29 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdUsuario" />
             <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+                <label asp-for="NombrecompletoUsuario" class="control-label"></label>
+                <input asp-for="NombrecompletoUsuario" class="form-control" />
+                <span asp-validation-for="NombrecompletoUsuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Apellido" class="control-label"></label>
-                <input asp-for="Apellido" class="form-control" />
-                <span asp-validation-for="Apellido" class="text-danger"></span>
+                <label asp-for="DniUsuario" class="control-label"></label>
+                <input asp-for="DniUsuario" class="form-control" />
+                <span asp-validation-for="DniUsuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Dni" class="control-label"></label>
-                <input asp-for="Dni" class="form-control" />
-                <span asp-validation-for="Dni" class="text-danger"></span>
+                <label asp-for="RucUsuario" class="control-label"></label>
+                <input asp-for="RucUsuario" class="form-control" />
+                <span asp-validation-for="RucUsuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Ruc" class="control-label"></label>
-                <input asp-for="Ruc" class="form-control" />
-                <span asp-validation-for="Ruc" class="text-danger"></span>
+                <label asp-for="CelularUsuario" class="control-label"></label>
+                <input asp-for="CelularUsuario" class="form-control" />
+                <span asp-validation-for="CelularUsuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Celular" class="control-label"></label>
-                <input asp-for="Celular" class="form-control" />
-                <span asp-validation-for="Celular" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Correo" class="control-label"></label>
-                <input asp-for="Correo" class="form-control" />
-                <span asp-validation-for="Correo" class="text-danger"></span>
+                <label asp-for="CorreoUsuario" class="control-label"></label>
+                <input asp-for="CorreoUsuario" class="form-control" />
+                <span asp-validation-for="CorreoUsuario" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FechaNacimiento" class="control-label"></label>
@@ -63,7 +58,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

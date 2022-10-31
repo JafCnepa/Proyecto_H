@@ -1,34 +1,26 @@
 ﻿@model IEnumerable<Proyecyo.Models.Medico>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Index</h1>
-
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create Nuevo Medico</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayNameFor(model => model.NombrecompletoDoctor)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apellido)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Especialidad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Dni)
+                @Html.DisplayNameFor(model => model.DniDoctor)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Certificado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
+                @Html.DisplayNameFor(model => model.IdUsuario)
             </th>
             <th></th>
         </tr>
@@ -37,22 +29,20 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
+                @Html.DisplayFor(modelItem => item.NombrecompletoDoctor)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
+         
             <td>
                 @Html.DisplayFor(modelItem => item.Especialidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Dni)
+                @Html.DisplayFor(modelItem => item.DniDoctor)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Certificado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Apellido)
+                @Html.DisplayFor(modelItem => item.IdUsuario)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdMedico">Edit</a> |
