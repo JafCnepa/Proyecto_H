@@ -23,7 +23,7 @@ namespace Proyecyo.Models
         public virtual DbSet<ReservaCitum> ReservaCita { get; set; }
         public virtual DbSet<ReservaMedicamento> ReservaMedicamentos { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<MedicamentoFarmacia>  MedicamentoFarmacia {get; set;}
+      
        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -38,13 +38,7 @@ namespace Proyecyo.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<MedicamentoFarmacia>().HasKey(mu => new
-            {
-                mu.IdUsuario,
-                mu.IdFarmacia,
-                mu.NombreFarmacia,
-                mu.NombreCompletoUsuario
-            });
+           
             modelBuilder.Entity<Factura>(entity =>
             {
                 entity.HasKey(e => e.IdFactura)

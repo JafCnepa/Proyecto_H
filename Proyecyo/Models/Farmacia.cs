@@ -31,8 +31,7 @@ namespace Proyecyo.Models
         public string? Distrito { get; set; }
 
         public virtual ICollection<Medicamento> Medicamentos { get; set; }
-        [NotMapped]
-        public List<Medicamento> Medicamento { get; set; }
-        public List<Usuario> Usuarios { get; set; }
+      
+  
     }
 }

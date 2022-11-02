@@ -1,0 +1,81 @@
+﻿@model Proyecyo.Models.Factura
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Factura</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdFactura" />
+            <div class="form-group">
+                <label asp-for="NombreFactura" class="control-label"></label>
+                <input asp-for="NombreFactura" class="form-control" />
+                <span asp-validation-for="NombreFactura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DniUsuario" class="control-label"></label>
+                <input asp-for="DniUsuario" class="form-control" />
+                <span asp-validation-for="DniUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RucUsuario" class="control-label"></label>
+                <input asp-for="RucUsuario" class="form-control" />
+                <span asp-validation-for="RucUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DireccionUsuario" class="control-label"></label>
+                <input asp-for="DireccionUsuario" class="form-control" />
+                <span asp-validation-for="DireccionUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CelularUsuario" class="control-label"></label>
+                <input asp-for="CelularUsuario" class="form-control" />
+                <span asp-validation-for="CelularUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoPago" class="control-label"></label>
+                <input asp-for="TipoPago" class="form-control" />
+                <span asp-validation-for="TipoPago" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                <input asp-for="Estado" class="form-control" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdUsuario" class="control-label"></label>
+                <select asp-for="IdUsuario" class="form-control" asp-items="ViewBag.IdUsuario"></select>
+                <span asp-validation-for="IdUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdMedicamento" class="control-label"></label>
+                <select asp-for="IdMedicamento" class="form-control" asp-items="ViewBag.IdMedicamento"></select>
+                <span asp-validation-for="IdMedicamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -45,7 +45,7 @@ namespace Proyecyo.Models
         public DateTime? FechaNacimiento { get; set; }
         [Display(Name = "Contraseña")]
         [Required(ErrorMessage = "Este campo es requerido.")]
-        [StringLength(20, ErrorMessage = "Longitud entre 8 y 20 caracteres.",
+        [StringLength(50, ErrorMessage = "Longitud entre 8 y 20 caracteres.",
                       MinimumLength = 8)]
         [DataType(DataType.Password)]
         public string? Clave { get; set; }
