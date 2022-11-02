@@ -1,12 +1,11 @@
 ﻿@model Proyecyo.Models.Farmacia
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
 }
 
-<h1>Eliminar</h1>
+<h1>Detalle</h1>
 
-<h3>Desea eliminar esta informacion?</h3>
 <div>
     <h4>Farmacia</h4>
     <hr />
@@ -36,10 +35,8 @@
             @Html.DisplayFor(model => model.Distrito)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="IdFarmacia" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver a listar </a>
-    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdFarmacia">Editar</a> |
+    <a asp-action="Index">volver a listar</a>
 </div>

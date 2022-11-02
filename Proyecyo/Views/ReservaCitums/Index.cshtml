@@ -4,16 +4,28 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Lista</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Nueva Reserva Medica</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.FechaReserva)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.IdMedicoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
             </th>
             <th></th>
         </tr>
@@ -22,12 +34,24 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdMedicoNavigation.NombrecompletoDoctor)
+                @Html.DisplayFor(modelItem => item.FechaReserva)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCita">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdCita">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCita">Delete</a>
+                @Html.DisplayFor(modelItem => item.IdMedicoNavigation.Nombrecompletodoctor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Nombrecompletousuario)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Celularusuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Dniusuario)
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdCita">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdCita">Detalle</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdCita">Eliminar</a>
             </td>
         </tr>
 }

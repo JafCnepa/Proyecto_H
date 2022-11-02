@@ -1,4 +1,4 @@
-﻿@model Proyecyo.Models.Medicamento
+﻿@model Proyecyo.Models.Medico
 
 @{
     ViewData["Title"] = "Delete";
@@ -8,44 +8,38 @@
 
 <h3>Desea eliminar esta informacion?</h3>
 <div>
-    <h4>Medicamento</h4>
+    <h4>Medico</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombremedicamento)
+            @Html.DisplayNameFor(model => model.Nombrecompletodoctor)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombremedicamento)
+            @Html.DisplayFor(model => model.Nombrecompletodoctor)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Stock)
+            @Html.DisplayNameFor(model => model.Especialidad)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Stock)
+            @Html.DisplayFor(model => model.Especialidad)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Categoria)
+            @Html.DisplayNameFor(model => model.Dnidoctor)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categoria)
+            @Html.DisplayFor(model => model.Dnidoctor)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
+            @Html.DisplayNameFor(model => model.Certificado)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Precio)
+            @Html.DisplayFor(model => model.Certificado)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fecha)
+            @Html.DisplayNameFor(model => model.Ubicacion)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdFarmaciaNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdFarmaciaNavigation.Departamento)
+            @Html.DisplayFor(model => model.Ubicacion)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
@@ -56,8 +50,8 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="IdMedicamento" />
+        <input type="hidden" asp-for="IdMedico" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver a listar</a>
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

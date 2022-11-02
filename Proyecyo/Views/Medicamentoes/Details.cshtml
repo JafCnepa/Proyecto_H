@@ -4,17 +4,17 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalle</h1>
 
 <div>
     <h4>Medicamento</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreMedicamento)
+            @Html.DisplayNameFor(model => model.Nombremedicamento)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreMedicamento)
+            @Html.DisplayFor(model => model.Nombremedicamento)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Stock)
@@ -50,11 +50,11 @@
             @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdUsuarioNavigation.CelularUsuario)
+            @Html.DisplayFor(model => model.IdUsuarioNavigation.Celularusuario)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdMedicamento">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.IdMedicamento">Editar</a> |
+    <a asp-action="Index">Volver a listar</a>
 </div>

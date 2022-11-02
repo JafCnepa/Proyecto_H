@@ -4,34 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Listas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Nueva Factura</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NombreFactura)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DniUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RucUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DireccionUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CelularUsuario)
+                @Html.DisplayNameFor(model => model.Direccion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Total)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoPago)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Estado)
@@ -52,25 +40,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreFactura)
+                @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DniUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RucUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DireccionUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CelularUsuario)
+                @Html.DisplayFor(modelItem => item.Direccion)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Total)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoPago)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
@@ -82,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.IdMedicamentoNavigation.Categoria)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.NombrecompletoUsuario)
+                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Dniusuario)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdFactura">Edit</a> |

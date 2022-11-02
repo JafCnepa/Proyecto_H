@@ -9,9 +9,13 @@ namespace Proyecyo.Models
     {
         [Key]
         public int IdReservamedicamento { get; set; }
-        [ForeignKey("IdMedicamento")]
+        [ForeignKey("Medicamento")]
         public int IdMedicamento { get; set; }
+        [Display(Name = "Stock ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(100, ErrorMessage = "Longitud máxima 100", MinimumLength = 1)]
+        public string Stock { get; set; }
 
-        public virtual Medicamento IdMedicamentoNavigation { get; set; } 
+        public virtual Medicamento IdMedicamentoNavigation { get; set; }
     }
 }

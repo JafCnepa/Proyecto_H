@@ -48,8 +48,8 @@ namespace Proyecyo.Controllers
         // GET: Medicamentoes/Create
         public IActionResult Create()
         {
-            ViewData["IdFarmacia"] = new SelectList(_context.Farmacias, "IdFarmacia", "Departamento");
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "NombrecompletoUsuario");
+            ViewData["IdFarmacia"] = new SelectList(_context.Farmacias, "IdFarmacia", "Nombrefarmacia");
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdMedicamento,NombreMedicamento,Stock,Categoria,Precio,Fecha,IdUsuario,IdFarmacia")] Medicamento medicamento)
+        public async Task<IActionResult> Create([Bind("IdMedicamento,Nombremedicamento,Stock,Categoria,Precio,Fecha,IdUsuario,IdFarmacia")] Medicamento medicamento)
         {
             if (ModelState.IsValid)
             {
@@ -66,8 +66,8 @@ namespace Proyecyo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdFarmacia"] = new SelectList(_context.Farmacias, "IdFarmacia", "Departamento", medicamento.IdFarmacia);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "NombrecompletoUsuario", medicamento.IdUsuario);
+            ViewData["IdFarmacia"] = new SelectList(_context.Farmacias, "IdFarmacia", "Nombrefarmacia", medicamento.IdFarmacia);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medicamento.IdUsuario);
             return View(medicamento);
         }
 
@@ -84,8 +84,8 @@ namespace Proyecyo.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdFarmacia"] = new SelectList(_context.Farmacias, "IdFarmacia", "Departamento", medicamento.IdFarmacia);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "NombrecompletoUsuario", medicamento.IdUsuario);
+            ViewData["IdFarmacia"] = new SelectList(_context.Farmacias, "IdFarmacia", "Nombrefarmacia", medicamento.IdFarmacia);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medicamento.IdUsuario);
             return View(medicamento);
         }
 
@@ -94,7 +94,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdMedicamento,NombreMedicamento,Stock,Categoria,Precio,Fecha,IdUsuario,IdFarmacia")] Medicamento medicamento)
+        public async Task<IActionResult> Edit(int id, [Bind("IdMedicamento,Nombremedicamento,Stock,Categoria,Precio,Fecha,IdUsuario,IdFarmacia")] Medicamento medicamento)
         {
             if (id != medicamento.IdMedicamento)
             {
@@ -122,7 +122,7 @@ namespace Proyecyo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdFarmacia"] = new SelectList(_context.Farmacias, "IdFarmacia", "Departamento", medicamento.IdFarmacia);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "NombrecompletoUsuario", medicamento.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medicamento.IdUsuario);
             return View(medicamento);
         }
 

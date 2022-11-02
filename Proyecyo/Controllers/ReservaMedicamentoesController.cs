@@ -47,7 +47,7 @@ namespace Proyecyo.Controllers
         // GET: ReservaMedicamentoes/Create
         public IActionResult Create()
         {
-            ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "NombreMedicamento");
+            ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Categoria");
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdReservamedicamento,IdMedicamento")] ReservaMedicamento reservaMedicamento)
+        public async Task<IActionResult> Create([Bind("IdReservamedicamento,IdMedicamento,Stock")] ReservaMedicamento reservaMedicamento)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace Proyecyo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "NombreMedicamento", reservaMedicamento.IdMedicamento);
+            ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Categoria", reservaMedicamento.IdMedicamento);
             return View(reservaMedicamento);
         }
 
@@ -81,7 +81,7 @@ namespace Proyecyo.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "NombreMedicamento", reservaMedicamento.IdMedicamento);
+            ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Categoria", reservaMedicamento.IdMedicamento);
             return View(reservaMedicamento);
         }
 
@@ -90,7 +90,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdReservamedicamento,IdMedicamento")] ReservaMedicamento reservaMedicamento)
+        public async Task<IActionResult> Edit(int id, [Bind("IdReservamedicamento,IdMedicamento,Stock")] ReservaMedicamento reservaMedicamento)
         {
             if (id != reservaMedicamento.IdReservamedicamento)
             {
@@ -117,7 +117,7 @@ namespace Proyecyo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "NombreMedicamento", reservaMedicamento.IdMedicamento);
+            ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Categoria", reservaMedicamento.IdMedicamento);
             return View(reservaMedicamento);
         }
 

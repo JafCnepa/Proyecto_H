@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
 <h4>Factura</h4>
 <hr />
@@ -14,39 +14,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdFactura" />
             <div class="form-group">
-                <label asp-for="NombreFactura" class="control-label"></label>
-                <input asp-for="NombreFactura" class="form-control" />
-                <span asp-validation-for="NombreFactura" class="text-danger"></span>
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DniUsuario" class="control-label"></label>
-                <input asp-for="DniUsuario" class="form-control" />
-                <span asp-validation-for="DniUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RucUsuario" class="control-label"></label>
-                <input asp-for="RucUsuario" class="form-control" />
-                <span asp-validation-for="RucUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DireccionUsuario" class="control-label"></label>
-                <input asp-for="DireccionUsuario" class="form-control" />
-                <span asp-validation-for="DireccionUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CelularUsuario" class="control-label"></label>
-                <input asp-for="CelularUsuario" class="form-control" />
-                <span asp-validation-for="CelularUsuario" class="text-danger"></span>
+                <label asp-for="Direccion" class="control-label"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Total" class="control-label"></label>
                 <input asp-for="Total" class="form-control" />
                 <span asp-validation-for="Total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoPago" class="control-label"></label>
-                <input asp-for="TipoPago" class="form-control" />
-                <span asp-validation-for="TipoPago" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Estado" class="control-label"></label>
@@ -76,6 +56,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver  a listar</a>
 </div>
 

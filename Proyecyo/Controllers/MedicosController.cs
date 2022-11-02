@@ -18,88 +18,150 @@ namespace Proyecyo.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        // GET: Medicos
+        public async Task<IActionResult> Index()
         {
-            List<Medico> listaMedicos = _context.Medicos.ToList();
-            return View(listaMedicos);
-
+            var hospitalContext = _context.Medicos.Include(m => m.IdUsuarioNavigation);
+            return View(await hospitalContext.ToListAsync());
         }
-        [HttpGet]
 
-
-        [HttpGet]
-        public IActionResult Create()
+        // GET: Medicos/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            PacientesVM paciente = new PacientesVM();
-            paciente.ListaUsuarios = _context.Usuarios.Select(i => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
-            {
-                Text = i.NombrecompletoUsuario,
-                Value = i.IdUsuario.ToString()
-            });
-            return View(paciente);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Medico medico)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Medicos.Add(medico);
-                _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
-            }
-            PacientesVM paciente = new PacientesVM();
-            paciente.ListaUsuarios = _context.Usuarios.Select(i => new SelectListItem
-            {
-                Text = i.NombrecompletoUsuario,
-                Value = i.IdUsuario.ToString()
-            });
-            return View(paciente);
-        }
-        [HttpGet]
-      
-
-        public IActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return View();
-            }
-            PacientesVM paciente = new PacientesVM();
-            paciente.ListaUsuarios = _context.Usuarios.Select(i => new SelectListItem
-            {
-                Text = i.NombrecompletoUsuario,
-                Value = i.IdUsuario.ToString()
-            });
-            paciente.Medico = _context.Medicos.FirstOrDefault(c => c.IdMedico == id);
-            if (paciente == null)
+            if (id == null || _context.Medicos == null)
             {
                 return NotFound();
             }
-            return View(paciente);
+
+            var medico = await _context.Medicos
+                .Include(m => m.IdUsuarioNavigation)
+                .FirstOrDefaultAsync(m => m.IdMedico == id);
+            if (medico == null)
+            {
+                return NotFound();
+            }
+
+            return View(medico);
         }
+
+        // GET: Medicos/Create
+        public IActionResult Create()
+        {
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario");
+            return View();
+        }
+
+        // POST: Medicos/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(PacientesVM paciente)
+        public async Task<IActionResult> Create([Bind("IdMedico,Nombrecompletodoctor,Especialidad,Dnidoctor,Certificado,Ubicacion,IdUsuario")] Medico medico)
         {
-            if (paciente.Medico.IdMedico == 0)
+            if (ModelState.IsValid)
             {
-                return View(paciente.Medico);
-            }
-            else
-            {
-                _context.Medicos.Update(paciente.Medico);
-                _context.SaveChanges();
+                _context.Add(medico);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medico.IdUsuario);
+            return View(medico);
         }
-        [HttpGet]
-        public IActionResult Delete(int? id)
+
+        // GET: Medicos/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            var medico = _context.Medicos.FirstOrDefault(m => m.IdMedico == id);
-            _context.Medicos.Remove(medico);
-            _context.SaveChanges();
+            if (id == null || _context.Medicos == null)
+            {
+                return NotFound();
+            }
+
+            var medico = await _context.Medicos.FindAsync(id);
+            if (medico == null)
+            {
+                return NotFound();
+            }
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medico.IdUsuario);
+            return View(medico);
+        }
+
+        // POST: Medicos/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("IdMedico,Nombrecompletodoctor,Especialidad,Dnidoctor,Certificado,Ubicacion,IdUsuario")] Medico medico)
+        {
+            if (id != medico.IdMedico)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(medico);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!MedicoExists(medico.IdMedico))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medico.IdUsuario);
+            return View(medico);
+        }
+
+        // GET: Medicos/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Medicos == null)
+            {
+                return NotFound();
+            }
+
+            var medico = await _context.Medicos
+                .Include(m => m.IdUsuarioNavigation)
+                .FirstOrDefaultAsync(m => m.IdMedico == id);
+            if (medico == null)
+            {
+                return NotFound();
+            }
+
+            return View(medico);
+        }
+
+        // POST: Medicos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_context.Medicos == null)
+            {
+                return Problem("Entity set 'HospitalContext.Medicos'  is null.");
+            }
+            var medico = await _context.Medicos.FindAsync(id);
+            if (medico != null)
+            {
+                _context.Medicos.Remove(medico);
+            }
+            
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private bool MedicoExists(int id)
+        {
+          return _context.Medicos.Any(e => e.IdMedico == id);
         }
     }
 }

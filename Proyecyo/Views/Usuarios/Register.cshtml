@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Creado</h1>
 
 <h4>Usuario</h4>
 <hr />
@@ -13,29 +13,29 @@
         <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NombrecompletoUsuario" class="control-label"></label>
-                <input asp-for="NombrecompletoUsuario" class="form-control" />
-                <span asp-validation-for="NombrecompletoUsuario" class="text-danger"></span>
+                <label asp-for="Nombrecompletousuario" class="control-label"></label>
+                <input asp-for="Nombrecompletousuario" class="form-control" />
+                <span asp-validation-for="Nombrecompletousuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DniUsuario" class="control-label"></label>
-                <input asp-for="DniUsuario" class="form-control" />
-                <span asp-validation-for="DniUsuario" class="text-danger"></span>
+                <label asp-for="Dniusuario" class="control-label"></label>
+                <input asp-for="Dniusuario" class="form-control" />
+                <span asp-validation-for="Dniusuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RucUsuario" class="control-label"></label>
-                <input asp-for="RucUsuario" class="form-control" />
-                <span asp-validation-for="RucUsuario" class="text-danger"></span>
+                <label asp-for="Rucusuario" class="control-label"></label>
+                <input asp-for="Rucusuario" class="form-control" />
+                <span asp-validation-for="Rucusuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CelularUsuario" class="control-label"></label>
-                <input asp-for="CelularUsuario" class="form-control" />
-                <span asp-validation-for="CelularUsuario" class="text-danger"></span>
+                <label asp-for="Celularusuario" class="control-label"></label>
+                <input asp-for="Celularusuario" class="form-control" />
+                <span asp-validation-for="Celularusuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CorreoUsuario" class="control-label"></label>
-                <input asp-for="CorreoUsuario" class="form-control" />
-                <span asp-validation-for="CorreoUsuario" class="text-danger"></span>
+                <label asp-for="Correousuario" class="control-label"></label>
+                <input asp-for="Correousuario" class="form-control" />
+                <span asp-validation-for="Correousuario" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FechaNacimiento" class="control-label"></label>
@@ -48,12 +48,13 @@
                 <span asp-validation-for="Clave" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
+

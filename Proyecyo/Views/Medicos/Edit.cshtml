@@ -1,4 +1,10 @@
-﻿@model Proyecyo.Models.PacientesVM
+﻿@model Proyecyo.Models.Medico
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar</h1>
 
 <h4>Medico</h4>
 <hr />
@@ -6,32 +12,36 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Medico.IdMedico" />
+            <input type="hidden" asp-for="IdMedico" />
             <div class="form-group">
-                <label asp-for="Medico.NombrecompletoDoctor" class="control-label"></label>
-                <input asp-for="Medico.NombrecompletoDoctor" class="form-control" />
-                <span asp-validation-for="Medico.NombrecompletoDoctor" class="text-danger"></span>
+                <label asp-for="Nombrecompletodoctor" class="control-label"></label>
+                <input asp-for="Nombrecompletodoctor" class="form-control" />
+                <span asp-validation-for="Nombrecompletodoctor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Medico.Especialidad" class="control-label"></label>
-                <input asp-for="Medico.Especialidad" class="form-control" />
-                <span asp-validation-for="Medico.Especialidad" class="text-danger"></span>
+                <label asp-for="Especialidad" class="control-label"></label>
+                <input asp-for="Especialidad" class="form-control" />
+                <span asp-validation-for="Especialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Medico.DniDoctor" class="control-label"></label>
-                <input asp-for="Medico.DniDoctor" class="form-control" />
-                <span asp-validation-for="Medico.DniDoctor" class="text-danger"></span>
+                <label asp-for="Dnidoctor" class="control-label"></label>
+                <input asp-for="Dnidoctor" class="form-control" />
+                <span asp-validation-for="Dnidoctor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Medico.Certificado" class="control-label"></label>
-                <input asp-for="Medico.Certificado" class="form-control" />
-                <span asp-validation-for="Medico.Certificado" class="text-danger"></span>
+                <label asp-for="Certificado" class="control-label"></label>
+                <input asp-for="Certificado" class="form-control" />
+                <span asp-validation-for="Certificado" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @Html.DropDownListFor(m=> m.Medico.IdUsuario, Model.ListaUsuarios, "--Lista de Usuarios--",
-                new {@class = "form-control"})
-              
-                <span asp-validation-for="Medico.IdUsuario" class="text-danger"></span>
+                <label asp-for="Ubicacion" class="control-label"></label>
+                <input asp-for="Ubicacion" class="form-control" />
+                <span asp-validation-for="Ubicacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdUsuario" class="control-label"></label>
+                <select asp-for="IdUsuario" class="form-control" asp-items="ViewBag.IdUsuario"></select>
+                <span asp-validation-for="IdUsuario" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -41,6 +51,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 

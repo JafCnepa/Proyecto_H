@@ -43,6 +43,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWFjaWFzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Proyecyo/Proyecyo/Views/Farmacias/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWFjaWFzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Proyecyo/Proyecyo/Views/Farmacias/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWFjaWFzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -81,6 +85,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Proyecyo/Proyecyo/Views/Medicos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNvc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Proyecyo/Proyecyo/Views/Medicos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNvc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Proyecyo/Proyecyo/Views/Medicos/Edit.cshtml]
@@ -149,10 +157,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Proyecyo/Proyecyo/Views/Usuarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Proyecyo/Proyecyo/Views/Usuarios/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Proyecyo/Proyecyo/Views/Usuarios/Register.cshtml]

@@ -1,26 +1,34 @@
 ﻿@model IEnumerable<Proyecyo.Models.Medico>
 
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listar Doctores</h1>
+
 <p>
-    <a asp-action="Create">Create Nuevo Medico</a>
+    <a asp-action="Create">Crear Medicos</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NombrecompletoDoctor)
+                @Html.DisplayNameFor(model => model.Nombrecompletodoctor)
             </th>
-           
             <th>
                 @Html.DisplayNameFor(model => model.Especialidad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DniDoctor)
+                @Html.DisplayNameFor(model => model.Dnidoctor)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Certificado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdUsuario)
+                @Html.DisplayNameFor(model => model.Ubicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
             </th>
             <th></th>
         </tr>
@@ -29,24 +37,26 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NombrecompletoDoctor)
+                @Html.DisplayFor(modelItem => item.Nombrecompletodoctor)
             </td>
-         
             <td>
                 @Html.DisplayFor(modelItem => item.Especialidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DniDoctor)
+                @Html.DisplayFor(modelItem => item.Dnidoctor)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Certificado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUsuario)
+                @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Nombrecompletousuario)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdMedico">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdMedico">Details</a> |
+              
                 <a asp-action="Delete" asp-route-id="@item.IdMedico">Delete</a>
             </td>
         </tr>

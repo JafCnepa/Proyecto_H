@@ -49,7 +49,7 @@ namespace Proyecyo.Controllers
         public IActionResult Create()
         {
             ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Categoria");
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "NombrecompletoUsuario");
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Dniusuario");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdFactura,NombreFactura,DniUsuario,RucUsuario,DireccionUsuario,CelularUsuario,Total,TipoPago,Estado,Fecha,NombrecompletoUsuario, IdUsuario,IdMedicamento")] Factura factura)
+        public async Task<IActionResult> Create([Bind("IdFactura,Nombre,Direccion,Total,Estado,Fecha,IdUsuario,IdMedicamento")] Factura factura)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace Proyecyo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Categoria", factura.IdMedicamento);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "NombrecompletoUsuario", factura.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Dniusuario", factura.IdUsuario);
             return View(factura);
         }
 
@@ -85,7 +85,7 @@ namespace Proyecyo.Controllers
                 return NotFound();
             }
             ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Categoria", factura.IdMedicamento);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "NombrecompletoUsuario", factura.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Dniusuario", factura.IdUsuario);
             return View(factura);
         }
 
@@ -94,7 +94,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdFactura,NombreFactura,DniUsuario,RucUsuario,DireccionUsuario,CelularUsuario,Total,TipoPago,Estado,Fecha,NombrecompletoUsuario,IdUsuario,IdMedicamento")] Factura factura)
+        public async Task<IActionResult> Edit(int id, [Bind("IdFactura,Nombre,Direccion,Total,Estado,Fecha,IdUsuario,IdMedicamento")] Factura factura)
         {
             if (id != factura.IdFactura)
             {
@@ -122,7 +122,7 @@ namespace Proyecyo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Categoria", factura.IdMedicamento);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "NombrecompletoUsuario", factura.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Dniusuario", factura.IdUsuario);
             return View(factura);
         }
 

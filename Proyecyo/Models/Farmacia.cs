@@ -11,12 +11,14 @@ namespace Proyecyo.Models
         {
             Medicamentos = new HashSet<Medicamento>();
         }
+
         [Key]
         public int IdFarmacia { get; set; }
         [Display(Name = "Nombre Farmacia ")]
         [Required(ErrorMessage = "Este campo es requerido.")]
         [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
-        public string? NombreFarmacia { get; set; }
+        public string? Nombrefarmacia { get; set; }
+
         [Display(Name = "Pais Farmacia ")]
         [Required(ErrorMessage = "Este campo es requerido.")]
         [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
@@ -24,14 +26,15 @@ namespace Proyecyo.Models
         [Display(Name = "Depertamento Farmacia ")]
         [Required(ErrorMessage = "Este campo es requerido.")]
         [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
+
         public string? Departamento { get; set; }
         [Display(Name = "Distrito Farmacia ")]
         [Required(ErrorMessage = "Este campo es requerido.")]
         [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
+
+
         public string? Distrito { get; set; }
 
         public virtual ICollection<Medicamento> Medicamentos { get; set; }
-      
-  
     }
 }

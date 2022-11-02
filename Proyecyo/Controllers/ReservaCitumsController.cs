@@ -21,7 +21,7 @@ namespace Proyecyo.Controllers
         // GET: ReservaCitums
         public async Task<IActionResult> Index()
         {
-            var hospitalContext = _context.ReservaCita.Include(r => r.IdMedicoNavigation);
+            var hospitalContext = _context.ReservaCita.Include(r => r.IdMedicoNavigation).Include(r => r.IdUsuarioNavigation);
             return View(await hospitalContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace Proyecyo.Controllers
 
             var reservaCitum = await _context.ReservaCita
                 .Include(r => r.IdMedicoNavigation)
+                .Include(r => r.IdUsuarioNavigation)
                 .FirstOrDefaultAsync(m => m.IdCita == id);
             if (reservaCitum == null)
             {
@@ -47,7 +48,10 @@ namespace Proyecyo.Controllers
         // GET: ReservaCitums/Create
         public IActionResult Create()
         {
-            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "NombrecompletoDoctor");
+            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "Nombrecompletodoctor");
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario");
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Dniusuario");
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Celularusuario");
             return View();
         }
 
@@ -56,7 +60,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCita,IdMedico")] ReservaCitum reservaCitum)
+        public async Task<IActionResult> Create([Bind("IdCita,IdMedico,IdUsuario,FechaReserva")] ReservaCitum reservaCitum)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +68,10 @@ namespace Proyecyo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "NombrecompletoDoctor", reservaCitum.IdMedico);
+            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "Nombrecompletodoctor", reservaCitum.IdMedico);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", reservaCitum.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Dniusuario", reservaCitum.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Celularusuario", reservaCitum.IdUsuario);
             return View(reservaCitum);
         }
 
@@ -81,7 +88,10 @@ namespace Proyecyo.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "NombrecompletoDoctor", reservaCitum.IdMedico);
+            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "Nombrecompletodoctor", reservaCitum.IdMedico);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", reservaCitum.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Dniusuario", reservaCitum.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Celularusuario", reservaCitum.IdUsuario);
             return View(reservaCitum);
         }
 
@@ -90,7 +100,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCita,IdMedico")] ReservaCitum reservaCitum)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCita,IdMedico,IdUsuario,FechaReserva")] ReservaCitum reservaCitum)
         {
             if (id != reservaCitum.IdCita)
             {
@@ -117,7 +127,10 @@ namespace Proyecyo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "NombrecompletoDoctor", reservaCitum.IdMedico);
+            ViewData["IdMedico"] = new SelectList(_context.Medicos, "IdMedico", "Nombrecompletodoctor", reservaCitum.IdMedico);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", reservaCitum.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Dniusuario", reservaCitum.IdUsuario);
+            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Celularusuario", reservaCitum.IdUsuario);
             return View(reservaCitum);
         }
 
@@ -131,6 +144,7 @@ namespace Proyecyo.Controllers
 
             var reservaCitum = await _context.ReservaCita
                 .Include(r => r.IdMedicoNavigation)
+                .Include(r => r.IdUsuarioNavigation)
                 .FirstOrDefaultAsync(m => m.IdCita == id);
             if (reservaCitum == null)
             {
