@@ -1,0 +1,49 @@
+/* _content/PM-Trabajo-Final-Hospital/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-b41i6x27wx] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-b41i6x27wx] {
+  color: #0077cc;
+}
+
+.btn-primary[b-b41i6x27wx] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-b41i6x27wx], .nav-pills .show > .nav-link[b-b41i6x27wx] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-b41i6x27wx] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-b41i6x27wx] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-b41i6x27wx] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-b41i6x27wx] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-b41i6x27wx] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
