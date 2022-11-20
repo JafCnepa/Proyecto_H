@@ -1,0 +1,84 @@
+﻿@model signUp
+@{
+    ViewData["Title"] = "Registrar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="main-content  mt-0">
+    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('../assets2/img/medic-register.jpg'); background-position: top;">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 text-center mx-auto">
+                    <h1 class="text-white mb-2 mt-3 fs-3">¡Bienvenido!</h1>
+                    <p class="text-lead text-white">Ingresa tus datos requeridos para que tengas acceso al sistema. <strong>Recuerda</strong> que estarás ingresando como <strong>paciente</strong>, de la cual solo podrás visualizar los detalles en cada módulo del sistema.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row mt-lg-n12 mt-md-n11 mt-n10 pb-4 justify-content-center">
+            <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+                <div class="card z-index-0">
+                    <div class="card-header text-center pt-4 pb-0">
+                        <h5>Registrarse</h5>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="SignUP">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="mb-3">
+                                <input asp-for="Nombrecompletousuario" type="text" class="form-control" placeholder="Nombres completos" aria-label="Nombres completos" maxlength="40" required>
+                                <span asp-validation-for="Nombrecompletousuario" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" maxlength="40" required>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input asp-for="Celularusuario" type="number" class="form-control" placeholder="Teléfono" aria-label="Teléfono" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" required>
+                                <span asp-validation-for="Celularusuario" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input asp-for="Dniusuario" type="number" class="form-control" placeholder="DNI" aria-label="DNI" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="8" required>
+                                <span asp-validation-for="Dniusuario" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input asp-for="Rucusuario" type="number" class="form-control" placeholder="RUC" aria-label="RUC" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" required>
+                                <span asp-validation-for="Rucusuario" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input asp-for="Usuario1" type="text" class="form-control" placeholder="Usuario" aria-label="Usuario" maxlength="20" required>
+                                <span asp-validation-for="Usuario1" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" maxlength="40" required>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" maxlength="40" required>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" name="FechaNacimiento" class="form-control" id="datepicker" placeholder="Ejemplo: 1990-10-05" />
+                                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                            </div>
+                            <div class="form-check form-check-info text-start">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Acepto todos los <a href="https://www.gob.pe/institucion/hospitalloayza/organizacion" class="text-dark font-weight-bolder">Términos y Condiciones</a>.
+                                </label>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-0">Registrarse</button>
+                            </div>
+                            <div class="text-center">
+                                <a asp-area="" asp-controller="Usuarios" asp-action="SignIN" class="btn bg-gradient-info w-100 my-4 mt-2 mb-2">Volver</a>
+                            </div>
+                            <p class="text-sm mt-3 mb-0 text-center">¿Ya tienes una cuenta? <a asp-area="" asp-controller="Usuario" asp-action="SignIn" class="text-primary text-gradient font-weight-bold"><strong>Inicia sesión</strong></a>.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

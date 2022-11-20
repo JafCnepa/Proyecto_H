@@ -18,6 +18,20 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             return View();
         }
 
+        public IActionResult SignIn()
+        {
+            return View();
+        }
+
+        public IActionResult CambiarClave()
+        {
+            return View();
+        }
+
+        public IActionResult SignUp()
+        {
+            return View();
+        }
         public IActionResult Dashboard()
         {
             return View();
@@ -28,7 +42,57 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             return View();
         }
 
+        public IActionResult MedicosAdd()
+        {
+            return View();
+        }
+
+        public IActionResult MedicosEdit()
+        {
+            return View();
+        }
+
+        public IActionResult MedicosDetail()
+        {
+            return View();
+        }
+
+        public IActionResult Farmacias()
+        {
+            return View();
+        }
+
+        public IActionResult FarmaciasAdd()
+        {
+            return View();
+        }
+
+        public IActionResult FarmaciasEdit()
+        {
+            return View();
+        }
+
+        public IActionResult FarmaciasDetail()
+        {
+            return View();
+        }
+
         public IActionResult Productos()
+        {
+            return View();
+        }
+
+        public IActionResult ProductosAdd()
+        {
+            return View();
+        }
+
+        public IActionResult ProductosEdit()
+        {
+            return View();
+        }
+
+        public IActionResult ProductosDetail()
         {
             return View();
         }
@@ -38,7 +102,35 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             return View();
         }
 
+        public IActionResult FacturasAdd()
+        {
+            return View();
+        }
+
+        public IActionResult FacturasEdit()
+        {
+            return View();
+        }
+
+        public IActionResult FacturasDetail()
+        {
+            return View();
+        }
         public IActionResult Usuarios()
+        {
+            return View();
+        }
+
+        public IActionResult UsuariosAdd()
+        {
+            return View();
+        }
+
+        public IActionResult UsuariosEdit()
+        {
+            return View();
+        }
+        public IActionResult UsuariosDetail()
         {
             return View();
         }

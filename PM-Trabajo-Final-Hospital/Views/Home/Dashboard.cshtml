@@ -1,11 +1,34 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+@{
     ViewData["Title"] = "Inicio";
 }
+
+<style>
+    .principal img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px 10px 0 0;
+      }
+
+      @@supports(object-fit: cover) {
+        .principal img {
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+        }
+      }
+</style>
 
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+        <i class="fas fa-times p-3 cursor-pointer opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" asp-area="" asp-controller="Home" asp-action="Dashboard">
             <img src="../assets/img/medic-logo.png" class="navbar-brand-img h-100" alt="main_logo">
             <span class="ms-2 font-weight-bold">Arzobispo Loayza</span>
@@ -25,17 +48,25 @@
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="Medicos" asp-action="Index">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-ambulance text-primary text-sm opacity-10"></i>
+                        <i class="fas fa-hand-holding-medical text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Médicos</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Medicamentoes" asp-action="Index">
+                <a class="nav-link" asp-area="" asp-controller="Farmacias" asp-action="Index">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-ambulance text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Farmacias</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Medicamentos" asp-action="Index">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-box-2 text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Productos</span>
+                    <span class="nav-link-text ms-1">Medicamentos</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -58,7 +89,7 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Perfil">
+                <a class="nav-link" asp-area="" asp-controller="Usuarios" asp-action="Perfil">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-settings-gear-65 text-primary text-sm opacity-10"></i>
                     </div>
@@ -70,7 +101,14 @@
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-collection text-info text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Cerrar sesión</span>
+
+                    <form class="form-inline" asp-action="logout" asp-controller="usuarios">
+                        <button type="submit" class="nav-link btn btn-link text-dark">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                 
+                   
                 </a>
             </li>
         </ul>
@@ -104,14 +142,14 @@
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     <div class="input-group">
                         <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" placeholder="Buscar médico">
+                        <input type="text" class="form-control" id="txtBuscar2" name="txtBuscar2" placeholder="Buscar médico">
                     </div>
                 </div>
                 <ul class="navbar-nav  justify-content-end">
                     <li class="nav-item d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Bienvenido: <span>Usuario</span></span>
+                            <span class="d-sm-inline d-none">Bienvenido: <span>  @User.Identity.Name</span></span>
                         </a>
                     </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -140,7 +178,7 @@
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8 d-flex align-items-center">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">LISTA DE DOCTORES</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">LISTA DE MÉDICOS</p>
                             </div>
                             <div class="col-4 text-end">
                                 <div class="icon icon-shape bg-gradient-info shadow-danger text-center rounded-circle">
@@ -154,51 +192,24 @@
         </div>
         <!-- Start Card -->
         <div class="row mt-4">
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2 ">
+         
+            <h6 class="mb-4 fw-bold" id="noResults" style="color: white; display: none;">¡Opps!... El médico que usted buscó no existe.</h6>
+            <div class="col-lg-4 col-md-6 mt-4 mb-4 tarjetaGeneral">
+                <div class="card z-index-2">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-success shadow-primary border-radius-lg py-3 pe-1">
+                        <div class="bg-gradient-success shadow-primary border-radius-lg py-3 pe-1" style="background-image: url('../assets/img/medico.jpg'); background-size: cover; background-position: center center;">
                             <div class="chart">
                                 <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="mb-0">Doctor 1</h6>
-                        <span class="text-sm">Especialidad</span><span> / </span><span class="text-sm">Certificado</span>
+                            <h6 class="mb-0 titulo">Doctor: Roberto Rivera</h6>
+                            <span class="text-sm">Especialidad: Cirujano</span><span> / </span><span class="text-sm">Certificado: MASTER</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2 ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-success shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="mb-0">Doctor 1</h6>
-                        <span class="text-sm">Especialidad</span><span> / </span><span class="text-sm">Certificado</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2 ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-success shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="mb-0">Doctor 1</h6>
-                        <span class="text-sm">Especialidad</span><span> / </span><span class="text-sm">Certificado</span>
-                    </div>
-                </div>
-            </div>
+           
         </div>
         <!-- End Card -->
         <div class="row">
@@ -227,7 +238,7 @@
                             <h6 class="mb-2">Últimos productos</h6>
                         </div>
                     </div>
-                    <hr class="horizontal dark my-1">
+                    <hr class="horizontal dark my-1 mb-0">
                     <div class="table-responsive">
                         <table class="table align-items-center ">
                             <thead>
@@ -255,38 +266,40 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <tr>
                                     <td>
                                         <div class="text-center">
-                                            <h6 class="text-sm mb-0">Producto 1</h6>
+                                            <h6 class="text-sm mb-0">Producto: Paracetamol</h6>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="text-center">
-                                            <h6 class="text-sm mb-0">Pastillas</h6>
+                                            <h6 class="text-sm mb-0">Categoria: Pastillas</h6>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="text-center">
-                                            <h6 class="text-sm mb-0">05-11-2022 12:30:00 p.m.</h6>
+                                            <h6 class="text-sm mb-0">Fecha: 20-11-2022</h6>
                                         </div>
                                     </td>
                                     <td class="text-center">
                                         <div class="col text-center">
-                                            <h6 class="text-sm mb-0">500.00 S/.</h6>
+                                            <h6 class="text-sm mb-0">Precio: s/10.00</h6>
                                         </div>
                                     </td>
                                 </tr>
+                      
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             <div class="col-lg-5">
-                <div class="card card-carousel overflow-hidden h-100 p-0" style="height: 380px !important;">
+                <div class="card principal card-carousel overflow-hidden h-100 p-0" style="height: 380px !important;">
                     <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
                         <div class="carousel-inner border-radius-lg h-100">
-                            <div class="carousel-item h-100 active" style="background-image: url('../assets/img/medic-3.png'); background-size: cover;">
+                            <div class="carousel-item h-100 active" style="background-image: url('../assets/img/medic-3.png'); background-size: cover; background-repeat: no-repeat;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                                     <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
                                         <i class="ni ni-camera-compact text-dark opacity-10"></i>
@@ -295,7 +308,7 @@
                                     <p>La mejor atención integral de alta especialización a nuestros pacientes para el cuidado de su salud.</p>
                                 </div>
                             </div>
-                            <div class="carousel-item h-100" style="background-image: url('../assets/img/medic-1.png'); background-size: cover;">
+                            <div class="carousel-item h-100" style="background-image: url('../assets/img/medic-1.png'); background-size: cover; background-repeat: no-repeat;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                                     <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
                                         <i class="ni ni-bulb-61 text-dark opacity-10"></i>
@@ -304,7 +317,7 @@
                                     <p>Como equipo, nos comprometemos garantizar al paciente un servicio oportuno, eficiente y efectivo.</p>
                                 </div>
                             </div>
-                            <div class="carousel-item h-100" style="background-image: url('../assets/img/medic-2.png'); background-size: cover;">
+                            <div class="carousel-item h-100" style="background-image: url('../assets/img/medic-2.png'); background-size: cover; background-repeat: no-repeat;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                                     <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
                                         <i class="ni ni-trophy text-dark opacity-10"></i>

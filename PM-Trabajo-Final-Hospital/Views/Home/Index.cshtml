@@ -1,8 +1,407 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome4</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <link href="~/assets2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/assets2/vendor/animate.css/animate.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/assets2/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/assets2/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/assets2/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/assets2/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/assets2/vendor/remixicon/remixicon.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/assets2/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" asp-append-version="true">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets2/css/style.css" rel="stylesheet" asp-append-version="true">
+</head>
+
+<body>
+
+    <!-- ======= Top Bar ======= -->
+    <div id="topbar" class="d-flex align-items-center position-sticky sticky-top">
+        <div class="container d-flex justify-content-between">
+            <div class="contact-info d-flex align-items-center">
+                <i class="bi bi-envelope"></i> <a href="mailto:cris_antonio2001@hotmail.com">cris_antonio2001@hotmail.com</a>
+                <i class="bi bi-phone"></i> <a href="whatsapp://send?text=¡Hola!, mucho gusto 🤝, me interesa saber más información 🙂.&phone=+51 973 182 294">+51 973 182 294</a>
+            </div>
+            <div class="d-none d-lg-flex social-links align-items-center">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="position-sticky sticky-top">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto" style="font-weight: 900 !important;"><a asp-area="" asp-controller="Home" asp-action="Index">Arzobispo Loayza</a></h1>
+
+            <nav id="navbar" class="navbar order-last order-lg-0" style="box-shadow: none !important">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
+                    <li><a class="nav-link scrollto" href="#about">Nosotros</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
+                    <li><a class="nav-link scrollto" href="#objetivos">Objetivos</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+            <a asp-area="" asp-controller="Usuarios" asp-action="SignIN" class="appointment-btn scrollto"><span>Iniciar Sesión</span></a>
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+            <h1>Hospital Arzobispo Loayza</h1>
+            <h2>Cuidando la salud de las personas desde 1915.</h2>
+            <a href="#about" class="btn-get-started scrollto">Introducción</a>
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+        <!-- ======= Why Us Section ======= -->
+        <section id="why-us" class="why-us">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-4 d-flex align-items-stretch">
+                        <div class="content">
+                            <h3 class="text-white">¿Porqué elegir Hospital Arzobispo Loayza?</h3>
+                            <p>
+                                Contamos con una gran variedad de productos de alta calidad y la mejor atención médica con alternativas para todos nuestros clientes,
+                                además de contar con un servicio y atención al cliente personalizado ofreciendo una mejor experiencia en el cuidado de su salud.
+                            </p>
+                            <div class="text-center">
+                                <a href="#about" class="more-btn">Leer más. <i class="bx bx-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 d-flex align-items-stretch">
+                        <div class="icon-boxes d-flex flex-column justify-content-center">
+                            <div class="row">
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bx bx-receipt"></i>
+                                        <h4>Perseverancia</h4>
+                                        <p>Nos mantenemos firmes y constantes en nuestras acciones y en todo lo que emprendemos.</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bx bx-cube-alt"></i>
+                                        <h4>Seguridad</h4>
+                                        <p>Tomamos decisiones basadas en el uso adecuado y mesurado de los recursos.</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <div class="icon-box mt-4 mt-xl-0">
+                                        <i class="bx bx-images"></i>
+                                        <h4>Calidez</h4>
+                                        <p>Logramos que las personas se sientan acogidas y comprendidas en todo momento.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End .content-->
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Why Us Section -->
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+                    </div>
+
+                    <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                        <h3>Nosotros</h3>
+                        <p>
+                            Somos un hospital innovadora y comprometida con el bienestar integral de la salud, con presencia internacional creciente y solidez financiera.
+                            Contamos con un equipo humano altamente calificado y una infraestructura que cumple con las buenas prácticas de manufactura y otros estándares internacionales en la medicina y cuidado del paciente.
+                        </p>
+
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-fingerprint"></i></div>
+                            <h4 class="title"><a href="">Medio ambiente</a></h4>
+                            <p class="description">Cumplimos con las buenas prácticas de manufactura que incluyen el buen manejo de desechos químicos para que de esta forma protejamos el medio ambiente.</p>
+                        </div>
+
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-gift"></i></div>
+                            <h4 class="title"><a href="">Respeto</a></h4>
+                            <p class="description">Vivimos un ambiente de mutuo respeto hacia todos los que tienen relación con nuestra compañía: clientes internos y externos, colaboradores, accionistas y proveedores.</p>
+                        </div>
+
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-atom"></i></div>
+                            <h4 class="title"><a href="">Salud</a></h4>
+                            <p class="description">Reflexionamos y consideramos los efectos que pueden causar nuestras acciones y decisiones. Actuamos con rapidez, energía y decisión buscando discernir entre lo bueno y lo malo tanto para la empresa como para nosotros mismos.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
+        <!-- ======= Counts Section ======= -->
+        <section id="counts" class="counts">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="count-box">
+                            <i class="fas fa-user-md"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="153" data-purecounter-duration="8" class="purecounter"></span>
+                            <p>Médicos</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                        <div class="count-box">
+                            <i class="far fa-hospital"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="1" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Hospitales</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                        <div class="count-box">
+                            <i class="fas fa-flask"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="4" class="purecounter"></span>
+                            <p>Laboratorios</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                        <div class="count-box">
+                            <i class="fas fa-award"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="4" class="purecounter"></span>
+                            <p>Certificados</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Counts Section -->
+        <!-- ======= Services Section ======= -->
+        <section id="services" class="services">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Servicios</h2>
+                    <p>
+                        Nuestro propósito es brindar a los pacientes del Perú, acceso a tratamientos efectivos e innovadores, colaborando en la mejora de su calidad de vida.
+                        Hospital Arzobispo Loayza es considerado el socio de elección de compañías innovadoras que buscan expandir sus productos a través del Perú.
+                    </p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+                        <div class="icon-box">
+                            <div class="icon"><i class="fas fa-dna"></i></div>
+                            <h4><a href="">Orden</a></h4>
+                            <p>En todas las actividades laborales y humanas que realizamos</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+                        <div class="icon-box">
+                            <div class="icon"><i class="fas fa-wheelchair"></i></div>
+                            <h4><a href="">Responsabilidad</a></h4>
+                            <p>En todo lo que hacemos. Siempre tendremos la actiud de asumir nuestra responsabilidad.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+                        <div class="icon-box">
+                            <div class="icon"><i class="fas fa-notes-medical"></i></div>
+                            <h4><a href="">Trabajo en equipo</a></h4>
+                            <p>Siendo conscientes que al ser parte activa del equipo, contribuimos al logro de los objetivos propios y los de la empresa.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Services Section -->
+        <!-- ======= Departments Section ======= -->
+        <section id="objetivos" class="departments">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Objetivos</h2>
+                </div>
+
+                <div class="row gy-4">
+                    <div class="col-lg-3">
+                        <ul class="nav nav-tabs flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1" style="background-color: transparent !important;">Visión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#tab-2" style="background-color: transparent !important;">Misión</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="tab-content">
+                            <div class="tab-pane active show" id="tab-1">
+                                <div class="row gy-4">
+                                    <div class="col-lg-8 details order-2 order-lg-1">
+                                        <h3>Visión</h3>
+                                        <p class="fst-italic">Dar lo mejor de nosotros.</p>
+                                        <p>Que nuestros pacientes nos reconozcan como la cadena peruana de hospitales que los cuida, ofreciéndoles no solo los mejores precios, sino el mejor servicio y atención médica, marcando la diferencia en el mercado y logrando que nuestros colaboradores se sientan orgullosos de pertenecer a la Familia Hospital Arzobispo Loayza.</p>
+                                    </div>
+                                    <div class="col-lg-4 text-center order-1 order-lg-2">
+                                        <img src="assets2/img/departments-1.jpg" alt="" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab-2">
+                                <div class="row gy-4">
+                                    <div class="col-lg-8 details order-2 order-lg-1">
+                                        <h3>Misión</h3>
+                                        <p class="fst-italic">Brindar la mejor atención al paciente.</p>
+                                        <p>Brindamos atención integral de alta especialización a nuestros pacientes, usuarios y familia, en la rehabilitación, protección, haciendo docencia e investigación de manera contínua, con inclusión social y aseguramiento universal.</p>
+                                    </div>
+                                    <div class="col-lg-4 text-center order-1 order-lg-2">
+                                        <img src="assets2/img/departments-3.jpg" alt="" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Contáctanos</h2>
+                    <p>Si quieres contactarte con nosotros, te presentamos a continuación nuestros medios de contacto.</p>
+                </div>
+            </div>
+
+            <div>
+                <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.902096501406!2d-77.04530862330581!3d-12.050256824090543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8ce2be61e1f%3A0xfc4a722953f840c5!2sHospital%20Nacional%20Arzobispo%20Loayza!5e0!3m2!1ses-419!2spe!4v1668358975656!5m2!1ses-419!2spe" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0"></iframe>
+            </div>
+
+            <div class="container">
+                <div class="row info mt-5" style="background-color: transparent !important;">
+                    <div class="col-lg-4 pb-2 d-flex justify-content-sm-start justify-content-lg-center align-items-center align-content-center">
+                        <div class="address" style="margin: 0 !important;">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Ubicación:</h4>
+                            <p>Av. Alfonso Ugarte 848, Lima 15082</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 pb-2 d-flex justify-content-sm-start justify-content-lg-center align-items-center align-content-center">
+                        <div class="email" style="margin: 0 !important;">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Correo:</h4>
+                            <p><a href="mailto:cris_antonio2001@hotmail.com">cris_antonio2001@hotmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 pb-2 d-flex justify-content-sm-start justify-content-lg-center align-items-center align-content-center">
+                        <div class="phone" style="margin: 0 !important;">
+                            <i class="bi bi-phone"></i>
+                            <h4>Teléfono:</h4>
+                            <p><a href="whatsapp://send?text=¡Hola!, mucho gusto 🤝, me interesa saber más información 🙂.&phone=+51 973 182 294">+51 973 182 294</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Contact Section -->
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Hospital Arzobispo Loayza</h3>
+                        <p>
+                            Av. Alfonso Ugarte 848, Lima 15082<br>
+                            <strong>Teléfono:</strong> <a href="whatsapp://send?text=¡Hola!, mucho gusto 🤝, me interesa saber más información 🙂.&phone=+51 973 182 294">+51 973 182 294</a><br>
+                            <strong>Correo:</strong> <a href="mailto:cris_antonio2001@hotmail.com">cris_antonio2001@hotmail.com</a><br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Enlaces</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#hero">Inicio</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#about">Nosotros</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#services">Servicios</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#objetivos">Objetivos</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#contact">Contacto</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Sistema</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a asp-area="" asp-controller="Usuarios" asp-action="SignIN">Iniciar Sesión</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a asp-area="" asp-controller="Usuarios" asp-action="SignUP">Registrarse</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Contácate con nosotros</h4>
+                        <p>Envíanos un correo electrónico para que nos llegue tu solicitud.</p>
+                        <form action="" method="">
+                            <input type="email" name="email"><input type="submit" value="Enviar">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-md-flex py-4">
+
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                    &copy; 2022 <strong><span>Hospital Arzobispo Loayza</span></strong>. Todos los derechos reservados.
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/assets2/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/assets2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets2/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/assets2/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/assets2/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/assets2/js/main.js"></script>
+
+</body>

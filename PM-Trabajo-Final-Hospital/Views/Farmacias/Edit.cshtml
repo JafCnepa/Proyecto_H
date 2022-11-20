@@ -1,0 +1,141 @@
+﻿@model PM_Trabajo_Final_Hospital.Models.Farmacias
+
+@{
+    ViewData["Title"] = "Editar Farmacia";
+}
+
+<div class="bg-gradient-dark">
+    <div class="page-header min-vh-50" style="background-image: url('../assets/img/photo-form2.jpg');">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mx-auto my-auto">
+                    <h1 class="text-white mb-4" style="margin-top: -40px;">Editar farmacia</h1>
+                    <a asp-area=""  asp-action="Index" class="btn bg-white text-dark mt-4">Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+    <section class="py-sm-4 position-relative mt-5">
+        <div class="container">
+            <div class="card box-shadow-xl overflow-hidden mb-5">
+                <div class="row">
+                    <div class="col-lg-5 position-relative bg-cover px-0" style="background-image: url('../assets/img/photo-form1.jpg')" loading="lazy">
+                        <div class="z-index-2 text-center d-flex h-100 w-100 d-flex m-auto justify-content-center">
+                            <div class="mask bg-gradient-dark opacity-8"></div>
+                            <div class="p-7 ps-sm-7 position-relative text-start my-auto z-index-2">
+                                <h3 class="text-white">Contáctanos</h3>
+                           
+                                
+                                <div class="d-flex p-2 text-white">
+                                    <div>
+                                        <i class="fas fa-map-marker-alt text-sm"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <span class="text-sm opacity-8">Av. Alfonso Ugarte 848, Lima 15082.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="card-header px-4 py-sm-4 py-3">
+                            <h2 class="mb-3">Formulario</h2>
+                            <p class="lead">Completa todos los datos requeridos para que procedas con la solicitud correctamente.</p>
+                        </div>
+                        <form asp-action="Edit"  enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="IdFarmacia" />
+                            <div class="card-body pt-1 pb-0">
+                                <div class="row">
+                                    <div class="col-md-12 mb-2">
+                                        <div class="form-group">
+                                            <label for="Nombre">Nombre de la farmacia:</label>
+                                            <input asp-for="Nombre" class="form-control" id="nombres" maxlength="40" placeholder="Ingrese el nombre de la farmacia." required>
+                                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label asp-for="Distrito">Distrito:</label>
+                                            <select asp-for="IdDistrito" class="form-control" asp-items="ViewBag.IdDistrito"></select>
+                                            <span asp-validation-for="IdDistrito" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label for="Departamentos">Departamento:</label>
+                                            <select asp-for="IdDepartamento" class="form-control" asp-items="ViewBag.IdDepartamento"></select>
+                                            <span asp-validation-for="IdDepartamento" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                              
+                                    <!-- <div class="col-md-12 mb-2">
+                                        <div class="input-group input-group-static mb-4">
+                                          <label for="descripcion">¿Cuál es la descripcion?:</label>
+                                          <textarea type="text" class="form-control" id="descripcion" maxlength ="500" rows="4" placeholder="¿Quienes Somos?, Visión, Misión..." required></textarea>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="row p-4 pt-0">
+                                <div class="col-md-6 text-end ms-auto">
+                                    <button type="submit" id="editar" class="btn bg-gradient-info mb-0">Editar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="footer pt-4 pb-4">
+    <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-12 mb-lg-0 mb-4">
+                <div class="copyright text-center text-sm text-muted text-lg-center">
+                    © <script>
+                          document.write(new Date().getFullYear())
+                    </script>,
+                    Hecho con <i class="fa fa-heart"></i> por
+                    <a href="https://www.instagram.com/cris223511.dev/" class="font-weight-bold" target="_blank">Christopher PS</a> y
+                    <a href="https://www.instagram.com/cris223511.dev/" class="font-weight-bold" target="_blank">Martín Canepa</a>. Todos los derechos reservados.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    window.onload = function () {
+        var hoy = new Date()
+        var fecha = hoy.getFullYear() + '-' + ('0' + (hoy.getMonth() + 1)).slice(-2) + '-' + ('0' + hoy.getDate()).slice(-2);
+        var hora = ('0' + hoy.getHours()).slice(-2) + ':' + ('0' + hoy.getMinutes()).slice(-2);
+
+        var fecha_hora = fecha + 'T' + hora;
+        document.getElementById('fechahora').value = fecha_hora;
+    }
+
+        // window.onload = function(){
+        //   var fecha = new Date();
+        //   var mes = fecha.getMonth() + 1;
+        //   var dia = fecha.getDate();
+        //   var ano = fecha.getFullYear();
+        //   if(dia<10)
+        //     dia='0'+dia;
+        //   if(mes<10)
+        //     mes='0'+mes;
+        //   document.getElementById('fecha').value=ano+"-"+mes+"-"+dia;
+        // }
+</script>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

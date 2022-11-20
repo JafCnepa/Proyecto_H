@@ -1,63 +1,177 @@
-﻿@model PM_Trabajo_Final_Hospital.Models.Factura
+﻿@model PM_Trabajo_Final_Hospital.Models.Facturas
 
-@{
-    ViewData["Title"] = "Edit";
-}
 
-<h1>Edit</h1>
-
-<h4>Factura</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdFactura" />
-            <div class="form-group">
-                <label asp-for="Nombres" class="control-label"></label>
-                <input asp-for="Nombres" class="form-control" />
-                <span asp-validation-for="Nombres" class="text-danger"></span>
+<div class="bg-gradient-dark">
+    <div class="page-header min-vh-50" style="background-image: url('../assets/img/photo-form2.jpg');">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mx-auto my-auto">
+                    <h1 class="text-white mb-4" style="margin-top: -40px;">Editar facturas</h1>
+                    <a asp-area=""  asp-action="Index" class="btn bg-white text-dark mt-4">Volver al inicio</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Total" class="control-label"></label>
-                <input asp-for="Total" class="form-control" />
-                <span asp-validation-for="Total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdUsuario" class="control-label"></label>
-                <select asp-for="IdUsuario" class="form-control" asp-items="ViewBag.IdUsuario"></select>
-                <span asp-validation-for="IdUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdMedicamento" class="control-label"></label>
-                <select asp-for="IdMedicamento" class="form-control" asp-items="ViewBag.IdMedicamento"></select>
-                <span asp-validation-for="IdMedicamento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+    <section class="py-sm-4 position-relative mt-5">
+        <div class="container">
+            <div class="card box-shadow-xl overflow-hidden mb-5">
+                <div class="row">
+                    <div class="col-lg-5 position-relative bg-cover px-0" style="background-image: url('../assets/img/photo-form1.jpg')" loading="lazy">
+                        <div class="z-index-2 text-center d-flex h-100 w-100 d-flex m-auto justify-content-center">
+                            <div class="mask bg-gradient-dark opacity-8"></div>
+                            <div class="p-7 ps-sm-7 position-relative text-start my-auto z-index-2">
+                                <h3 class="text-white">Contáctanos</h3>
+                                <p class="text-white opacity-8 mb-4">Si te quieres poner en contacto con nosotros, te dejamos nuestros siguientes datos.</p>
+                                <div class="d-flex p-2 text-white">
+                                    <div>
+                                        <i class="fas fa-phone text-sm"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <span class="text-sm opacity-8">+51 973 182 294</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex p-2 text-white">
+                                    <div>
+                                        <i class="fas fa-envelope text-sm"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <span class="text-sm opacity-8"><a href="mailto:cris_antonio2001@hotmail.com" class="text-white">cris_antonio2001@hotmail.com</a></span>
+                                    </div>
+                                </div>
+                                <div class="d-flex p-2 text-white">
+                                    <div>
+                                        <i class="fas fa-map-marker-alt text-sm"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <span class="text-sm opacity-8">Av. Alfonso Ugarte 848, Lima 15082.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="card-header px-4 py-sm-4 py-3">
+                            <h2 class="mb-3">Formulario</h2>
+                            <p class="lead">Completa todos los datos requeridos para que procedas con la solicitud correctamente.</p>
+                        </div>
+                        <form asp-action="Edit" method="" enctype="multipart/form-data">
+                                  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdFactura" />
+                            <div class="card-body pt-1 pb-0">
+                                <div class="row">
+                                    <div class="col-md-12 mb-2">
+                                        <div class="form-group">
+                                            <label asp-for="Nombre">Nombre:</label>
+                                            <input asp-for="Nombre" class="form-control" id="nombres" maxlength="40" placeholder="Ingrese un nombre o álias para la factura." required>
+                                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label asp-for="Usuario">Paciente:</label>
+                                         <input asp-for="UsuarioId" class="form-control" />
+                                      <span asp-validation-for="UsuarioId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label asp-for="Telefono">Teléfono:</label>
+                                            <input asp-for="Telefono" type="number" class="form-control" id="stock" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" placeholder="Ingrese el teléfono del paciente." required>
+                                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label asp-for="Medicamento">Medicamento:</label>
+                                            <select asp-for="IdMedicamento" class="form-control" asp-items="ViewBag.IdMedicamento"></select>
+                                            <span asp-validation-for="IdMedicamento" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label asp-for="Distrtios">Distrito:</label>
+                                            <input asp-for="IdDistrito" class="form-control" />
+                                            <span asp-validation-for="IdDistrito" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label asp-for="Fecha">Fecha de edición:</label>
+                                            <input asp-for="Fecha" type="date" class="form-control" id="fecha" disabled>
+                                            <span asp-validation-for="Fecha" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label asp-for="Total">Total (S/.):</label>
+                                            <input asp-for="Total" type="number" class="form-control" id="precio" step="any" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" placeholder="Ingrese el precio de la factura." required>
+                                            <span asp-validation-for="Total" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12 mb-2">
+                                        <div class="input-group input-group-static mb-4">
+                                          <label for="descripcion">¿Cuál es la descripcion?:</label>
+                                          <textarea type="text" class="form-control" id="descripcion" maxlength ="500" rows="4" placeholder="¿Quienes Somos?, Visión, Misión..." required></textarea>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="row p-4 pt-0">
+                                <div class="col-md-6 text-end ms-auto">
+                                    <button type="submit" id="editar" class="btn bg-gradient-info mb-0">Editar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
+
+<footer class="footer pt-4 pb-4">
+    <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-12 mb-lg-0 mb-4">
+                <div class="copyright text-center text-sm text-muted text-lg-center">
+                    © <script>
+                          document.write(new Date().getFullYear())
+                    </script>,
+                    Hecho con <i class="fa fa-heart"></i> por
+                    <a href="https://www.instagram.com/cris223511.dev/" class="font-weight-bold" target="_blank">Christopher PS</a> y
+                    <a href="https://www.instagram.com/cris223511.dev/" class="font-weight-bold" target="_blank">Martín Canepa</a>. Todos los derechos reservados.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    //window.onload = function(){
+    //  var hoy = new Date()
+    //  var fecha = hoy.getFullYear() + '-' + ('0' + (hoy.getMonth() + 1)).slice(-2) + '-' + ('0' + hoy.getDate()).slice(-2) ;
+    //  var hora = ('0' + hoy.getHours()).slice(-2) + ':' + ('0' + hoy.getMinutes()).slice(-2);
+
+    //  var fecha_hora = fecha +'T'+ hora;
+    //  document.getElementById('fechahora').value = fecha_hora;
+    //}
+
+    window.onload = function () {
+        var fecha = new Date();
+        var mes = fecha.getMonth() + 1;
+        var dia = fecha.getDate();
+        var ano = fecha.getFullYear();
+        if (dia < 10)
+            dia = '0' + dia;
+        if (mes < 10)
+            mes = '0' + mes;
+        document.getElementById('fecha').value = ano + "-" + mes + "-" + dia;
+    }
+</script>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

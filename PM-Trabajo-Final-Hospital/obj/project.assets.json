@@ -10020,6 +10020,7 @@
       "Microsoft.EntityFrameworkCore >= 6.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.10",
+      "Microsoft.Extensions.DependencyInjection >= 6.0.1",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.10"
     ]
   },
@@ -10029,11 +10030,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital.csproj",
+      "projectUniqueName": "C:\\Users\\jafet\\OneDrive\\Documentos\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital.csproj",
       "projectName": "PM-Trabajo-Final-Hospital",
-      "projectPath": "D:\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital.csproj",
+      "projectPath": "C:\\Users\\jafet\\OneDrive\\Documentos\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital.csproj",
       "packagesPath": "C:\\Users\\jafet\\.nuget\\packages\\",
-      "outputPath": "D:\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital\\obj\\",
+      "outputPath": "C:\\Users\\jafet\\OneDrive\\Documentos\\PM-Trabajo-Final-Hospital\\PM-Trabajo-Final-Hospital\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jafet\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -10077,6 +10078,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[6.0.10, )"
+          },
+          "Microsoft.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "[6.0.1, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",

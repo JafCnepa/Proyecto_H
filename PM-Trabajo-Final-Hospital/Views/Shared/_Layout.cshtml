@@ -8,7 +8,7 @@
     <title>
         Arzobispo Loayza | @ViewData["Title"]
     </title>
-    <!--     Fonts and icons     -->
+    <!-- Fonts and icons -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
     <link href="~/assets/css/nucleo-icons.css" rel="stylesheet" asp-append-version="true" />
@@ -18,11 +18,13 @@
     <link href="~/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link rel="stylesheet" href="~/assets/css/argon-dashboard.css?v=2.0.4" asp-append-version="true" />
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 </head>
 <body class="g-sidenav-show bg-gray-100">
     @RenderBody()
 
-    <!--   Core JS Files   -->
+    <!-- Core JS Files -->
     <script src="~/assets/js/core/popper.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/core/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/assets/js/plugins/perfect-scrollbar.min.js" asp-append-version="true"></script>
@@ -41,6 +43,59 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="~/assets/js/argon-dashboard.min.js?v=2.0.4" asp-append-version="true"></script>
+    <!-- Jquery Files -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#txtBuscar").on("keyup", function () {
+
+                var value = $(this).val().toLowerCase();
+
+                $("#myTable tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+
+                let $comment = document.getElementById("txtBuscar");
+                let timeout;
+
+                // $comment.addEventListener('keypress', () => {
+                //     document.getElementById("tabla").style.overflowY = "hidden";
+                // })
+
+                if ($('#txtBuscar').val().length == 0) {
+                    document.getElementById("tabla").style.overflowY = "auto";
+                } else {
+                    document.getElementById("tabla").style.overflowY = "hidden";
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+          $('#txtBuscar2').keyup(function () {
+            var nombres = $('.titulo');
+            var buscando = $(this).val();
+            for (var i = 0; i < nombres.length; i++) {
+              item = $(nombres[i]).html().toLowerCase();
+              for (var x = 0; x < item.length; x++) {
+                if (buscando.length == 0 || item.indexOf(buscando) > -1)         {
+                  $(nombres[i]).parents('.tarjetaGeneral').show();
+                } else {
+                  $(nombres[i]).parents('.tarjetaGeneral').hide();
+                }
+              }
+            }
+           if(nombres.length == $('.tarjetaGeneral:hidden').length){
+                $('#noResults').show();
+              }
+              else{
+              $('#noResults').hide();
+              }
+          });
+        });
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

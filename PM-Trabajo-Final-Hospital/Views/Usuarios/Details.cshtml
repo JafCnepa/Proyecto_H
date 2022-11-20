@@ -1,78 +1,171 @@
-﻿@model PM_Trabajo_Final_Hospital.Models.Usuario
-
-@{
-    ViewData["Title"] = "Details";
+﻿@{
+    ViewData["Title"] = "Detalles de Usuario";
 }
 
-<h1>Details</h1>
+<div class="bg-gradient-dark">
+    <div class="page-header min-vh-50" style="background-image: url('../assets/img/photo-form6.jpg');">
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center mx-auto my-auto">
+            <h1 class="text-white mb-4" style="margin-top: -40px;">Detalles del usuario</h1>
+            <a asp-area="" asp-controller="Home" asp-action="Usuarios" class="btn bg-white text-dark mt-4">Volver al inicio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+     <section class="py-sm-4 position-relative mt-5">
+          <div class="container">
+            <div class="card box-shadow-xl overflow-hidden mb-5">
+              <div class="row">
+                  <div class="col-lg-5 position-relative bg-cover px-0" style="background-image: url('../assets/img/photo-form1.jpg')" loading="lazy">
+                  <div class="z-index-2 text-center d-flex h-100 w-100 d-flex m-auto justify-content-center">
+                    <div class="mask bg-gradient-dark opacity-8"></div>
+                    <div class="p-7 ps-sm-7 position-relative text-start my-auto z-index-2">
+                      <h3 class="text-white">Contáctanos</h3>
+                      <p class="text-white opacity-8 mb-4">Si te quieres poner en contacto con nosotros, te dejamos nuestros siguientes datos.</p>
+                      <div class="d-flex p-2 text-white">
+                        <div>
+                          <i class="fas fa-phone text-sm"></i>
+                        </div>
+                        <div class="ps-3">
+                          <span class="text-sm opacity-8">+51 973 182 294</span>
+                        </div>
+                      </div>
+                      <div class="d-flex p-2 text-white">
+                        <div>
+                          <i class="fas fa-envelope text-sm"></i>
+                        </div>
+                        <div class="ps-3">
+                          <span class="text-sm opacity-8"><a href="mailto:cris_antonio2001@hotmail.com" class="text-white">cris_antonio2001@hotmail.com</a></span>
+                        </div>
+                      </div>
+                      <div class="d-flex p-2 text-white">
+                        <div>
+                          <i class="fas fa-map-marker-alt text-sm"></i>
+                        </div>
+                        <div class="ps-3">
+                          <span class="text-sm opacity-8">Av. Alfonso Ugarte 848, Lima 15082.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="card-header px-4 py-sm-4 py-3">
+                      <h2 class="mb-3">Formulario</h2>
+                      <p class="lead">Los siguientes datos son los detalles del usuario que seleccionaste, solo puedes visualizarlo.</p>
+                    </div>
+                     <form action="" method="" enctype="multipart/form-data">
+                      <div class="card-body pt-1 pb-0">
+                        <div class="row">
+                          <div class="col-md-12 mb-2">
+                            <div class="form-group">
+                              <label for="titulo">Nombres completos:</label>
+                              <input type="text" class="form-control" id="nombres" maxlength="40" placeholder="Ingrese los nombres completos." disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                              <label for="titulo">DNI:</label>
+                              <input type="number" class="form-control" id="dni" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength ="8" placeholder="Ingrese el N° DNI." disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                              <label for="titulo">RUC:</label>
+                              <input type="number" class="form-control" id="ruc" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength ="11" placeholder="Ingrese el N° RUC." disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                              <label for="titulo">Teléfono:</label>
+                              <input type="number" class="form-control" id="telefono" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength ="11" placeholder="Ingrese el N° de teléfono." disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                              <label for="ubicacion">Fecha de nacimiento:</label>
+                              <input type="date" class="form-control" id="fecha" disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                              <label for="titulo">Correo electrónico:</label>
+                              <input type="email" class="form-control" id="correo" maxlength ="40" placeholder="Ingrese su correo electrónico." disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                              <label for="titulo">Usuario:</label>
+                              <input type="text" class="form-control" id="usuario" maxlength ="40" placeholder="Ingrese su usuario." disabled>
+                            </div>
+                          </div>
+                          <div class="col-md-12 mb-2">
+                            <div class="form-group">
+                              <label for="titulo">Foto:</label>
+                              <input type="file" class="form-control" id="foto" disabled>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-12 mb-2">
+                              <div class="input-group input-group-static mb-4">
+                                <label for="descripcion">¿Cuál es la descripcion?:</label>
+                                <textarea type="text" class="form-control" id="descripcion" maxlength ="500" rows="4" placeholder="¿Quienes Somos?, Visión, Misión..." required></textarea>
+                              </div>
+                          </div> -->
+                        </div>
+                      </div>
+                      @*<div class="row p-4 pt-0">
+                          <div class="col-md-6 text-end ms-auto">
+                            <button type="submit" id="agregar" class="btn bg-gradient-info mb-0">Agregar</button>
+                          </div>
+                      </div>*@
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </section>
+</div>
+  
+  <footer class="footer pt-4 pb-4">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-lg-between">
+        <div class="col-lg-12 mb-lg-0 mb-4">
+          <div class="copyright text-center text-sm text-muted text-lg-center">
+            © <script>
+              document.write(new Date().getFullYear())
+            </script>,
+            Hecho con <i class="fa fa-heart"></i> por
+            <a href="https://www.instagram.com/cris223511.dev/" class="font-weight-bold" target="_blank">Christopher PS</a> y
+            <a href="https://www.instagram.com/cris223511.dev/" class="font-weight-bold" target="_blank">Martín Canepa</a>. Todos los derechos reservados.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-<div>
-    <h4>Usuario</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellido)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellido)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Dni)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Dni)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ruc)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ruc)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Correo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Correo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Usuario1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Usuario1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Clave)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Clave)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdUsuario">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+  <script>
+    //window.onload = function(){
+    //  var hoy = new Date()
+    //  var fecha = hoy.getFullYear() + '-' + ('0' + (hoy.getMonth() + 1)).slice(-2) + '-' + ('0' + hoy.getDate()).slice(-2) ;
+    //  var hora = ('0' + hoy.getHours()).slice(-2) + ':' + ('0' + hoy.getMinutes()).slice(-2);
+
+    //  var fecha_hora = fecha +'T'+ hora;
+    //  document.getElementById('fechahora').value = fecha_hora;
+    //}
+
+    // window.onload = function(){
+    //   var fecha = new Date();
+    //   var mes = fecha.getMonth() + 1;
+    //   var dia = fecha.getDate();
+    //   var ano = fecha.getFullYear();
+    //   if(dia<10)
+    //     dia='0'+dia;
+    //   if(mes<10)
+    //     mes='0'+mes;
+    //   document.getElementById('fecha').value=ano+"-"+mes+"-"+dia;
+    // }
+  </script>

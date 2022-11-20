@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PM_Trabajo_Final_Hospital.Datos;
 using PM_Trabajo_Final_Hospital.Models;
 
-namespace Proyecyo.Controllers
+namespace PM_Trabajo_Final_Hospital.Controllers
 {
     public class MedicosController : Controller
     {
-        private readonly HospitalContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public MedicosController(HospitalContext context)
+        public MedicosController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -21,8 +22,8 @@ namespace Proyecyo.Controllers
         // GET: Medicos
         public async Task<IActionResult> Index()
         {
-            var hospitalContext = _context.Medicos.Include(m => m.IdUsuarioNavigation);
-            return View(await hospitalContext.ToListAsync());
+            var arzobispoContext = _context.Medicos.Include(m => m.Certificacion).Include(m => m.Colegiado).Include(m => m.Usuario);
+            return View(await arzobispoContext.ToListAsync());
         }
 
         // GET: Medicos/Details/5
@@ -34,7 +35,10 @@ namespace Proyecyo.Controllers
             }
 
             var medico = await _context.Medicos
-                .Include(m => m.IdUsuarioNavigation)
+                .Include(m => m.Certificacion)
+                .Include(m => m.Colegiado)
+              
+                .Include(m => m.Usuario)
                 .FirstOrDefaultAsync(m => m.IdMedico == id);
             if (medico == null)
             {
@@ -43,11 +47,12 @@ namespace Proyecyo.Controllers
 
             return View(medico);
         }
-
-        // GET: Medicos/Create
         public IActionResult Create()
         {
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombre");
+            ViewData["IdCertificacion"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones");
+            ViewData["IdColegiado"] = new SelectList(_context.Colegiados, "IdColegiado", "Colegiados");
+      
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario");
             return View();
         }
 
@@ -56,7 +61,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdMedico,Nombre,Apellido,Especialidad,Dnidoctor,Certificado,Salon, Fecha,IdUsuario")] Medico medico)
+        public async Task<IActionResult> Create([Bind("IdMedico,Nombrecompletomedico,Dnimedico,Fecha,Cedula,UsuarioId,IdColegiado,IdCertificacion, Foto")] Medico medico)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +69,10 @@ namespace Proyecyo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medico.IdUsuario);
+            ViewData["IdCertificacion"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones", medico.IdCertificacion);
+            ViewData["IdColegiado"] = new SelectList(_context.Colegiados, "IdColegiado", "Colegiados", medico.IdColegiado);
+           
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario", medico.UsuarioId);
             return View(medico);
         }
 
@@ -81,7 +89,10 @@ namespace Proyecyo.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medico.IdUsuario);
+            ViewData["IdCertificacion"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones", medico.IdCertificacion);
+            ViewData["IdColegiado"] = new SelectList(_context.Colegiados, "IdColegiado", "Colegiados", medico.IdColegiado);
+  
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario", medico.UsuarioId);
             return View(medico);
         }
 
@@ -90,7 +101,7 @@ namespace Proyecyo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdMedico,Nombre,Apellido,Especialidad,Dnidoctor,Certificado,Salon, Fecha,IdUsuario")] Medico medico)
+        public async Task<IActionResult> Edit(int id, [Bind("IdMedico,Nombrecompletomedico,Dnimedico,Fecha,Cedula,UsuarioId,IdColegiado,IdCertificacion, Foto")] Medico medico)
         {
             if (id != medico.IdMedico)
             {
@@ -117,7 +128,10 @@ namespace Proyecyo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombre", medico.IdUsuario);
+            ViewData["IdCertificacion"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones", medico.IdCertificacion);
+            ViewData["IdColegiado"] = new SelectList(_context.Colegiados, "IdColegiado", "Colegiados", medico.IdColegiado);
+       
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario", medico.UsuarioId);
             return View(medico);
         }
 
@@ -130,7 +144,9 @@ namespace Proyecyo.Controllers
             }
 
             var medico = await _context.Medicos
-                .Include(m => m.IdUsuarioNavigation)
+                .Include(m => m.IdCertificacion)
+                .Include(m => m.IdColegiado)
+                .Include(m => m.UsuarioId)
                 .FirstOrDefaultAsync(m => m.IdMedico == id);
             if (medico == null)
             {
@@ -147,7 +163,7 @@ namespace Proyecyo.Controllers
         {
             if (_context.Medicos == null)
             {
-                return Problem("Entity set 'HospitalContext.Medicos'  is null.");
+                return Problem("Entity set 'ArzobispoContext.Medicos'  is null.");
             }
             var medico = await _context.Medicos.FindAsync(id);
             if (medico != null)
@@ -163,5 +179,39 @@ namespace Proyecyo.Controllers
         {
             return _context.Medicos.Any(e => e.IdMedico == id);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
