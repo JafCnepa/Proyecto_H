@@ -24,9 +24,12 @@ namespace PM_Trabajo_Final_Hospital.Models
      
         [ForeignKey("Farmacias")]
         public int IdFarmacia { get; set; }
+        [ForeignKey("Stocks")]
+        public int IdStocks { get; set; }
         public string? Precio { get; set; }
         public virtual Categoria Categoria { get; set; }
         public virtual Farmacias Farmacia { get; set; }
         public virtual Usuario Usuario { get; set; }
+        public virtual Stocks Stock { get; set; }
     }
 }

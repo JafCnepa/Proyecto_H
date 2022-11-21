@@ -4,7 +4,7 @@
 
 namespace PM_Trabajo_Final_Hospital.Migrations
 {
-    public partial class Certificaciones : Migration
+    public partial class Certificacion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

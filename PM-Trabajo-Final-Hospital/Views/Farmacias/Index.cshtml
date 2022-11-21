@@ -163,7 +163,7 @@
                                         <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Nombre</th>
                                         <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Distrito</th>
                                         <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Departamento</th>
-                                   
+                                        <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Avenida</th>
                                         <th class="text-center text-uppercase  text-xxs font-weight-bolder ps-2">Opciones</th>
                                         <th class=" opacity-7"></th>
                                     </tr>
@@ -188,6 +188,9 @@
                                         <td class="align-middle text-sm">
                                             <p class="text-xs  mb-0">           @Html.DisplayFor(modelItem => item.Distrito.IdDistrito)</p>
                                         </td>
+                                            <td class="align-middle text-sm">
+                                                <p class="text-xs  mb-0">           @Html.DisplayFor(modelItem => item.Avenida)</p>
+                                            </td>
                                         <td class="align-middle">
                                             <div class="row d-flex justify-content-center">
                                                 <a asp-area=""  asp-action="Edit" class="btn bg-gradient-warning col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">

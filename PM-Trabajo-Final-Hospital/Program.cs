@@ -1,6 +1,10 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PM_Trabajo_Final_Hospital.Datos;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +22,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = new PathString("/Usuarios/SignIN");
     options.AccessDeniedPath = new PathString("/Usuarios/Error");
 });
+
+
 
 // Estas son opciones de configuración del identity
 builder.Services.Configure<IdentityOptions>(options =>

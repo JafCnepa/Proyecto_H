@@ -46,8 +46,9 @@ namespace PM_Trabajo_Final_Hospital.Models
         [Required(ErrorMessage = "El estado es obligatorio")]
         public bool Estado { get; set; }
         public string? Usuario1 { get; set; }
- 
 
+        public IFormFile toBase64 { get; set; }
+        public string? Foto { get; set; }
         //Para selección de roles
         [Display(Name = "Seleccionar rol")]
         public IEnumerable<SelectListItem> ListaRoles { get; set; }

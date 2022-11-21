@@ -72,7 +72,13 @@
                                             <select asp-for="IdDepartamento" class="form-control" asp-items="ViewBag.IdDepartamento"></select>
                                         </div>
                                     </div>
-                               
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-group">
+                                            <label for="Avenida">Avenida de la farmacia:</label>
+                                            <input asp-for="Avenida" class="form-control" id="avenida" maxlength="40" placeholder="Ingrese el nombre de la farmacia." required>
+                                            <span asp-validation-for="Avenida" class="text-danger"></span>
+                                        </div>
+                                    </div>
                                     <!-- <div class="col-md-12 mb-2">
                                         <div class="input-group input-group-static mb-4">
                                           <label for="descripcion">¿Cuál es la descripcion?:</label>

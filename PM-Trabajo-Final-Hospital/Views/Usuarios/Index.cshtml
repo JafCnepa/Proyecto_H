@@ -11,6 +11,7 @@
 }
 
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
+
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer  opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -126,12 +127,26 @@
                     </div>
                 </div>
                 <ul class="navbar-nav  justify-content-end">
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        @if (User.IsInRole("Administrador"))
+                        {
+                        }
+                    }
+
+           
                     <li class="nav-item d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+
+                     
+
+                    <li class="nav-item">
                             <i class="fa fa-user me-sm-1"></i>
                             <span class="d-sm-inline d-none">Bienvenido:  @UserManager.GetUserName(User)<span></span></span>
-                        </a>
-                    </li>
+                           
+                        </li>
+                  
+                  
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                             <div class="sidenav-toggler-inner">
@@ -168,55 +183,56 @@
             </tr>
         </thead>
         <tbody>
+           @foreach (var item in Model) {
             <tr>
                 <td>
                     <div class="d-flex px-2 py-1">
                         <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm ps-2">Christopher</h6>
+                                <h6 class="mb-0 text-sm ps-2">@Html.DisplayFor(modelItem => item.Nombrecompletousuario)</h6>
                         </div>
                     </div>
                 </td>
                 <td>
-                    <p class="text-xs mb-0">76655698</p>
+                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Dniusuario)</p>
                 </td>
                 <td>
-                    <p class="text-xs mb-0">22900385121</p>
+                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Rucusuario)</p>
                 </td>
                 <td>
-                    <p class="text-xs mb-0">973 182 294</p>
+                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Celularusuario)</p>
                 </td>
                 <td>
-                    <p class="text-xs mb-0">07 - 05 - 2001</p>
+                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.FechaNacimiento)</p>
                 </td>
+                    <td>
+                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Email)</p>
+                    </td>
                 <td>
-                    <p class="text-xs mb-0">cris_antonio2001@hotmail.com</p>
+                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Usuario1)</p>
                 </td>
-                <td class="align-middle text-sm">
-                    <p class="text-xs mb-0">cris223511.dev</p>
-                </td>
+            
                 <td class="align-middle text-sm">
                     <p class="text-xs mb-0">Paciente</p>
                 </td>
                 <td class="text-xs text-center mb-0">
-                    <img src="../assets/img/medic-photo.png" width="50px" height="50px" style="border-radius: 50%;" />
+                          <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Foto)</p>
                 </td>
                 <td class="align-middle">
                     <div class="row d-flex justify-content-center">
-                        <a asp-area="" asp-action="Edit" class="btn bg-gradient-warning col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
-                            Editar
-                        </a>
-                        <a asp-area=""  asp-action="Details" class="btn bg-gradient-primary col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                        
+                            <a asp-area="" asp-action="Detalle" asp-route-id="@item.UsuarioId" class="btn bg-gradient-primary col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
                             Detalles
                         </a>
-                        <a asp-action="Delete" class="btn bg-gradient-success col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                            <a asp-action="Delete" asp-route-id="@item.UsuarioId" class="btn bg-gradient-success col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
                             Eliminar
                         </a>
-                        <a asp-area=""asp-action="UsuariosRol" class="btn bg-gradient-danger col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                            <a asp-area="" asp-action="RegistroAdministrador" class="btn bg-gradient-danger col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
                             Asignar
                         </a>
                     </div>
                 </td>
             </tr>
+            }
         </tbody>
     </table>
 </main>
@@ -224,9 +240,7 @@
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
         <i class="fa fa-cog py-2"> </i>
     </a>
-    <a asp-area="" asp-controller="Home" asp-action="UsuariosAdd" class="fixed-plugin-button text-dark position-fixed px-3 py-2" style="transform: translate(0, -70px)">
-        <i class="fa fa-plus py-2"> </i>
-    </a>
+   
     <div class="card shadow-lg">
         <div class="card-header pb-0 pt-3 ">
             <div class="float-start">

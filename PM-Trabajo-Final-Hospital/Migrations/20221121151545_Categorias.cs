@@ -36,7 +36,7 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                     Celularusuario = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     FechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Estado = table.Column<bool>(type: "bit", maxLength: 50, nullable: true),
-                    Foto = table.Column<byte[]>(type: "image", nullable: true),
+                    Foto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Usuario1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -121,6 +121,19 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Distritos", x => x.IdDistrito);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Stocks",
+                columns: table => new
+                {
+                    IdStock = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StockName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stocks", x => x.IdStock);
                 });
 
             migrationBuilder.CreateTable(
@@ -240,7 +253,7 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Cedula = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
                     Salon = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Foto = table.Column<byte[]>(type: "image", nullable: true),
+                    Foto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Especialidad = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UsuarioId = table.Column<int>(type: "int", nullable: false),
                     IdColegiado = table.Column<int>(type: "int", nullable: false),
@@ -332,12 +345,13 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UsuarioId = table.Column<int>(type: "int", nullable: false),
                     IdCategoria = table.Column<int>(type: "int", nullable: false),
-                    IdPrecio = table.Column<int>(type: "int", nullable: false),
                     IdFarmacia = table.Column<int>(type: "int", nullable: false),
+                    IdStocks = table.Column<int>(type: "int", nullable: false),
                     Precio = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoriaIdCateogira = table.Column<int>(type: "int", nullable: true),
                     FarmaciaIdFarmacia = table.Column<int>(type: "int", nullable: true),
-                    UsuarioId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UsuarioId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    StockIdStock = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -357,6 +371,11 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                         column: x => x.FarmaciaIdFarmacia,
                         principalTable: "Farmacia",
                         principalColumn: "IdFarmacia");
+                    table.ForeignKey(
+                        name: "FK_Medicamentos_Stocks_StockIdStock",
+                        column: x => x.StockIdStock,
+                        principalTable: "Stocks",
+                        principalColumn: "IdStock");
                 });
 
             migrationBuilder.CreateTable(
@@ -481,6 +500,11 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                 column: "FarmaciaIdFarmacia");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Medicamentos_StockIdStock",
+                table: "Medicamentos",
+                column: "StockIdStock");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Medicamentos_UsuarioId1",
                 table: "Medicamentos",
                 column: "UsuarioId1");
@@ -547,6 +571,9 @@ namespace PM_Trabajo_Final_Hospital.Migrations
 
             migrationBuilder.DropTable(
                 name: "Farmacia");
+
+            migrationBuilder.DropTable(
+                name: "Stocks");
 
             migrationBuilder.DropTable(
                 name: "Departamentos");

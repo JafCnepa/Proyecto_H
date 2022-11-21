@@ -12,8 +12,8 @@ using PM_Trabajo_Final_Hospital.Datos;
 namespace PM_Trabajo_Final_Hospital.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221120003143_Categorias")]
-    partial class Categorias
+    [Migration("20221121153716_Farmacia")]
+    partial class Farmacia
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -398,6 +398,11 @@ namespace PM_Trabajo_Final_Hospital.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFarmacia"), 1L, 1);
 
+                    b.Property<string>("Avenida")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int>("IdDepartamento")
                         .HasColumnType("int");
 
@@ -442,7 +447,7 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                     b.Property<int>("IdFarmacia")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdPrecio")
+                    b.Property<int>("IdStocks")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
@@ -452,6 +457,9 @@ namespace PM_Trabajo_Final_Hospital.Migrations
 
                     b.Property<string>("Precio")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StockIdStock")
+                        .HasColumnType("int");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
@@ -464,6 +472,8 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                     b.HasIndex("CategoriaIdCateogira");
 
                     b.HasIndex("FarmaciaIdFarmacia");
+
+                    b.HasIndex("StockIdStock");
 
                     b.HasIndex("UsuarioId1");
 
@@ -503,8 +513,8 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<byte[]>("Foto")
-                        .HasColumnType("image");
+                    b.Property<string>("Foto")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdCertificacion")
                         .HasColumnType("int");
@@ -539,6 +549,22 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                     b.ToTable("Medicos");
                 });
 
+            modelBuilder.Entity("PM_Trabajo_Final_Hospital.Models.Stocks", b =>
+                {
+                    b.Property<int>("IdStock")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdStock"), 1L, 1);
+
+                    b.Property<string>("StockName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdStock");
+
+                    b.ToTable("Stocks");
+                });
+
             modelBuilder.Entity("PM_Trabajo_Final_Hospital.Models.Usuario", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -561,8 +587,8 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<byte[]>("Foto")
-                        .HasColumnType("image");
+                    b.Property<string>("Foto")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombrecompletousuario")
                         .IsRequired()
@@ -701,6 +727,10 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                         .WithMany()
                         .HasForeignKey("FarmaciaIdFarmacia");
 
+                    b.HasOne("PM_Trabajo_Final_Hospital.Models.Stocks", "Stock")
+                        .WithMany()
+                        .HasForeignKey("StockIdStock");
+
                     b.HasOne("PM_Trabajo_Final_Hospital.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId1");
@@ -708,6 +738,8 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                     b.Navigation("Categoria");
 
                     b.Navigation("Farmacia");
+
+                    b.Navigation("Stock");
 
                     b.Navigation("Usuario");
                 });

@@ -20,10 +20,12 @@ namespace PM_Trabajo_Final_Hospital.Datos
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Facturas> Factura { get; set; }
         public DbSet<Farmacias> Farmacia { get; set; }
-        public DbSet<PM_Trabajo_Final_Hospital.Models.Medicamentos> Medicamentos { get; set; }
-        
+        public DbSet<Medicamentos> Medicamentos { get; set; }
+        public DbSet<Stocks> Stocks { get; set; }
+        public DbSet<DetalleUsuario> DetalleUsuario { get; set; }
 
-       
+
+
 
     }
 }

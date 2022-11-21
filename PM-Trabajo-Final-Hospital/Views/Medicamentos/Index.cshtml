@@ -168,6 +168,7 @@
                                   
                                         <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Precio</th>
                                         <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Farmacia</th>
+                                        <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Stocks</th>
                                         <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Fecha</th>
                                         <th class="text-center text-uppercase  text-xxs font-weight-bolder opacity-7">Opciones</th>
                                         <th class=" opacity-7"></th>
@@ -199,6 +200,9 @@
                                         <td class="align-middle text-sm">
                                                 <p class="text-xs  mb-0">     @Html.DisplayNameFor(model => model.IdFarmacia)</p>
                                         </td>
+                                            <td class="align-middle text-sm">
+                                                <p class="text-xs  mb-0">     @Html.DisplayNameFor(model => model.IdStocks)</p>
+                                            </td>
                                         <td class="align-middle">
                                             <div class="row d-flex justify-content-center">
                                                     <a asp-area=" asp-action="Edit" asp-route-id="@item.IdMedicamento" class="btn bg-gradient-warning col-6 w-xl-30 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">

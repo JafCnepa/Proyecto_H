@@ -4,7 +4,7 @@
 
 namespace PM_Trabajo_Final_Hospital.Migrations
 {
-    public partial class Farmacias : Migration
+    public partial class Stocks : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

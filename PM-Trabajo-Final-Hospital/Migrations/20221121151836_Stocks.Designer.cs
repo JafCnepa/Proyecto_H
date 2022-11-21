@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PM_Trabajo_Final_Hospital.Datos;
 
@@ -11,9 +12,10 @@ using PM_Trabajo_Final_Hospital.Datos;
 namespace PM_Trabajo_Final_Hospital.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221121151836_Stocks")]
+    partial class Stocks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -319,19 +321,6 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                     b.ToTable("Departamentos");
                 });
 
-            modelBuilder.Entity("PM_Trabajo_Final_Hospital.Models.DetalleUsuario", b =>
-                {
-                    b.Property<int>("DetalleUsuario_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DetalleUsuario_Id"), 1L, 1);
-
-                    b.HasKey("DetalleUsuario_Id");
-
-                    b.ToTable("DetalleUsuario");
-                });
-
             modelBuilder.Entity("PM_Trabajo_Final_Hospital.Models.Distrito", b =>
                 {
                     b.Property<int>("IdDistrito")
@@ -408,11 +397,6 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFarmacia"), 1L, 1);
-
-                    b.Property<string>("Avenida")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("IdDepartamento")
                         .HasColumnType("int");
@@ -585,12 +569,6 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("DetalleUsuario_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Detalle_Usuario")
-                        .HasColumnType("int");
-
                     b.Property<string>("Dniusuario")
                         .IsRequired()
                         .HasMaxLength(8)
@@ -622,10 +600,6 @@ namespace PM_Trabajo_Final_Hospital.Migrations
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
-
-                    b.HasIndex("Detalle_Usuario")
-                        .IsUnique()
-                        .HasFilter("[Detalle_Usuario] IS NOT NULL");
 
                     b.HasDiscriminator().HasValue("Usuario");
                 });
@@ -783,20 +757,6 @@ namespace PM_Trabajo_Final_Hospital.Migrations
 
                     b.Navigation("Colegiado");
 
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("PM_Trabajo_Final_Hospital.Models.Usuario", b =>
-                {
-                    b.HasOne("PM_Trabajo_Final_Hospital.Models.DetalleUsuario", "DetalleUsuario")
-                        .WithOne("Usuario")
-                        .HasForeignKey("PM_Trabajo_Final_Hospital.Models.Usuario", "Detalle_Usuario");
-
-                    b.Navigation("DetalleUsuario");
-                });
-
-            modelBuilder.Entity("PM_Trabajo_Final_Hospital.Models.DetalleUsuario", b =>
-                {
                     b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618

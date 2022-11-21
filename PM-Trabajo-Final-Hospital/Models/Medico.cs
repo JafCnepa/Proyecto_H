@@ -29,8 +29,11 @@ namespace PM_Trabajo_Final_Hospital.Models
         [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
 
         public string? Salon { get; set; }
-        [Column(TypeName ="image")]
-        public Byte[] Foto { get; set; }
+        [NotMapped]
+      
+        public  IFormFile toBase64 { get; set; }
+        public string? Foto { get; set; }
+        
 
         [Display(Name = "Nombre De La Especialidad")]
         [Required(ErrorMessage = "Este campo es requerido.")]

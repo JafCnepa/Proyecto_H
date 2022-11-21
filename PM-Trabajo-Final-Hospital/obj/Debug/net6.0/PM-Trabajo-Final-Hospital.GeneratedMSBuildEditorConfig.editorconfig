@@ -95,12 +95,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jafet/OneDrive/Documentos/PM-Trabajo-Final-Hospital/PM-Trabajo-Final-Hospital/Views/Usuarios/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/jafet/OneDrive/Documentos/PM-Trabajo-Final-Hospital/PM-Trabajo-Final-Hospital/Views/Usuarios/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
+[C:/Users/jafet/OneDrive/Documentos/PM-Trabajo-Final-Hospital/PM-Trabajo-Final-Hospital/Views/Usuarios/Detalle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWxsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jafet/OneDrive/Documentos/PM-Trabajo-Final-Hospital/PM-Trabajo-Final-Hospital/Views/Usuarios/Error.cshtml]
@@ -115,12 +111,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcT2x2aWRvUGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jafet/OneDrive/Documentos/PM-Trabajo-Final-Hospital/PM-Trabajo-Final-Hospital/Views/Usuarios/Perfil.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcUGVyZmlsLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/jafet/OneDrive/Documentos/PM-Trabajo-Final-Hospital/PM-Trabajo-Final-Hospital/Views/Usuarios/RolUsuario.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcUm9sVXN1YXJpby5jc2h0bWw=
+[C:/Users/jafet/OneDrive/Documentos/PM-Trabajo-Final-Hospital/PM-Trabajo-Final-Hospital/Views/Usuarios/RegistroAdministrador.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcUmVnaXN0cm9BZG1pbmlzdHJhZG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/jafet/OneDrive/Documentos/PM-Trabajo-Final-Hospital/PM-Trabajo-Final-Hospital/Views/Usuarios/signIn.cshtml]

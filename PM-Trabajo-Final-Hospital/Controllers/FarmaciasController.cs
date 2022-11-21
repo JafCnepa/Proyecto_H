@@ -59,7 +59,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdFarmacia,Nombre,IdDepartamento,IdDistrito")] Farmacias farmacias)
+        public async Task<IActionResult> Create([Bind("IdFarmacia,Nombre,IdDepartamento,IdDistrito,Avenida")] Farmacias farmacias)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdFarmacia,Nombre,IdDepartamento,IdDistrito")] Farmacias farmacias)
+        public async Task<IActionResult> Edit(int id, [Bind("IdFarmacia,Nombre,IdDepartamento,IdDistrito,Avenida")] Farmacias farmacias)
         {
             if (id != farmacias.IdFarmacia)
             {

@@ -59,66 +59,80 @@
                       <h2 class="mb-3">Formulario</h2>
                       <p class="lead">Los siguientes datos son los detalles del usuario que seleccionaste para asignarle su nuevo rol.</p>
                     </div>
-                     <form asp-controller="Usuarios" asp-action="RegistroAdministrador" method="post" enctype="multipart/form-data">
+                     <form asp-controller="Usuarios" asp-action="RegistroAdministrador" method="post" >
+                           <div class="text-danger" asp-validation-summary="All"></div>
                       <div class="card-body pt-1 pb-0">
                         <div class="row">
                           <div class="col-md-12 mb-2">
                             <div class="form-group">
-                              <label for="Nombre">Nombres completos:</label>
-                              <input type="text" class="form-control" id="nombres" maxlength="40" placeholder="Ingrese los nombres completos." disabled>
-                            </div>
+                              <label asp-for="Nombrecompletousuario">Nombres completos:</label>
+                              <input asp-for="Nombrecompletousuario" class="form-control" id="nombres" maxlength="40" placeholder="Ingrese los nombres completos.">
+                          <span asp-validation-for="Nombrecompletousuario" class="text-danger"></span>
+                          </div>
                           </div>
                           <div class="col-md-6 mb-2">
                             <div class="form-group">
-                              <label for="titulo">DNI:</label>
-                              <input type="number" class="form-control" id="dni" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength ="8" placeholder="Ingrese el N° DNI." disabled>
-                            </div>
+                              <label asp-for="Dniusuario">DNI:</label>
+                              <input asp-for="Dniusuario" type="number" class="form-control" id="dni" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength ="8" placeholder="Ingrese el N° DNI." >
+                          <span asp-validation-for="Dniusuario" class="text-danger"></span>  
+                          </div>
                           </div>
                           <div class="col-md-6 mb-2">
                             <div class="form-group">
-                              <label for="titulo">RUC:</label>
-                              <input type="number" class="form-control" id="ruc" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength ="11" placeholder="Ingrese el N° RUC." disabled>
-                            </div>
+                              <label asp-for="Rucusuario">RUC:</label>
+                              <input asp-for="Rucusuario" type="number" class="form-control" id="ruc" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength ="11" placeholder="Ingrese el N° RUC." >
+                          <span asp-validation-for="Rucusuario" class="text-danger"></span> 
+                          </div>
                           </div>
                           <div class="col-md-6 mb-2">
                             <div class="form-group">
-                              <label for="titulo">Teléfono:</label>
-                              <input type="number" class="form-control" id="telefono" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength ="11" placeholder="Ingrese el N° de teléfono." disabled>
-                            </div>
+                              <label asp-for="Celularusuario">Teléfono:</label>
+                              <input asp-for="Celularusuario" type="number" class="form-control" id="telefono" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength ="11" placeholder="Ingrese el N° de teléfono." >
+                          <span asp-validation-for="Celularusuario" class="text-danger"></span>
+                          </div>
                           </div>
                           <div class="col-md-6 mb-2">
                             <div class="form-group">
                               <label for="ubicacion">Fecha de nacimiento:</label>
-                              <input type="date" class="form-control" id="fecha" disabled>
+                              <input asp-for="FechaNacimiento"  type="date" class="form-control" id="fecha">
+                              <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
                             </div>
                           </div>
                           <div class="col-md-6 mb-2">
                             <div class="form-group">
-                              <label for="titulo">Correo electrónico:</label>
-                              <input type="email" class="form-control" id="correo" maxlength ="40" placeholder="Ingrese su correo electrónico." disabled>
-                            </div>
+                              <label asp-for="Email">Correo electrónico:</label>
+                              <input asp-for="Email" type="email" class="form-control" id="correo" maxlength ="40" placeholder="Ingrese su correo electrónico." >
+                          <span asp-validation-for="Email" class="text-danger"></span>  
+                          </div>
                           </div>
                           <div class="col-md-6 mb-2">
                             <div class="form-group">
-                              <label for="titulo">Usuario:</label>
-                              <input type="text" class="form-control" id="usuario" maxlength ="40" placeholder="Ingrese su usuario." disabled>
+                              <label asp-for="Usuario1">Usuario:</label>
+                              <input asp-for="Usuario1" type="text" class="form-control" id="usuario" maxlength ="40" placeholder="Ingrese su usuario." >
+                          <span asp-validation-for="Usuario1" class="text-danger"></span>   
+                          </div>
+                          </div>
+                          <div class="cold-md-6 mb-2">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" maxlength="40" required>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="cold-md-6 mb-2">
+                                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" maxlength="40" required>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                          <div class="col-md-12 mb-2">
+                            <div class="form-group">
+                              <label asp-for="toBase64" class="form-label">Foto</label>
+                            <input asp-for="toBase64" id="tobase64" class="form-control"/>
                             </div>
                           </div>
                           <div class="col-md-12 mb-2">
                             <div class="form-group">
-                              <label for="titulo">Foto:</label>
-                              <input type="file" class="form-control" id="foto" disabled>
-                            </div>
-                          </div>
-                          <div class="col-md-12 mb-2">
-                            <div class="form-group">
-                              <label for="titulo">Asignar rol:</label>
-                              <select class="form-control" id="rol" required>
-                                <option value="">- Seleccione -</option>
-                                <option value="1">Paciente</option>
-                                <option value="2">Médico</option>
-                                <option value="3">Administrador</option>
-                              </select>
+                             <label asp-for="RolSeleccionado" class="col-md-4"></label>
+                        <select asp-for="RolSeleccionado" asp-items="@Model.ListaRoles"
+                           class="form-control">
+                            <option disabled selected>--Seleccionar rol--</option>
+                        </select>
                             </div>
                           </div>
                           <!-- <div class="col-md-12 mb-2">

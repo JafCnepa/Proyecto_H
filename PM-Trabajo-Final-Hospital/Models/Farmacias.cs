@@ -11,6 +11,10 @@ namespace PM_Trabajo_Final_Hospital.Models
         [Required(ErrorMessage = "Este campo es requerido.")]
         [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
         public string? Nombre { get; set; }
+        [Display(Name = "Avenida ")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
+        public string? Avenida { get; set; }
 
         [ForeignKey("Departamento")]
         public int IdDepartamento { get; set; }

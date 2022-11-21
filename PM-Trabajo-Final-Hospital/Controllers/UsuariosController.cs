@@ -18,25 +18,26 @@ namespace PM_Trabajo_Final_Hospital.Controllers
 
     public class UsuariosController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _context;
 
-
-        public UsuariosController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public UsuariosController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
         {
-   
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
+
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this._roleManager = roleManager;
+            this._context = context;
             // _emailSender = emailSender;
         }
 
 
-        // GET: CuentasController
-        public ActionResult Index()
+    
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Usuarios.ToListAsync());
         }
 
         [HttpGet]
@@ -88,12 +89,12 @@ namespace PM_Trabajo_Final_Hospital.Controllers
                     FechaNacimiento = register.FechaNacimiento,
                     Estado = register.Estado
                 };
-                var resultado = await _userManager.CreateAsync(usuario, register.Password);
+                var resultado = await userManager.CreateAsync(usuario, register.Password);
 
                 if (resultado.Succeeded)
                 {
                     //await _roleManager.CreateAsync(new IdentityRole("Administrador"));
-                    await _userManager.AddToRoleAsync(usuario, "Administrador");
+                    await userManager.AddToRoleAsync(usuario, "Administrador");
 
                     //Implementación de confirmación de email en el registro
                     // var code = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
@@ -102,7 +103,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
                     //"Por favor confirme su cuenta dando click aquí: <a href=\"" + urlRetorno + "\">enlace</a>");
 
 
-                    await _signInManager.SignInAsync(usuario, isPersistent: false);
+                    await signInManager.SignInAsync(usuario, isPersistent: false);
                     //return RedirectToAction("Index", "Home");
                     return LocalRedirect(returnurl);
                 }
@@ -138,11 +139,11 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             returnurl = returnurl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var resultado = await _signInManager.PasswordSignInAsync(sign.Usuario1,
+                var resultado = await signInManager.PasswordSignInAsync(sign.Usuario1,
                     sign.Password, sign.RememberMe, lockoutOnFailure: true);
                 if (resultado.Succeeded)
                 {
-                    return LocalRedirect(returnurl);
+                    Redirect (returnurl);
                   
                 }
                 if (resultado.IsLockedOut)
@@ -228,8 +229,8 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             });
             listaRoles.Add(new SelectListItem()
             {
-                Value = "Medicos",
-                Text = "Medicos"
+                Value = "Pacientes",
+                Text = "Pacientes"
             });
 
             ViewData["ReturnUrl"] = returnurl;
@@ -261,7 +262,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
                     
                     Estado = register.Estado
                 };
-                var resultado = await _userManager.CreateAsync(usuario, register.Password);
+                var resultado = await userManager.CreateAsync(usuario, register.Password);
 
                 if (resultado.Succeeded)
                 {
@@ -269,25 +270,25 @@ namespace PM_Trabajo_Final_Hospital.Controllers
                     if (register.RolSeleccionado != null && register.RolSeleccionado.Length > 0 &&
                                                      register.RolSeleccionado == "Administrador")
                     {
-                        await _userManager.AddToRoleAsync(usuario, "Administrador");
+                        await userManager.AddToRoleAsync(usuario, "Administrador");
                     }
                     else
                     {
-                        await _userManager.AddToRoleAsync(usuario, "Medicos");
-                        await _userManager.AddToRoleAsync(usuario, "Pacientes");
+                        await userManager.AddToRoleAsync(usuario, "Medicos");
+                        await userManager.AddToRoleAsync(usuario, "Pacientes");
                     }
 
 
 
                     //Esta línea es para la asignación del usuario que se registra al rol "Registrado"
-                    await _userManager.AddToRoleAsync(usuario, "Medicos");
+                    await userManager.AddToRoleAsync(usuario, "Medicos");
 
 
-                    await _userManager.AddToRoleAsync(usuario, "Pacientes");
+                    await userManager.AddToRoleAsync(usuario, "Pacientes");
 
 
 
-                    await _signInManager.SignInAsync(usuario, isPersistent: false);
+                    await signInManager.SignInAsync(usuario, isPersistent: false);
                     //return RedirectToAction("Index", "Home");
                     return LocalRedirect(returnurl);
                 }
@@ -318,6 +319,122 @@ namespace PM_Trabajo_Final_Hospital.Controllers
 
             return View(register);
         }
+        [AllowAnonymous]
+        [HttpGet]
+        public ChallengeResult LoginExterno(string proveedor, string urlRetorno = null)
+        {
+            var urlRedireccion = Url.Action("RegistrarUsuarioExterno", values: new { urlRetorno });
+            var propiedades = signInManager
+                .ConfigureExternalAuthenticationProperties(proveedor, urlRedireccion);
+            return new ChallengeResult(proveedor, propiedades);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> RegistrarUsuarioExterno(string urlRetorno = null,
+            string remoteError = null)
+        {
+            urlRetorno = urlRetorno ?? Url.Content("~/");
+
+            var mensaje = "";
+
+            if (remoteError is not null)
+            {
+                mensaje = $"Error del proveedor externo: {remoteError}";
+                return RedirectToAction("login", routeValues: new { mensaje });
+            }
+
+            var info = await signInManager.GetExternalLoginInfoAsync();
+            if (info is null)
+            {
+                mensaje = "Error cargando la data de login externo";
+                return RedirectToAction("login", routeValues: new { mensaje });
+            }
+
+            var resultadoLoginExterno = await signInManager.ExternalLoginSignInAsync(info.LoginProvider,
+                info.ProviderKey, isPersistent: true, bypassTwoFactor: true);
+
+            // Ya la cuenta existe
+            if (resultadoLoginExterno.Succeeded)
+            {
+                return LocalRedirect(urlRetorno);
+            }
+
+            string email = "";
+
+            if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+            {
+                email = info.Principal.FindFirstValue(ClaimTypes.Email);
+            }
+            else
+            {
+                mensaje = "Error leyendo el email del usuario del proveedor";
+                return RedirectToAction("login", routeValues: new { mensaje });
+            }
+
+            var usuario = new IdentityUser { Email = email, UserName = email };
+
+            var resultadoCrearUsuario = await userManager.CreateAsync(usuario);
+
+            if (!resultadoCrearUsuario.Succeeded)
+            {
+                mensaje = resultadoCrearUsuario.Errors.First().Description;
+                return RedirectToAction("login", routeValues: new { mensaje });
+            }
+
+            var resultadoAgregarLogin = await userManager.AddLoginAsync(usuario, info);
+
+            if (resultadoAgregarLogin.Succeeded)
+            {
+                await signInManager.SignInAsync(usuario, isPersistent: true, info.LoginProvider);
+                return LocalRedirect(urlRetorno);
+            }
+
+            mensaje = "Ha ocurrido un error agregando el login";
+            return RedirectToAction("login", routeValues: new { mensaje });
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            var usuario = _context.Usuarios.FirstOrDefault(c => c.UsuarioId == id);
+            _context.Usuarios.Remove(usuario);
+            _context.SaveChanges(true);
+            return RedirectToAction("Index");
+        }
+        public IActionResult Detalle(int? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+            var usu = _context.Usuarios.Include(d => d.DetalleUsuario).FirstOrDefault(u => u.UsuarioId == id);
+            if (usu == null)
+            {
+                return NotFound();
+            }
+            return View(usu);
+        }
+        [HttpPost]
+        public IActionResult AgregarDetalle(Usuario usuario)
+        {      //Si el Usuario no tienen detalle su ID Detale de Usu es 0, por lo tanto agregamos su detalle
+            if (usuario.DetalleUsuario.DetalleUsuario_Id == 0)
+            {
+                _context.DetalleUsuario.Add(usuario.DetalleUsuario);
+                _context.SaveChanges();
+                //Crear el detalle de usuario
+                var usuBD = _context.Usuarios.FirstOrDefault(u => u.UsuarioId == usuario.UsuarioId);
+                usuBD.DetalleUsuario_Id = usuario.DetalleUsuario.DetalleUsuario_Id;
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+
+
+
 
 
     }

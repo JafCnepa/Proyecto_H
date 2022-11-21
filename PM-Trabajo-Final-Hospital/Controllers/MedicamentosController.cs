@@ -20,9 +20,10 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         }
 
         // GET: Medicamentos
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-              return View(await _context.Medicamentos.ToListAsync());
+            List<Medicamentos> listaMedicamentos = _context.Medicamentos.ToList();
+            return View(listaMedicamentos);
         }
 
         // GET: Medicamentos/Details/5
@@ -47,7 +48,9 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         public IActionResult Create()
         {
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuariosId", "Nombrecompletousuario");
-            ViewData["Idcategoria"] = new SelectList(_context.Usuarios, "UsuariosId", "Nombrecompletousuario");
+            ViewData["Idcategoria"] = new SelectList(_context.Categorias, "IdCategoria", "Categorias");
+            ViewData["IdFarmacia"] = new SelectList(_context.Farmacia, "IdFarmacia", "Farmacia");
+            ViewData["IdStocks"] = new SelectList(_context.Stocks, "IdStocks", "StockName");
             return View();
         }
 
@@ -56,7 +59,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdMedicamento,Nombre,Fecha,UsuarioId,IdCategoria,IdFarmacia,Precio")] Medicamentos medicamentos)
+        public async Task<IActionResult> Create([Bind("IdMedicamento,Nombre,Fecha,UsuarioId,IdCategoria,IdFarmacia,IdStocks,Precio")] Medicamentos medicamentos)
         {
             if (ModelState.IsValid)
             {
@@ -66,8 +69,9 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             }
             return View(medicamentos);
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuariosId", "Nombrecompletousuario", medicamentos.UsuarioId);
-            ViewData["IdCategoria"] = new SelectList(_context.Usuarios, "IdCategoria", "Categorias", medicamentos.IdCategoria);
-            ViewData["IdFarmacia"] = new SelectList(_context.Usuarios, "IdCategoria", "Categorias", medicamentos.IdFarmacia);
+            ViewData["IdCategoria"] = new SelectList(_context.Categorias, "IdCategoria", "Categorias", medicamentos.IdCategoria);
+            ViewData["IdFarmacia"] = new SelectList(_context.Farmacia, "IdFarmacia", "Farmacia", medicamentos.IdFarmacia);
+            ViewData["IdStocks"] = new SelectList(_context.Stocks, "IdStocks", "StockName", medicamentos.IdStocks);
         }
 
         // GET: Medicamentos/Edit/5
@@ -83,10 +87,11 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdCategoria"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones",  medicamentos.IdCategoria);
-            ViewData["IdFarmacia"] = new SelectList(_context.Colegiados, "IdFarmacia", "Nombre", medicamentos.IdFarmacia);
+            ViewData["IdCategoria"] = new SelectList(_context.Categorias, "IdCategoria", "Categorias",  medicamentos.IdCategoria);
+            ViewData["IdFarmacia"] = new SelectList(_context.Farmacia, "IdFarmacia", "Nombre", medicamentos.IdFarmacia);
 
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medicamentos.UsuarioId);
+            ViewData["IdStocks"] = new SelectList(_context.Stocks, "IdStocks", "StockName", medicamentos.IdStocks);
             return View(medicamentos);
         }
 
@@ -95,7 +100,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdMedicamento,Nombre,Fecha,UsuarioId,IdCategoria,IdFarmacia,Precio")] Medicamentos medicamentos)
+        public async Task<IActionResult> Edit(int id, [Bind("IdMedicamento,Nombre,Fecha,UsuarioId,IdCategoria,IdFarmacia,IdStocks,Precio")] Medicamentos medicamentos)
         {
             if (id != medicamentos.IdMedicamento)
             {
@@ -123,9 +128,10 @@ namespace PM_Trabajo_Final_Hospital.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdCategoria"] = new SelectList(_context.Categorias, "IdCategoria", "Categorias", medicamentos.IdCategoria);
-            ViewData["IdFarmacia"] = new SelectList(_context.Farmacia, "IdColegiado", "Nombre", medicamentos.IdFarmacia);
+            ViewData["IdFarmacia"] = new SelectList(_context.Farmacia, "IdFarmacia", "Nombre", medicamentos.IdFarmacia);
 
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "IdUsuario", "Nombrecompletousuario", medicamentos.UsuarioId);
+            ViewData["IdStocks"] = new SelectList(_context.Stocks, "IdStocks", "StockName", medicamentos.IdStocks);
             return View(medicamentos);
         }
 
@@ -141,6 +147,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
                  .Include(m => m.IdFarmacia)
                  .Include(m => m.IdCategoria)
                  .Include(m => m.UsuarioId)
+                 .Include(m=> m.IdStocks)
                
                 .FirstOrDefaultAsync(m => m.IdMedicamento == id);
             if (medicamentos == null)

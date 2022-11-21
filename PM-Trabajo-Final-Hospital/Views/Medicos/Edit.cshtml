@@ -87,26 +87,29 @@
                                     <div class="col-md-6 mb-2">
                                         <div class="form-group">
                                             <label for="ubicacion">Horario:</label>
-                                            <input type="datetime-local" class="form-control" id="fechahora" required>
+                                            <input asp-for="Fecha" type="datetime-local" class="form-control" id="fechahora" required>
+                                            <span asp-validation-for="Fecha" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <div class="form-group">
                                             <label for="titulo">Especialidad:</label>
-                                            <input type="text" class="form-control" id="especialidad" maxlength="40" placeholder="Ingrese la especialidad." required>
+                                            <input asp-for="Especialidad" type="text" class="form-control" id="especialidad" maxlength="40" placeholder="Ingrese la especialidad." required>
+                                            <span asp-validation-for="Especialidad" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <div class="form-group">
                                             <label for="Usuario">Paciente:</label>
-                                            <input asp-for="UsuarioId" class="form-control" />
+                                            <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
                                             <span asp-validation-for="UsuarioId" class="text-danger"></span>
+                              
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <div class="form-group">
                                             <label for="Colegiado">Colegiado:</label>
-                                            <input asp-for="IdColegiado" class="form-control" />
+                                            <select asp-for="IdColegiado" class="form-control" asp-items="ViewBag.IdColegiado"></select>
                                             <span asp-validation-for="IdColegiado" class="text-danger"></span>
                                         
                                         </div>
@@ -114,7 +117,7 @@
                                     <div class="col-md-6 mb-2">
                                         <div class="form-group">
                                             <label for="Certificado">Certificación:</label>
-                                            <input asp-for="IdCertificacion" class="form-control" />
+                                            <select asp-for="IdCertificacion" class="form-control" asp-items="ViewBag.IdCertificacion"></select>
                                             <span asp-validation-for="IdCertificacion" class="text-danger"></span>
                                          
                                         </div>

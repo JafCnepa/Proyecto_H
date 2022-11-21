@@ -34,8 +34,14 @@ namespace PM_Trabajo_Final_Hospital.Models
         [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 8)]
 
         public bool Estado { get; set; }
-        [Column(TypeName = "image")]
-        public Byte[] Foto { get; set; }
+
+        [NotMapped]
+
+        public IFormFile toBase64 { get; set; }
+        public string? Foto { get; set; }
         public string? Usuario1 { get; set; }
+        public int DetalleUsuario_Id { get; set; }
+        [ForeignKey("Detalle_Usuario")]
+        public virtual DetalleUsuario DetalleUsuario { get; set; }
     }
 }

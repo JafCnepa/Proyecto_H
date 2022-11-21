@@ -1,6 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Perfil";
-}
+﻿@model PM_Trabajo_Final_Hospital.Models.Usuario
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <style>
   .card img {
@@ -84,7 +86,7 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" asp-area="" asp-controller="Usuarios" asp-action="Perfil">
+                <a class="nav-link active" asp-area="" asp-controller="Usuarios" asp-action="Detalle">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-settings-gear-65 text-primary text-sm opacity-10"></i>
                     </div>
@@ -139,7 +141,9 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-8">
-                <form action="" method="">
+                <form method="post" asp-action="AgregarDetalle">
+                    <input type="hidden" asp-for="UsuarioId" />
+                    <input type="hidden" asp-for="DetalleUsuario.DetalleUsuario_Id" />
                     <div class="card mb-4">
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
@@ -153,31 +157,36 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Usuario:</label>
-                                        <input class="form-control" type="text" autocomplete="honorific-suffix" maxlength="20" value="" placeholder="Usuario" required>
+                                        <input asp-for="UsuarioId" class="form-control" type="text" autocomplete="honorific-suffix" maxlength="20" value="" placeholder="Usuario" >
+                                        <span asp-validation-for="UsuarioId" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Correo electrónico:</label>
-                                        <input class="form-control" type="email" autocomplete="honorific-suffix" maxlength="40" value="" placeholder="Correo Electrónico" required>
+                                        <input asp-for="Email" class="form-control" type="email" autocomplete="honorific-suffix" maxlength="40" value="" placeholder="Correo Electrónico">
+                                   <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Nombres completos:</label>
-                                        <input class="form-control" type="text" autocomplete="honorific-suffix" maxlength="40" value="" placeholder="Nombres" required>
+                                        <input asp-for="Nombrecompletousuario" class="form-control" type="text" autocomplete="honorific-suffix" maxlength="40" value="" placeholder="Nombres" disabled>
+                                        <span asp-validation-for="Nombrecompletousuario" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Foto de perfil:</label>
-                                        <input class="form-control" type="file" value="" required>
+                                        <input asp-for="Foto" type="file" class="form-control" id="FOTO" name="upload" disabled>
+                                        <span asp-validation-for="Foto" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Fecha nacimiento:</label>
-                                        <input class="form-control" type="date" value="" required>
+                                        <input asp-for="FechaNacimiento" class="form-control" type="date" value="" disabled>
+                                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -187,32 +196,28 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">DNI:</label>
-                                        <input class="form-control" type="number" autocomplete="honorific-suffix" value="" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="8" placeholder="DNI" required>
+                                        <input asp-for="Dniusuario" class="form-control" type="number" autocomplete="honorific-suffix" value="" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="8" placeholder="DNI" disabled>
+                                        <span asp-validation-for="Dniusuario" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">RUC:</label>
-                                        <input class="form-control" type="number" autocomplete="honorific-suffix" value="" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" placeholder="RUC" required>
+                                        <input asp-for="Rucusuario" class="form-control" type="number" autocomplete="honorific-suffix" value="" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" placeholder="RUC" disabled>
+                                        <span asp-validation-for="Rucusuario" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Teléfono:</label>
-                                        <input class="form-control" type="number" autocomplete="honorific-suffix" value="" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="12" placeholder="Teléfono" required>
+                                        <input asp-for="Celularusuario" class="form-control" type="number" autocomplete="honorific-suffix" value="" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="12" placeholder="Teléfono" required>
+                                        <span asp-validation-for="Celularusuario" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
                             <hr class="horizontal dark">
-                            <p class="text-uppercase text-sm">Acerca de tí:</p>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Descripción</label>
-                                        <textarea class="form-control" rows="5" autocomplete="honorific-suffix" maxlength="200" value="" placeholder="Descripción" required></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                         
                         </div>
                     </div>
                 </form>

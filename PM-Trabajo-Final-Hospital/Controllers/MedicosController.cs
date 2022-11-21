@@ -22,6 +22,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         // GET: Medicos
         public async Task<IActionResult> Index()
         {
+
             var arzobispoContext = _context.Medicos.Include(m => m.Certificacion).Include(m => m.Colegiado).Include(m => m.Usuario);
             return View(await arzobispoContext.ToListAsync());
         }
@@ -35,11 +36,11 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             }
 
             var medico = await _context.Medicos
-                .Include(m => m.Certificacion)
-                .Include(m => m.Colegiado)
-              
-                .Include(m => m.Usuario)
-                .FirstOrDefaultAsync(m => m.IdMedico == id);
+              .Include(m => m.Certificacion)
+              .Include(m => m.Colegiado)
+
+              .Include(m => m.Usuario)
+              .FirstOrDefaultAsync(m => m.IdMedico == id);
             if (medico == null)
             {
                 return NotFound();
@@ -47,11 +48,14 @@ namespace PM_Trabajo_Final_Hospital.Controllers
 
             return View(medico);
         }
+
+        // GET: Medicos/Create
         public IActionResult Create()
         {
+
             ViewData["IdCertificacion"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones");
             ViewData["IdColegiado"] = new SelectList(_context.Colegiados, "IdColegiado", "Colegiados");
-      
+
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario");
             return View();
         }
@@ -61,7 +65,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdMedico,Nombrecompletomedico,Dnimedico,Fecha,Cedula,UsuarioId,IdColegiado,IdCertificacion, Foto")] Medico medico)
+        public async Task<IActionResult> Create([Bind("IdMedico,Nombrecompletomedico,Dnimedico,Fecha,Cedula,Salon,Foto,Especialidad,UsuarioId,IdColegiado,IdCertificacion")] Medico medico)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +75,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             }
             ViewData["IdCertificacion"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones", medico.IdCertificacion);
             ViewData["IdColegiado"] = new SelectList(_context.Colegiados, "IdColegiado", "Colegiados", medico.IdColegiado);
-           
+
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario", medico.UsuarioId);
             return View(medico);
         }
@@ -89,10 +93,11 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdCertificacion"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones", medico.IdCertificacion);
-            ViewData["IdColegiado"] = new SelectList(_context.Colegiados, "IdColegiado", "Colegiados", medico.IdColegiado);
-  
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario", medico.UsuarioId);
+
+            ViewData["IdCertificacion"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones");
+            ViewData["IdColegiado"] = new SelectList(_context.Colegiados, "IdColegiado", "Colegiados");
+
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario");
             return View(medico);
         }
 
@@ -101,7 +106,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdMedico,Nombrecompletomedico,Dnimedico,Fecha,Cedula,UsuarioId,IdColegiado,IdCertificacion, Foto")] Medico medico)
+        public async Task<IActionResult> Edit(int id, [Bind("IdMedico,Nombrecompletomedico,Dnimedico,Fecha,Cedula,Salon,Foto,Especialidad,UsuarioId,IdColegiado,IdCertificacion")] Medico medico)
         {
             if (id != medico.IdMedico)
             {
@@ -128,90 +133,27 @@ namespace PM_Trabajo_Final_Hospital.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["IdCertificacion"] = new SelectList(_context.Certificacions, "IdCertificacion", "Certificaciones", medico.IdCertificacion);
             ViewData["IdColegiado"] = new SelectList(_context.Colegiados, "IdColegiado", "Colegiados", medico.IdColegiado);
-       
+
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario", medico.UsuarioId);
             return View(medico);
         }
 
-        // GET: Medicos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpGet]
+        public IActionResult Delete(int? id)
         {
-            if (id == null || _context.Medicos == null)
-            {
-                return NotFound();
-            }
-
-            var medico = await _context.Medicos
-                .Include(m => m.IdCertificacion)
-                .Include(m => m.IdColegiado)
-                .Include(m => m.UsuarioId)
-                .FirstOrDefaultAsync(m => m.IdMedico == id);
-            if (medico == null)
-            {
-                return NotFound();
-            }
-
-            return View(medico);
+            var articulo = _context.Medicos.FirstOrDefault(c => c.IdMedico == id);
+            _context.Medicos.Remove(articulo);
+            _context.SaveChanges(true);
+            return RedirectToAction("Index");
         }
 
-        // POST: Medicos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Medicos == null)
-            {
-                return Problem("Entity set 'ArzobispoContext.Medicos'  is null.");
-            }
-            var medico = await _context.Medicos.FindAsync(id);
-            if (medico != null)
-            {
-                _context.Medicos.Remove(medico);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
 
         private bool MedicoExists(int id)
         {
-            return _context.Medicos.Any(e => e.IdMedico == id);
+          return _context.Medicos.Any(e => e.IdMedico == id);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
