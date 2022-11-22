@@ -68,6 +68,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             }
             ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Nombre", facturas.IdMedicamento);
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombrecompletousuario", facturas.UsuarioId);
+            ViewData["IdDistrito"] = new SelectList(_context.Distritos, "IdDistrito", "Distritos", facturas.Distrtios);
             return View(facturas);
         }
 
@@ -86,6 +87,7 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             }
             ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Nombre", facturas.IdMedicamento);
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuariosId", "Nombrecompletousuario", facturas.UsuarioId);
+            ViewData["IdDistrito"] = new SelectList(_context.Distritos, "IdDistrito", "Distritos", facturas.IdDistrito);
             return View(facturas);
         }
 
@@ -123,45 +125,22 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             }
             ViewData["IdMedicamento"] = new SelectList(_context.Medicamentos, "IdMedicamento", "Nombre", facturas.IdMedicamento);
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuariosId", "Nombrecompletousuario", facturas.UsuarioId);
+            ViewData["IdDistrito"] = new SelectList(_context.Distritos, "IdDistritos", "Distritos", facturas.Distrtios);
             return View(facturas);
         }
 
-        // GET: Facturas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
         {
-            if (id == null || _context.Factura == null)
-            {
-                return NotFound();
-            }
-
-            var facturas = await _context.Factura
-                .Include(f => f.Medicamento)
-                .FirstOrDefaultAsync(m => m.IdFactura == id);
-            if (facturas == null)
-            {
-                return NotFound();
-            }
-
-            return View(facturas);
+            var facturas = _context.Factura.FirstOrDefault(c => c.IdFactura == id);
+            _context.Factura.Remove(facturas);
+            _context.SaveChanges(true);
+            return RedirectToAction("Index");
         }
-
-        // POST: Facturas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        private bool MedicamentosExists(int id)
         {
-            if (_context.Factura == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Factura'  is null.");
-            }
-            var facturas = await _context.Factura.FindAsync(id);
-            if (facturas != null)
-            {
-                _context.Factura.Remove(facturas);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return _context.Medicamentos.Any(e => e.IdMedicamento == id);
         }
 
         private bool FacturasExists(int id)

@@ -442,8 +442,10 @@ namespace PM_Trabajo_Final_Hospital.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMedicamento"), 1L, 1);
 
-                    b.Property<int?>("CategoriaIdCateogira")
-                        .HasColumnType("int");
+                    b.Property<string>("Categorias")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("FarmaciaIdFarmacia")
                         .HasColumnType("int");
@@ -452,13 +454,7 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdCategoria")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdFarmacia")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdStocks")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
@@ -469,8 +465,10 @@ namespace PM_Trabajo_Final_Hospital.Migrations
                     b.Property<string>("Precio")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StockIdStock")
-                        .HasColumnType("int");
+                    b.Property<string>("Stocks")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
@@ -480,11 +478,7 @@ namespace PM_Trabajo_Final_Hospital.Migrations
 
                     b.HasKey("IdMedicamento");
 
-                    b.HasIndex("CategoriaIdCateogira");
-
                     b.HasIndex("FarmaciaIdFarmacia");
-
-                    b.HasIndex("StockIdStock");
 
                     b.HasIndex("UsuarioId1");
 
@@ -740,27 +734,15 @@ namespace PM_Trabajo_Final_Hospital.Migrations
 
             modelBuilder.Entity("PM_Trabajo_Final_Hospital.Models.Medicamentos", b =>
                 {
-                    b.HasOne("PM_Trabajo_Final_Hospital.Models.Categoria", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaIdCateogira");
-
                     b.HasOne("PM_Trabajo_Final_Hospital.Models.Farmacias", "Farmacia")
                         .WithMany()
                         .HasForeignKey("FarmaciaIdFarmacia");
-
-                    b.HasOne("PM_Trabajo_Final_Hospital.Models.Stocks", "Stock")
-                        .WithMany()
-                        .HasForeignKey("StockIdStock");
 
                     b.HasOne("PM_Trabajo_Final_Hospital.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId1");
 
-                    b.Navigation("Categoria");
-
                     b.Navigation("Farmacia");
-
-                    b.Navigation("Stock");
 
                     b.Navigation("Usuario");
                 });

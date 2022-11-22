@@ -82,8 +82,8 @@
                                     <div class="col-md-6 mb-2">
                                         <div class="form-group">
                                             <label for="Categorias">Categorias:</label>
-                                            <input asp-for="IdCategoria" class="form-control" />
-                                            <span asp-validation-for="IdCategoria" class="text-danger"></span>
+                                            <input asp-for="Categorias" class="form-control" id="nombres" maxlength="40" placeholder="Ingrese el nombre de la categoria" required>
+                                            <span asp-validation-for="Categorias" class="text-danger"></span>
                                         </div>
                                     </div>
                                  
@@ -97,22 +97,23 @@
                                     <div class="col-md-12 mb-2">
                                         <div class="form-group">
                                             <label for="Nombre Farmacia">Farmacia:</label>
-                                            <input asp-for="IdFarmacia" class="form-control" />
+                                            <select asp-for="IdFarmacia" class="form-control" asp-items="ViewBag.IdFarmacia"></select>
                                             <span asp-validation-for="IdFarmacia" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <div class="form-group">
                                             <label for="Usuario">Usuarios:</label>
-                                            <input asp-for="UsuarioId" class="form-control" />
+                                            <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
                                             <span asp-validation-for="UsuarioId" class="text-danger"></span>
+
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <div class="form-group">
                                             <label for="Stock">Stocks:</label>
-                                            <input asp-for="IdStocks" class="form-control" />
-                                            <span asp-validation-for="IdStocks" class="text-danger"></span>
+                                            <input asp-for="Stocks" class="form-control" id="nombres" maxlength="40" placeholder="Ingrese el nombre del medicamento." required>
+                                            <span asp-validation-for="Stocks" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <!-- <div class="col-md-12 mb-2">

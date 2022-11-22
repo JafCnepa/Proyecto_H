@@ -63,19 +63,23 @@
                     <span class="nav-link-text ms-1">Facturas</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" asp-area="" asp-controller="Usuarios" asp-action="Index">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Usuarios</span>
-                </a>
-            </li>
+            @if (User.IsInRole("Administrador"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link active" asp-area="" asp-controller="Usuarios" asp-action="Index">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Usuarios</span>
+                    </a>
+                </li>
+            }
+            else { }
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Usuarios" asp-action="Perfil">
+                <a class="nav-link" asp-area="" asp-controller="Usuarios" asp-action="Detalle">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-settings-gear-65 text-primary text-sm opacity-10"></i>
                     </div>
@@ -127,26 +131,12 @@
                     </div>
                 </div>
                 <ul class="navbar-nav  justify-content-end">
-
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        @if (User.IsInRole("Administrador"))
-                        {
-                        }
-                    }
-
-           
                     <li class="nav-item d-flex align-items-center">
-
-                     
-
-                    <li class="nav-item">
+                        <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Bienvenido:  @UserManager.GetUserName(User)<span></span></span>
-                           
-                        </li>
-                  
-                  
+                            <span class="d-sm-inline d-none">Bienvenido: <span>@UserManager.GetUserName(User)</span></span>
+                        </a>
+                    </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                             <div class="sidenav-toggler-inner">
@@ -166,81 +156,95 @@
         </div>
     </nav>
     <!-- End Navbar -->
-    <table id="myTable" class="table align-items-center mb-0">
-        <thead>
-            <tr>
-                <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nombres</th>
-                <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">DNI</th>
-                <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">RUC</th>
-                <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Teléfono</th>
-                <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Fecha Nac.</th>
-                <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Correo</th>
-                <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Usuario</th>
-                <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Rol</th>
-                <th class="text-uppercase text-xxs font-weight-bolder opacity-7 text-center">Foto</th>
-                <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Opciones</th>
-                <th class=" opacity-7"></th>
-            </tr>
-        </thead>
-        <tbody>
-           @foreach (var item in Model) {
-            <tr>
-                <td>
-                    <div class="d-flex px-2 py-1">
-                        <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-sm ps-2">@Html.DisplayFor(modelItem => item.Nombrecompletousuario)</h6>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>Lista de usuarios</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div id="tabla" class="table-responsive p-0">
+                            <table id="myTable" class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Nombres</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">DNI</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">RUC</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Teléfono</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Fecha Nac.</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Correo</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Usuario</th>
+
+                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Opciones</th>
+                                        <th class=" opacity-7"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm ps-2">@Html.DisplayFor(modelItem => item.Nombrecompletousuario)</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Dniusuario)</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Rucusuario)</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Celularusuario)</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.FechaNacimiento)</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Email)</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Usuario1)</p>
+                                            </td>
+                                            <td>
+                                                @if (User.IsInRole("Administrador"))
+                                                {
+                                                    <div class="row d-flex justify-content-center">
+
+                                                        <a asp-area="" asp-action="Detalle" asp-route-id="@item.Id" class="btn bg-gradient-primary col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                                            Detalles
+                                                        </a>
+                                                        <a asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn bg-gradient-success col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                                            Eliminar
+                                                        </a>
+                                                        <a asp-action="RegistroAdministrador" asp-route-id="@item.Id" class="btn bg-gradient-danger col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                                            Asignar
+                                                        </a>
+                                                    </div>
+                                                }
+                                                else{
+
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </td>
-                <td>
-                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Dniusuario)</p>
-                </td>
-                <td>
-                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Rucusuario)</p>
-                </td>
-                <td>
-                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Celularusuario)</p>
-                </td>
-                <td>
-                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.FechaNacimiento)</p>
-                </td>
-                    <td>
-                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Email)</p>
-                    </td>
-                <td>
-                        <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Usuario1)</p>
-                </td>
-            
-                <td class="align-middle text-sm">
-                    <p class="text-xs mb-0">Paciente</p>
-                </td>
-                <td class="text-xs text-center mb-0">
-                          <p class="text-xs mb-0">@Html.DisplayFor(modelItem => item.Foto)</p>
-                </td>
-                <td class="align-middle">
-                    <div class="row d-flex justify-content-center">
-                        
-                            <a asp-area="" asp-action="Detalle" asp-route-id="@item.UsuarioId" class="btn bg-gradient-primary col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
-                            Detalles
-                        </a>
-                            <a asp-action="Delete" asp-route-id="@item.UsuarioId" class="btn bg-gradient-success col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
-                            Eliminar
-                        </a>
-                            <a asp-area="" asp-action="RegistroAdministrador" class="btn bg-gradient-danger col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
-                            Asignar
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
         <i class="fa fa-cog py-2"> </i>
     </a>
-   
+
     <div class="card shadow-lg">
         <div class="card-header pb-0 pt-3 ">
             <div class="float-start">

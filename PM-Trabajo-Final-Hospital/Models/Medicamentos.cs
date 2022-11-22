@@ -17,19 +17,23 @@ namespace PM_Trabajo_Final_Hospital.Models
         public DateTime? Fecha { get; set; }
         [ForeignKey("Usuarios")]
         public int UsuarioId { get; set; }
-        [ForeignKey("Categorias")]
+        [Display(Name = "Categorias")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
+        public string Categorias { get; set; }
+        [Display(Name = "Stocks")]
+        [Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(50, ErrorMessage = "Longitud máxima 50", MinimumLength = 4)]
+        public string Stocks { get; set; }
 
-        public int IdCategoria { get; set; }
-   
-     
+
         [ForeignKey("Farmacias")]
         public int IdFarmacia { get; set; }
-        [ForeignKey("Stocks")]
-        public int IdStocks { get; set; }
+    
         public string? Precio { get; set; }
-        public virtual Categoria Categoria { get; set; }
+
         public virtual Farmacias Farmacia { get; set; }
         public virtual Usuario Usuario { get; set; }
-        public virtual Stocks Stock { get; set; }
+
     }
 }

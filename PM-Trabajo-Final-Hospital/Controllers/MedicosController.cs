@@ -144,8 +144,8 @@ namespace PM_Trabajo_Final_Hospital.Controllers
         [HttpGet]
         public IActionResult Delete(int? id)
         {
-            var articulo = _context.Medicos.FirstOrDefault(c => c.IdMedico == id);
-            _context.Medicos.Remove(articulo);
+            var medico = _context.Medicos.FirstOrDefault(c => c.IdMedico == id);
+            _context.Medicos.Remove(medico);
             _context.SaveChanges(true);
             return RedirectToAction("Index");
         }

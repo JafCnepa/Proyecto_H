@@ -127,43 +127,17 @@ namespace PM_Trabajo_Final_Hospital.Controllers
             return View(farmacias);
         }
 
-        // GET: Farmacias/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpGet]
+        public IActionResult Delete(int? id)
         {
-            if (id == null || _context.Farmacia == null)
-            {
-                return NotFound();
-            }
-
-            var farmacias = await _context.Farmacia
-                .Include(f => f.Departamento)
-                .Include(f => f.Distrito)
-                .FirstOrDefaultAsync(m => m.IdFarmacia == id);
-            if (farmacias == null)
-            {
-                return NotFound();
-            }
-
-            return View(farmacias);
+            var farmacias = _context.Farmacia.FirstOrDefault(c => c.IdFarmacia == id);
+            _context.Farmacia.Remove(farmacias);
+            _context.SaveChanges(true);
+            return RedirectToAction("Index");
         }
-
-        // POST: Farmacias/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        private bool MedicamentosExists(int id)
         {
-            if (_context.Farmacia == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Farmacia'  is null.");
-            }
-            var farmacias = await _context.Farmacia.FindAsync(id);
-            if (farmacias != null)
-            {
-                _context.Farmacia.Remove(farmacias);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return _context.Medicamentos.Any(e => e.IdMedicamento == id);
         }
 
         private bool FarmaciasExists(int id)

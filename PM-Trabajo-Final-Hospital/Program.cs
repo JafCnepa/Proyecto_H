@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,15 +16,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 //Agregar el servicio Identity a la aplicación
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 //Esta línea es para la url de retorno al acceder
-builder.Services.ConfigureApplicationCookie(options =>
-{
-  
-
-    options.LoginPath = new PathString("/Usuarios/SignIN");
-    options.AccessDeniedPath = new PathString("/Usuarios/Error");
-});
 
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+        options.SlidingExpiration = true;
+
+        options.LoginPath = new PathString("/Usuarios/SignIN");
+        options.AccessDeniedPath = new PathString("/Usuarios/Error");
+    });
 
 // Estas son opciones de configuración del identity
 builder.Services.Configure<IdentityOptions>(options =>

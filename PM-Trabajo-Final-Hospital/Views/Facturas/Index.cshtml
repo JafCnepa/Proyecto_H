@@ -203,23 +203,31 @@
                       <td class="align-middle text-sm">
                         <p class="text-xs  mb-0">  @Html.DisplayFor(modelItem => item.Fecha)</p>
                       </td>
-                      <td class="align-middle">
-                        <div class="row d-flex justify-content-center">
-                                                    <a asp-area="" asp-action="Edit" asp-route-id="@item.IdFactura" class="btn bg-gradient-warning col-6 w-xxl-30 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
-                            Editar
-                          </a>
-                                                    <a asp-area="" asp-action="Details" asp-route-id="@item.IdFactura" class="btn bg-gradient-primary col-6 w-xxl-30 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
-                            Detalles
-                          </a>
-                                                    <form asp-action="Delete">
+                                            @if (User.IsInRole("Administrador"))
+                                            {
 
-                                                        <button type="submit" class="btn bg-gradient-success col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                            }
+                                            else
+                                            {
+                                                <td class="align-middle">
+                                                    <div class="row d-flex justify-content-center">
+                                                        <a asp-area="" asp-action="Edit" asp-route-id="@item.IdFactura" class="btn bg-gradient-warning col-6 w-xxl-30 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                                            Editar
+                                                        </a>
+                                                        <a asp-area="" asp-action="Details" asp-route-id="@item.IdFactura" class="btn bg-gradient-primary col-6 w-xxl-30 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                                            Detalles
+                                                        </a>
+                                                        <a asp-action="Delete" asp-route-id="@item.IdFactura" class="btn bg-gradient-danger col-6 w-xl-30 w-60 text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
                                                             Eliminar
-                                                        </button>
+                                                        </a>
+                                                    </div>
+                                                </td>
 
-                                                    </form>
-                        </div>
-                      </td>
+                                             
+
+
+                                            }
+                  
                     </tr>
                     }
                   </tbody>

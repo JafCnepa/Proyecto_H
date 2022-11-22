@@ -122,10 +122,14 @@
                                             <select asp-for="IdCertificacion" class="form-control" asp-items="ViewBag.IdCertificacion"></select>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 mb-2">
-                                        <div class="form-group">
-                                            <label asp-for="Foto">Foto:</label>
-                                            <input asp-for="Foto" type="file" class="form-control" id="FOTO" name="upload" required>
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label asp-for="Foto">Escoger Img</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input asp-for="Foto" class="form-control" />
+                                            <span asp-validation-for="Foto" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <!-- <div class="col-md-12 mb-2">

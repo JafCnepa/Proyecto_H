@@ -175,43 +175,46 @@
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <p class="text-xs  mb-0 ps-2">Mifarma</p>
+                                                        <p class="text-xs  mb-0 ps-2">@Html.DisplayFor(modelItem => item.Nombre)</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="align-middle text-sm">
-                                                <p class="text-xs  mb-0">          @Html.DisplayFor(modelItem => item.Nombre)</p>
+                                                <p class="text-xs  mb-0">   @Html.DisplayNameFor(model => model.Departamento.Departamentos)       </p>
                                         </td>
                                         <td class="align-middle text-sm">
-                                                <p class="text-xs  mb-0">                @Html.DisplayNameFor(model => model.Departamento)</p>
+                                                <p class="text-xs  mb-0">     @Html.DisplayFor(modelItem => item.Distrito.Distritos)            </p>
                                         </td>
                                         <td class="align-middle text-sm">
-                                            <p class="text-xs  mb-0">           @Html.DisplayFor(modelItem => item.Distrito.IdDistrito)</p>
+                                                <p class="text-xs  mb-0">      @Html.DisplayFor(modelItem => item.Avenida)     </p>
                                         </td>
-                                            <td class="align-middle text-sm">
-                                                <p class="text-xs  mb-0">           @Html.DisplayFor(modelItem => item.Avenida)</p>
-                                            </td>
-                                        <td class="align-middle">
-                                            <div class="row d-flex justify-content-center">
-                                                <a asp-area=""  asp-action="Edit" class="btn bg-gradient-warning col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
-                                                    Editar
-                                                </a>
-                                                <a asp-area=""  asp-action="Details" class="btn bg-gradient-primary col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
-                                                    Detalles
-                                                </a>
-                                                    <form asp-action="Delete">
-
-                                                        <button type="submit" class="btn bg-gradient-success col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                            @if (User.IsInRole("Administrador"))
+                                            {
+                                                <td class="align-middle">
+                                                    <div class="row d-flex justify-content-center">
+                                                        <a asp-area="" asp-action="Edit" asp-route-id="@item.IdFarmacia"  class="btn bg-gradient-warning col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                                            Editar
+                                                        </a>
+                                                        <a asp-area="" asp-action="Details" asp-route-id="@item.IdFarmacia" class="btn bg-gradient-primary col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                                            Detalles
+                                                        </a>
+                                                        <a asp-action="Delete" asp-route-id="@item.IdFarmacia" class="btn bg-gradient-danger col-6 w-xl-30 w-60 text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
                                                             Eliminar
-                                                        </button>
+                                                        </a>
 
-                                                    </form>
+                                                        <a href="https://www.google.com/maps/search/mifarma+la+molina+flora+tristan" target="_blank" class="btn bg-gradient-info col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
+                                                            Ver Farmacias
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            }
+                                            else
+                                            {
                                                
-                                                <a href="https://www.google.com/maps/search/mifarma+la+molina+flora+tristan" target="_blank" class="btn bg-gradient-info col-6 w-xxl-20 w-60 boton text-center p-0 pt-1 pb-1 m-1 align-items-center" style="font-size: 13px;">
-                                                    Ver Farmacias
-                                                </a>
-                                            </div>
-                                        </td>
+
+                                        
+
+                                            }
                                     </tr>
                                     }
                                 </tbody>
